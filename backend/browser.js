@@ -22,6 +22,11 @@ function getHeadlessMode() {
   return false;
 }
 
+function resolveFirefoxExecutablePath() {
+  const fromEnv = process.env.FIREFOX_BIN?.trim() || process.env.PLAYWRIGHT_FIREFOX_EXECUTABLE_PATH?.trim();
+  return fromEnv || null;
+}
+
 async function ensureDir(filePath) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
 }
@@ -45,9 +50,11 @@ function attachLifecycle(browser) {
 
 async function launchBrowser() {
   const headless = getHeadlessMode();
-  console.log(`Firefox starting (headless=${headless})`);
+  const executablePath = resolveFirefoxExecutablePath();
+  console.log(`Firefox starting (headless=${headless}, executablePath=${executablePath || "default"})`);
   const browser = await firefox.launch({
     headless,
+    ...(executablePath ? { executablePath } : {}),
   });
 
   browserInstance = browser;

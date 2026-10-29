@@ -1,5 +1,5 @@
 import * as storage from "./storage.js";
-import { closeCamoufox } from "./browser.js";
+import { closeCamoufox, getCamoufoxHealth } from "./browser.js";
 import { runMonitorOnce } from "./monitor.js";
 
 function summarize(results) {
@@ -23,6 +23,8 @@ function summarize(results) {
 
 async function main() {
   await storage.init();
+
+  console.log(JSON.stringify({ browserHealth: await getCamoufoxHealth() }, null, 2));
 
   const results = await runMonitorOnce();
   const summary = summarize(results);
