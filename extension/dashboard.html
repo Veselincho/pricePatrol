@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /></head>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>pricePatrol Dashboard</title>
   <style>
@@ -244,6 +244,24 @@
       display: block;
     }
 
+    .timeline-chart .chart-frame { fill: var(--surface-soft); stroke: var(--border); }
+    .timeline-chart .axis-line { stroke: var(--border-strong); stroke-width: 1; }
+    .timeline-chart .grid-line { stroke: color-mix(in srgb, var(--border) 70%, transparent); stroke-width: 1; stroke-dasharray: 5 6; }
+    .timeline-chart .step-line { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: url(#shadow); }
+    .timeline-chart .axis-label { fill: var(--text-muted); font-size: 12px; }
+    .timeline-chart .timeline-marker { cursor: pointer; outline: none; }
+    .timeline-chart .timeline-marker circle { fill: var(--surface); stroke: currentColor; stroke-width: 2.4; }
+    .timeline-chart .timeline-marker path { fill: currentColor; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    .timeline-chart .timeline-marker:hover circle,
+    .timeline-chart .timeline-marker:focus circle { stroke-width: 3.2; }
+    .timeline-chart .timeline-marker[data-inactive="true"] { opacity: .55; }
+    .timeline-chart .timeline-marker[data-inactive="true"] circle { stroke-dasharray: 3 2; }
+    .timeline-chart .timeline-marker.kind-baseline { color: var(--purple); }
+    .timeline-chart .timeline-marker.kind-increase { color: var(--danger); }
+    .timeline-chart .timeline-marker.kind-decrease { color: var(--success); }
+    .timeline-chart .timeline-marker.kind-unchanged { color: var(--primary-text); }
+    .timeline-chart .timeline-marker.kind-error { color: var(--danger); }
+
     .timeline-legend {
       display: flex;
       flex-wrap: wrap;
@@ -306,6 +324,7 @@
     .tooltip-meta { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
     .tooltip-price { font-size: 18px; font-weight: 800; margin: 4px 0; }
     .tooltip-status { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 999px; background: var(--surface-soft); border: 1px solid var(--border); font-size: 12px; font-weight: 600; }
+    .tooltip-reason { margin-top: 8px; color: var(--text-muted); font-size: 12px; line-height: 1.45; }
 
     .timeline-list {
       display: grid;
@@ -331,6 +350,8 @@
     }
 
     .timeline-row:hover { transform: translateY(-1px); border-color: var(--border-strong); background: var(--surface-soft); }
+    .timeline-row.is-inactive { opacity: .86; }
+    .timeline-row.is-inactive .row-subtitle { color: var(--warning); }
 
     .timeline-row:disabled {
       cursor: not-allowed;

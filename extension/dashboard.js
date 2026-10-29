@@ -275,13 +275,12 @@ function drawChart(rows) {
   const pointsMarkup = scaled.map((point) => {
     const kind = point.kind;
     const label = `${formatDateTime(point.capturedAt)} · ${formatPriceValue(point.amount, point.price?.currency ?? point.currency ?? "")}`;
-    const disabled = !point.hasScreenshot ? "aria-disabled=\"true\"" : "";
     const ariaLabel = point.hasScreenshot
       ? `${label}. ${point.kind}. Click to open screenshot.`
       : `${label}. ${point.kind}. ${point.inactiveReason}`;
 
     return `
-      <g class="timeline-marker kind-${kind}" tabindex="0" role="button" ${disabled} data-index="${point.index}" data-kind="${kind}" data-x="${point.x}" data-y="${point.y}" aria-label="${escapeHtml(ariaLabel)}">
+      <g class="timeline-marker kind-${kind}" tabindex="0" role="button" ${point.hasScreenshot ? "" : 'data-inactive="true"'} data-index="${point.index}" data-kind="${kind}" data-x="${point.x}" data-y="${point.y}" aria-label="${escapeHtml(ariaLabel)}">
         <circle cx="${point.x}" cy="${point.y}" r="10"></circle>
         <path d="${getMarkerShapePath(kind, point.x, point.y, 7)}"></path>
       </g>
@@ -408,6 +407,7 @@ function showTooltip(record, marker, svg, event) {
       Status: ${escapeHtml(record.status || "reference")}
     </div>
     <div class="tooltip-status">${escapeHtml(statusLabel)}</div>
+    ${record.inactiveReason ? `<div class="tooltip-reason">${escapeHtml(record.inactiveReason)}</div>` : ""}
   `;
   timelineTooltipEl.classList.add("show");
   timelineTooltipEl.setAttribute("aria-hidden", "false");
@@ -435,9 +435,9 @@ function renderTimelineList(rows) {
     const statusClass = kind === "increase" ? "changed" : kind === "decrease" ? "good" : kind === "error" ? "error" : kind === "baseline" ? "baseline" : "unchanged";
     const deltaText = record.deltaAmount === null ? "First reference" : formatDelta(record.deltaAmount, record.deltaPercent);
     const subtitle = record.inactiveReason || "Click to open the screenshot lightbox.";
-    const disabled = record.hasScreenshot ? "" : "disabled";
+    const inactiveClass = record.hasScreenshot ? "" : "is-inactive";
     return `
-      <button class="timeline-row kind-${kind}" type="button" data-index="${index}" ${disabled} aria-label="${escapeHtml(formatDateTime(record.capturedAt))}, ${escapeHtml(formatPriceValue(record.amount, record.price?.currency ?? record.currency ?? ""))}. ${escapeHtml(subtitle)}">
+      <button class="timeline-row kind-${kind} ${inactiveClass}" type="button" data-index="${index}" aria-label="${escapeHtml(formatDateTime(record.capturedAt))}, ${escapeHtml(formatPriceValue(record.amount, record.price?.currency ?? record.currency ?? ""))}. ${escapeHtml(subtitle)}">
         <span class="icon-spot" aria-hidden="true">${getSnapshotIcon(kind)}</span>
         <span class="row-main">
           <span class="row-date">${escapeHtml(formatDateTime(record.capturedAt))}</span>
@@ -475,7 +475,8 @@ function renderModal(record, index) {
     `Status: ${escapeHtml(record.status || "reference")}`,
     record.deltaAmount === null ? "First reference" : `Change: ${escapeHtml(formatDelta(record.deltaAmount, record.deltaPercent))}`,
     `Selector: ${escapeHtml(record.selector || "—")}`,
-  ].join("<br />");
+    record.inactiveReason ? `Note: ${escapeHtml(record.inactiveReason)}` : null,
+  ].filter(Boolean).join("<br />");
   modalHistoryEl.innerHTML = [
     `Timeline position: ${index + 1} of ${records.length}`,
     record.prevRecordIndex === null ? "No previous record." : `Previous record: ${formatDateTime(records[record.prevRecordIndex].capturedAt)}`,
