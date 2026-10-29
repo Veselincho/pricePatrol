@@ -8,9 +8,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: check-prices
+  cancel-in-progress: false
+
 jobs:
   check-prices:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -53,4 +58,5 @@ jobs:
             exit 0
           fi
           git commit -m "Update daily price data"
+          git pull --rebase origin ${{ github.ref_name }}
           git push origin HEAD:${{ github.ref_name }}
