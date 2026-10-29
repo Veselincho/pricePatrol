@@ -15,10 +15,10 @@ The repository is the source of truth:
 3. The save updates `data/prices.json` and triggers the daily GitHub Actions workflow.
 4. GitHub Actions checks the saved products, compares the current price with the last reference, and captures a screenshot when the price changes or when a first baseline is needed.
 5. The dashboard in the extension shows:
-   - current price
-   - price history over time
-   - reference days
-   - links to stored screenshots
+   - current price and tracked history
+   - an interactive price timeline
+   - reference points with status markers
+   - screenshot links and a lightbox view for each capture
 
 ## How to use the extension
 
@@ -90,4 +90,5 @@ Load the `extension/` folder as an unpacked extension.
 
 - Screenshots are stored as repo-relative paths, so they work cleanly in forks and in committed JSON data.
 - The extension is designed to work without a local backend server.
+- The product dashboard uses an interactive timeline, tooltips, and a screenshot lightbox to review reference points.
 - Keep the repository write permissions enabled for Actions, or the automation will not be able to update the data.
