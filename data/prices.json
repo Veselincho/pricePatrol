@@ -11,17 +11,17 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "58 € 88 €",
-      "lastKnownPriceKey": "58.00|EUR",
-      "lastKnownPriceAmount": 58,
+      "lastKnownPriceText": "65 € 58 €",
+      "lastKnownPriceKey": "65.00|EUR",
+      "lastKnownPriceAmount": 65,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/3cdef501-20261029_143542.png",
-      "lastCheckedAt": "2026-10-29T14:35:42.383Z",
-      "lastChangedAt": "2026-10-29T14:35:42.383Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/3cdef501-20261029_162503.png",
+      "lastCheckedAt": "2026-10-29T16:25:03.753Z",
+      "lastChangedAt": "2026-10-29T16:25:03.753Z",
       "lastStatus": "changed",
       "baselineRequested": false,
       "createdAt": "2026-10-29T11:58:07.469Z",
-      "updatedAt": "2026-10-29T14:35:58.767Z"
+      "updatedAt": "2026-10-29T16:25:12.085Z"
     }
   ],
   "snapshots": [
@@ -70,6 +70,29 @@
       "errorMessage": null,
       "changeType": "changed",
       "priceKey": "58.00|EUR"
+    },
+    {
+      "id": "75f39a95-a16a-4514-a1e3-0f7f0e25d549",
+      "watchTargetId": "3cdef501-7164-4f36-91c0-c11c72facc7c",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "test",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div > div",
+      "priceText": "65 € 58 €",
+      "selectedText": "65 € 58 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-29T16:25:03.753Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/3cdef501-20261029_162503.png",
+      "status": "changed",
+      "errorMessage": null,
+      "changeType": "changed",
+      "priceKey": "65.00|EUR"
     }
   ]
 }
