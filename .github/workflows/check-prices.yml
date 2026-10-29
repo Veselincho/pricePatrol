@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Playwright browser dependencies
         working-directory: backend
-        run: npx playwright install --with-deps firefox
+        run: npx playwright@1.49.0 install --with-deps firefox
 
       - name: Run price monitor
         working-directory: backend
