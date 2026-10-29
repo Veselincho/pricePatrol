@@ -11,18 +11,42 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "88",
-      "lastKnownPriceKey": "88|EUR",
+      "lastKnownPriceText": "88 € 33 €",
+      "lastKnownPriceKey": "88.00|EUR",
       "lastKnownPriceAmount": 88,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-29T10:31:21.492Z",
-      "lastChangedAt": "2026-10-29T10:31:21.492Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastKnownScreenshotUrl": "/data/screenshots/72354f1e-20261029_103144.png",
+      "lastCheckedAt": "2026-10-29T10:31:44.914Z",
+      "lastChangedAt": "2026-10-29T10:31:44.914Z",
+      "lastStatus": "baseline",
+      "baselineRequested": false,
       "createdAt": "2026-10-29T10:31:21.492Z",
-      "updatedAt": "2026-10-29T10:31:21.492Z"
+      "updatedAt": "2026-10-29T10:31:51.897Z"
     }
   ],
-  "snapshots": []
+  "snapshots": [
+    {
+      "id": "429d5e0a-48f1-43f1-bd02-c1719dd8e5e8",
+      "watchTargetId": "72354f1e-c1fc-41a5-b792-ff581fafd761",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "test",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div > div",
+      "priceText": "88 € 33 €",
+      "selectedText": "88 € 33 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 88,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-29T10:31:44.914Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/72354f1e-20261029_103144.png",
+      "status": "baseline",
+      "errorMessage": null,
+      "changeType": "baseline",
+      "priceKey": "88.00|EUR"
+    }
+  ]
 }
