@@ -11,18 +11,41 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "88",
-      "lastKnownPriceKey": "88|EUR",
+      "lastKnownPriceText": "88 € 33 €",
+      "lastKnownPriceKey": "88.00|EUR",
       "lastKnownPriceAmount": 88,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-29T04:49:04.101Z",
-      "lastChangedAt": "2026-10-29T04:49:04.101Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastCheckedAt": "2026-10-29T04:49:46.830Z",
+      "lastChangedAt": "2026-10-29T04:49:46.830Z",
+      "lastStatus": "error",
       "createdAt": "2026-10-29T04:49:04.101Z",
-      "updatedAt": "2026-10-29T04:49:04.101Z"
+      "updatedAt": "2026-10-29T04:49:48.470Z"
     }
   ],
-  "snapshots": []
+  "snapshots": [
+    {
+      "id": "6ad0df82-6df1-4cfd-8888-b24cefc47f10",
+      "watchTargetId": "b08ebac5-817a-4cfc-adc0-9155f27c3a8a",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div > div",
+      "priceText": "88 € 33 €",
+      "selectedText": "88 € 33 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 88,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-29T04:49:46.830Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "Failed to fetch releases from https://api.github.com/repos/daijro/camoufox/releases/tags/v152.0.4-beta.30 after 5 attempts",
+      "changeType": "changed",
+      "priceKey": "88.00|EUR"
+    }
+  ]
 }
