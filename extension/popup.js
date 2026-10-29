@@ -1,13 +1,19 @@
-const api = globalThis.browser ?? globalThis.chrome;
-const API = "http://127.0.0.1:3001";
+import { getExtensionUrl, openOptionsPage } from "./api.js";
+import { deleteWatchTargetById, listProducts, getSettings } from "./github.js";
 
-const btn = document.getElementById("save");
+const api = globalThis.browser ?? globalThis.chrome;
+const saveBtn = document.getElementById("save");
 const statusEl = document.getElementById("status");
 const listEl = document.getElementById("list");
+const repoEl = document.getElementById("repo");
+const settingsBtn = document.getElementById("settings");
+const refreshBtn = document.getElementById("refresh");
+
+let renderedItems = [];
 
 async function activeTab() {
-  const [tab] = await api.tabs.query({ active: true, currentWindow: true });
-  return tab;
+  const tabs = await api.tabs.query({ active: true, currentWindow: true });
+  return tabs[0];
 }
 
 function formatMoney(item) {
@@ -24,9 +30,12 @@ function renderItem(item) {
 
   const link = document.createElement("a");
   link.className = "item-link";
-  link.href = `${API}/dashboard/${encodeURIComponent(item.id)}`;
+  const dashboardUrl = new URL(getExtensionUrl("dashboard.html"));
+  dashboardUrl.searchParams.set("product", item.productUrl || "");
+  link.href = dashboardUrl.toString();
   link.target = "_blank";
   link.rel = "noreferrer";
+  link.title = "Open product dashboard";
 
   const title = document.createElement("strong");
   title.className = "item-title";
@@ -37,7 +46,8 @@ function renderItem(item) {
   const date = new Date(item.lastChangedAt || item.lastCheckedAt || item.updatedAt || Date.now()).toLocaleString("bg-BG");
   const value = formatMoney(item);
   const source = item.hostname || item.productUrl || "";
-  meta.textContent = `${date}${value ? ` · ${value}` : ""}${source ? ` · ${source}` : ""}`;
+  const baseline = item.baselineRequested ? " · baseline queued" : "";
+  meta.textContent = `${date}${value ? ` · ${value}` : ""}${source ? ` · ${source}` : ""}${baseline}`;
 
   link.append(title, meta);
 
@@ -48,8 +58,6 @@ function renderItem(item) {
   del.type = "button";
   del.className = "delete-btn";
   del.dataset.deleteId = item.id;
-  // include productUrl so the UI can also remove any orphan snapshots by URL
-  if (item.productUrl) del.dataset.productUrl = item.productUrl;
   del.textContent = "Delete";
 
   actions.append(del);
@@ -57,39 +65,63 @@ function renderItem(item) {
   return li;
 }
 
-async function loadList() {
-  listEl.textContent = "";
+async function loadSettingsLine() {
   try {
-    const res = await fetch(`${API}/api/watch-targets`);
-    const items = await res.json();
-
-    if (!items.length) {
-      const empty = document.createElement("li");
-      empty.className = "empty";
-      empty.textContent = "No products yet.";
-      listEl.append(empty);
-      return;
-    }
-
-    for (const it of items.slice(0, 50)) {
-      listEl.append(renderItem(it));
-    }
+    const settings = await getSettings();
+    repoEl.textContent = settings.githubRepo ? `Connected to ${settings.githubRepo}` : "Repository not configured";
   } catch {
+    repoEl.textContent = "Repository not configured";
+  }
+}
+
+function renderList(items) {
+  listEl.textContent = "";
+
+  if (!items.length) {
     const empty = document.createElement("li");
     empty.className = "empty";
-    empty.textContent = "Backend is unavailable (is it running on :3001?)";
+    empty.textContent = "No products yet. Open settings first, then save a price from a page.";
+    listEl.append(empty);
+    return;
+  }
+
+  for (const it of items.slice(0, 50)) {
+    listEl.append(renderItem(it));
+  }
+}
+
+async function loadList() {
+  try {
+    renderedItems = await listProducts();
+    renderList(renderedItems);
+  } catch (error) {
+    renderedItems = [];
+    listEl.textContent = "";
+    const empty = document.createElement("li");
+    empty.className = "empty";
+    empty.textContent = error?.message || "Could not load GitHub data.";
     listEl.append(empty);
   }
 }
 
-btn.addEventListener("click", async () => {
+saveBtn.addEventListener("click", async () => {
   try {
     const tab = await activeTab();
     await api.scripting.executeScript({ target: { tabId: tab.id }, files: ["content.js"] });
-    window.close(); // free the page for element selection
-  } catch (e) {
-    statusEl.textContent = "Cannot start on this page: " + e.message;
+    window.close();
+  } catch (error) {
+    statusEl.textContent = "Cannot start on this page: " + error.message;
   }
+});
+
+settingsBtn.addEventListener("click", () => {
+  openOptionsPage();
+});
+
+refreshBtn.addEventListener("click", async () => {
+  statusEl.textContent = "";
+  await loadSettingsLine();
+  await loadList();
 });
 
 listEl.addEventListener("click", async (e) => {
@@ -104,37 +136,16 @@ listEl.addEventListener("click", async (e) => {
 
   delBtn.disabled = true;
   try {
-    const res = await fetch(`${API}/api/watch-targets/${encodeURIComponent(id)}`, { method: "DELETE" });
-    if (!res.ok) throw new Error(await res.text());
-
-    // Also attempt to remove any orphan snapshots that reference the same product URL
-    const productUrl = delBtn.dataset.productUrl;
-    if (productUrl) {
-      try {
-        const qs = new URLSearchParams({ url: productUrl }).toString();
-        const snapsRes = await fetch(`${API}/api/prices?${qs}`);
-        if (snapsRes.ok) {
-          const snaps = await snapsRes.json();
-          for (const snap of snaps) {
-            try {
-              await fetch(`${API}/api/prices/${encodeURIComponent(snap.id)}`, { method: "DELETE" });
-            } catch (e) {
-              // ignore individual snapshot deletion errors
-              console.error('Failed deleting snapshot', snap.id, e);
-            }
-          }
-        }
-      } catch (e) {
-        console.error('Failed to clean up snapshots for product', productUrl, e);
-      }
-    }
-
-    await loadList();
-  } catch (err) {
-    statusEl.textContent = "Delete failed: " + (err.message || String(err));
+    const nextState = await deleteWatchTargetById(id);
+    renderedItems = Array.isArray(nextState?.watchTargets) ? nextState.watchTargets : renderedItems.filter((item) => item.id !== id);
+    renderList(renderedItems);
+    statusEl.textContent = "Product deleted.";
+  } catch (error) {
+    statusEl.textContent = "Delete failed: " + (error?.message || String(error));
   } finally {
     delBtn.disabled = false;
   }
 });
 
+loadSettingsLine();
 loadList();

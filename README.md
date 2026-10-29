@@ -18,7 +18,7 @@ flowchart TD
     D --> E[Light HTML check with fetch + cheerio]
     E --> F{Price changed or first baseline needed?}
     F -- No --> G[Update timestamps/status only]
-    F -- Yes --> H[Launch Camoufox]
+    F -- Yes --> H[Launch Playwright Firefox]
     H --> I[Capture screenshot in data/screenshots/]
     I --> J[Update data/prices.json]
     G --> J
@@ -30,7 +30,7 @@ flowchart TD
 - **No always-on polling server**: the old 1-minute interval loop is removed.
 - **Daily automation**: GitHub Actions runs the monitor once per day and on demand.
 - **Fast first pass**: the workflow first uses plain HTML fetch + `cheerio`.
-- **Camoufox only when needed**: a browser instance is started only when a new baseline is required or the price actually changed.
+- **Stable browser automation**: GitHub Actions uses standard Playwright Firefox instead of a custom browser wrapper, which is more reliable in CI.
 - **Repo-backed storage**: snapshots and screenshots are committed directly into the repository, so forks stay portable.
 
 ## Repository layout
@@ -47,7 +47,7 @@ flowchart TD
 3. It performs a lightweight HTML request and extracts the price with `cheerio`.
 4. If the product has no previous baseline, the workflow records the initial reference:
    - saves the price metadata
-   - launches Camoufox
+   - launches Playwright Firefox
    - captures a screenshot into `data/screenshots/`
 5. If a tracked price differs from the last stored reference, the workflow captures a new screenshot and updates the reference.
 6. The workflow commits the updated `data/` files and pushes them back to the same repo or fork.
@@ -100,6 +100,16 @@ Load the `extension/` folder as an unpacked extension.
 3. Select `extension/manifest.json`
 
 Use the extension to save the current product page and create the first tracked reference.
+
+### Extension settings
+
+Open the extension **Settings** page and configure:
+
+- GitHub repository: `owner/repo` format, for example `Veselincho/pricePatrol`
+- GitHub Personal Access Token with repository write access
+- Branch name, if your default branch is not `main`
+
+The extension writes directly to `data/prices.json` through the GitHub REST API and then dispatches the daily workflow to take the first baseline screenshot in the cloud.
 
 ## GitHub Actions setup
 

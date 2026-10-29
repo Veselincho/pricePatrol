@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>pricePatrol Dashboard</title>
+  <style>
+    :root { color-scheme: light; }
+    body {
+      margin: 0;
+      font: 14px system-ui, sans-serif;
+      color: #0f172a;
+      background: #f5f7fb;
+    }
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    .title h1 { margin: 0 0 6px; font-size: 26px; }
+    .subtitle { color: #64748b; line-height: 1.5; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 0;
+      background: #e2e8f0;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn.primary { background: #2563eb; color: white; }
+    .btn.ghost { background: white; border: 1px solid #dbe3ef; }
+    .card {
+      background: white;
+      border: 1px solid #e5ebf5;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, .05);
+      padding: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.3fr .9fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .stat .label { display: block; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+    .stat strong { display: block; font-size: 20px; }
+    .muted { color: #64748b; }
+    .section { margin-top: 16px; }
+    .section h2 { margin: 0 0 12px; font-size: 18px; }
+    .chart-wrap { overflow-x: auto; }
+    svg { width: 100%; min-width: 720px; height: 280px; display: block; }
+    .reference-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .ref-card {
+      background: #fff;
+      border: 1px solid #e5ebf5;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.04);
+      display: grid;
+      gap: 10px;
+    }
+    .ref-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    .badge.changed { background: #ecfccb; color: #3f6212; }
+    .badge.baseline { background: #ede9fe; color: #6d28d9; }
+    .badge.error { background: #fee2e2; color: #b91c1c; }
+    .snapshot-date { font-weight: 700; }
+    .snapshot-price { font-size: 18px; font-weight: 700; }
+    .snapshot-meta { color: #64748b; font-size: 12px; line-height: 1.4; }
+    .thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border: 1px solid #dbe3ef;
+      border-radius: 12px;
+      background: #f8fafc;
+    }
+    .empty {
+      padding: 18px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 14px;
+      color: #64748b;
+      background: #f8fafc;
+    }
+    .error-box {
+      padding: 14px;
+      border: 1px solid #fecaca;
+      background: #fef2f2;
+      border-radius: 12px;
+      color: #991b1b;
+    }
+    .link-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .link-row a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .link-row a:hover { text-decoration: underline; }
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="title">
+        <h1 id="title">Loading dashboard…</h1>
+        <div id="subtitle" class="subtitle"></div>
+      </div>
+      <div class="actions">
+        <a class="btn ghost" href="popup.html">Back to popup</a>
+        <a class="btn ghost" href="options.html">Settings</a>
+      </div>
+    </div>
+
+    <div id="error" class="error-box" hidden></div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="stats" id="stats"></div>
+      </section>
+      <section class="card">
+        <div class="link-row" id="links"></div>
+      </section>
+    </div>
+
+    <section class="card section">
+      <h2>Price history</h2>
+      <div class="chart-wrap" id="chart-wrap"></div>
+    </section>
+
+    <section class="section">
+      <h2>Reference days</h2>
+      <div id="references" class="reference-list"></div>
+    </section>
+  </div>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

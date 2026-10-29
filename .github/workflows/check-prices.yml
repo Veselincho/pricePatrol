@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: backend/package-lock.json
 
@@ -36,7 +36,7 @@ jobs:
       - name: Run price monitor
         working-directory: backend
         env:
-          CAMOUFOX_HEADLESS: "true"
+          PRICEPATROL_HEADLESS: "true"
           NODE_ENV: production
         run: npm run check:prices
 

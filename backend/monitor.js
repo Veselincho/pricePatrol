@@ -105,7 +105,8 @@ async function processTarget(target) {
   }
 
   const hasReference = Boolean(target.lastKnownPriceKey || target.lastKnownPriceText);
-  const isFirstSnapshot = !hasReference;
+  const isBaselineRequested = target.baselineRequested === true;
+  const isFirstSnapshot = isBaselineRequested || !hasReference;
   const isChanged = hasReference && current.priceKey && current.priceKey !== target.lastKnownPriceKey;
   const shouldCapture = isFirstSnapshot || isChanged;
   const status = isFirstSnapshot ? "baseline" : isChanged ? "changed" : "unchanged";
@@ -157,6 +158,7 @@ async function processTarget(target) {
     lastChangedAt: shouldCapture ? checkedAt : target.lastChangedAt ?? null,
     lastStatus: screenshotError ? "error" : status,
     active: target.active !== false,
+    baselineRequested: isBaselineRequested ? false : target.baselineRequested ?? false,
   });
 
   return {

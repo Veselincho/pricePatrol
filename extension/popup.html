@@ -1,13 +1,17 @@
 <!doctype html>
-<html lang="bg">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { width: 360px; font: 14px system-ui, sans-serif; margin: 0; padding: 12px; background: #fafafa; color: #111827; }
+    body { width: 380px; font: 14px system-ui, sans-serif; margin: 0; padding: 12px; background: #fafafa; color: #111827; }
     button { cursor: pointer; border: 0; border-radius: 6px; }
-    #save { width: 100%; padding: 10px; font-size: 14px; background: #2563eb; color: #fff; }
+    .toolbar { display: flex; gap: 8px; margin-bottom: 8px; }
+    #save { flex: 1; padding: 10px; font-size: 14px; background: #2563eb; color: #fff; }
+    #settings, #refresh { padding: 10px 12px; font-size: 13px; background: #e5e7eb; color: #111827; }
     #save:disabled { opacity: .6; cursor: default; }
     #status { min-height: 18px; margin: 8px 0; color: #b91c1c; }
+    #repo { margin: 0 0 8px; color: #4b5563; font-size: 12px; }
     h3 { margin: 12px 0 8px; font-size: 13px; color: #555; }
     ul { list-style: none; margin: 0; padding: 0; max-height: 280px; overflow: auto; }
     li { display: flex; gap: 8px; align-items: stretch; padding: 8px 0; border-bottom: 1px solid #eee; }
@@ -21,10 +25,16 @@
   </style>
 </head>
 <body>
-  <button id="save">Save current price</button>
+  <div class="toolbar">
+    <button id="save">Save current price</button>
+    <button id="settings" title="Open settings">Settings</button>
+  </div>
+  <button id="refresh" style="width:100%; padding: 10px; font-size: 13px; background: #e5e7eb; color: #111827; margin-bottom: 8px;">Refresh list</button>
+  <div id="repo"></div>
+  <div style="margin:0 0 8px;color:#6b7280;font-size:12px;">Click a product to open its dashboard with price history and reference screenshots.</div>
   <div id="status"></div>
   <h3>All products</h3>
   <ul id="list"></ul>
-  <script src="popup.js"></script>
+  <script type="module" src="popup.js"></script>
 </body>
 </html>

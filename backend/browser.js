@@ -1,15 +1,25 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { Camoufox } from "camoufox-js";
+import { firefox } from "playwright-core";
 
 let browserPromise = null;
 let browserInstance = null;
 let launchedAt = null;
 let lastError = null;
 
-function isHeadless() {
-  // Default to visible for local debugging; set CAMOUFOX_HEADLESS=true in cloud.
-  return process.env.CAMOUFOX_HEADLESS === "true";
+function getHeadlessMode() {
+  const value = process.env.PRICEPATROL_HEADLESS;
+  if (typeof value === "string" && value.trim() !== "") {
+    const normalized = value.toLowerCase();
+    if (normalized === "true" || normalized === "1" || normalized === "yes") return true;
+    if (normalized === "false" || normalized === "0" || normalized === "no") return false;
+  }
+
+  if (process.env.CI === "true" || process.env.GITHUB_ACTIONS === "true") {
+    return true;
+  }
+
+  return false;
 }
 
 async function ensureDir(filePath) {
@@ -27,16 +37,16 @@ function normalizeViewport(viewport) {
 
 function attachLifecycle(browser) {
   browser.once("disconnected", () => {
-    console.warn("Camoufox disconnected");
+    console.warn("Browser disconnected");
     browserInstance = null;
     launchedAt = null;
   });
 }
 
 async function launchBrowser() {
-  const headless = isHeadless();
-  console.log(`Camoufox starting (headless=${headless})`);
-  const browser = await Camoufox({
+  const headless = getHeadlessMode();
+  console.log(`Firefox starting (headless=${headless})`);
+  const browser = await firefox.launch({
     headless,
   });
 
@@ -44,7 +54,7 @@ async function launchBrowser() {
   launchedAt = new Date().toISOString();
   lastError = null;
   attachLifecycle(browser);
-  console.log(`Camoufox started at ${launchedAt}`);
+  console.log(`Firefox started at ${launchedAt}`);
   return browser;
 }
 
@@ -53,7 +63,7 @@ export async function ensureCamoufox() {
   if (!browserPromise) {
     browserPromise = launchBrowser().catch((error) => {
       lastError = error?.message || String(error);
-      console.error("Camoufox failed to start:", error);
+      console.error("Firefox failed to start:", error);
       throw error;
     }).finally(() => {
       browserPromise = null;
@@ -66,9 +76,9 @@ export async function getCamoufoxHealth() {
   return {
     ready: Boolean(browserInstance),
     launching: Boolean(browserPromise),
-    headless: isHeadless(),
+    headless: getHeadlessMode(),
     launchedAt,
-    executablePathSet: true,
+    executablePathSet: false,
     lastError,
   };
 }
@@ -95,7 +105,7 @@ export async function captureScreenshot({
   const page = await context.newPage();
 
   try {
-    console.log(`Camoufox screenshot: ${url}`);
+    console.log(`Firefox screenshot: ${url}`);
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
     await page.waitForLoadState("networkidle", { timeout: Math.min(timeoutMs, 15000) }).catch(() => {});
 

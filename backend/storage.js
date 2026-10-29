@@ -85,6 +85,7 @@ function normalizeWatchTarget(doc) {
     lastCheckedAt: doc.lastCheckedAt ?? null,
     lastChangedAt: doc.lastChangedAt ?? null,
     lastStatus: doc.lastStatus ?? null,
+    baselineRequested: doc.baselineRequested ?? false,
     createdAt: doc.createdAt ?? new Date().toISOString(),
     updatedAt: doc.updatedAt ?? new Date().toISOString(),
   };
