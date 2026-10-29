@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import crypto from "node:crypto";
 import * as storage from "./storage.js";
-import { captureScreenshot, getCamoufoxHealth } from "./browser.js";
+import { captureScreenshot, getBrowserHealth } from "./browser.js";
 import { runMonitorOnce } from "./monitor.js";
 import { buildPriceKey, normalizePriceText, parsePriceText, toAmountObject, toIsoFileStamp } from "./price.js";
 
@@ -487,8 +487,8 @@ function bumpDemoProductPrice(id) {
 
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
-app.get("/api/camoufox/health", async (_req, res) => {
-  res.json(await getCamoufoxHealth());
+app.get("/api/browser/health", async (_req, res) => {
+  res.json(await getBrowserHealth());
 });
 
 app.get("/", (_req, res) => {
@@ -598,7 +598,7 @@ app.post("/api/watch-targets", async (req, res) => {
       updatedAt: now,
     });
 
-    // If this is a newly created target, capture an initial baseline screenshot via Camoufox
+    // If this is a newly created target, capture an initial baseline screenshot via Playwright Firefox
     if (!existing) {
       try {
         const timestamp = new Date();

@@ -9,8 +9,7 @@ COPY backend ./
 
 ENV NODE_ENV=production \
     PORT=3001 \
-    HOST=0.0.0.0 \
-    CAMOUFOX_HEADLESS=true
+    HOST=0.0.0.0
 
 RUN mkdir -p /app/data/screenshots
 

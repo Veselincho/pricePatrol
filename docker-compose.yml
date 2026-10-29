@@ -8,7 +8,6 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 3001
-      CAMOUFOX_HEADLESS: "true"
     volumes:
       - ./data:/app/data
     shm_size: "1gb"

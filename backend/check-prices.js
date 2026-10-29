@@ -1,5 +1,5 @@
 import * as storage from "./storage.js";
-import { closeCamoufox, getCamoufoxHealth } from "./browser.js";
+import { closeBrowser, getBrowserHealth } from "./browser.js";
 import { runMonitorOnce } from "./monitor.js";
 
 function summarize(results) {
@@ -24,7 +24,7 @@ function summarize(results) {
 async function main() {
   await storage.init();
 
-  console.log(JSON.stringify({ browserHealth: await getCamoufoxHealth() }, null, 2));
+  console.log(JSON.stringify({ browserHealth: await getBrowserHealth() }, null, 2));
 
   const results = await runMonitorOnce();
   const summary = summarize(results);
@@ -36,5 +36,5 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 }).finally(async () => {
-  await closeCamoufox().catch(() => {});
+  await closeBrowser().catch(() => {});
 });

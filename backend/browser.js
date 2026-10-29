@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { firefox } from "playwright-core";
+import { firefox } from "playwright";
 
 let browserPromise = null;
 let browserInstance = null;
@@ -22,10 +22,7 @@ function getHeadlessMode() {
   return false;
 }
 
-function resolveFirefoxExecutablePath() {
-  const fromEnv = process.env.FIREFOX_BIN?.trim() || process.env.PLAYWRIGHT_FIREFOX_EXECUTABLE_PATH?.trim();
-  return fromEnv || null;
-}
+
 
 async function ensureDir(filePath) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -50,11 +47,9 @@ function attachLifecycle(browser) {
 
 async function launchBrowser() {
   const headless = getHeadlessMode();
-  const executablePath = resolveFirefoxExecutablePath();
-  console.log(`Firefox starting (headless=${headless}, executablePath=${executablePath || "default"})`);
+  console.log(`Firefox starting (headless=${headless})`);
   const browser = await firefox.launch({
     headless,
-    ...(executablePath ? { executablePath } : {}),
   });
 
   browserInstance = browser;
@@ -65,7 +60,7 @@ async function launchBrowser() {
   return browser;
 }
 
-export async function ensureCamoufox() {
+export async function ensureBrowser() {
   if (browserInstance) return browserInstance;
   if (!browserPromise) {
     browserPromise = launchBrowser().catch((error) => {
@@ -79,7 +74,7 @@ export async function ensureCamoufox() {
   return browserPromise;
 }
 
-export async function getCamoufoxHealth() {
+export async function getBrowserHealth() {
   return {
     ready: Boolean(browserInstance),
     launching: Boolean(browserPromise),
@@ -90,7 +85,7 @@ export async function getCamoufoxHealth() {
   };
 }
 
-export async function closeCamoufox() {
+export async function closeBrowser() {
   const browser = browserInstance;
   browserInstance = null;
   launchedAt = null;
@@ -107,7 +102,7 @@ export async function captureScreenshot({
   viewport = { width: 1440, height: 1800 },
 }) {
   await ensureDir(screenshotPath);
-  const browser = await ensureCamoufox();
+  const browser = await ensureBrowser();
   const context = await browser.newContext({ viewport: normalizeViewport(viewport) });
   const page = await context.newPage();
 
