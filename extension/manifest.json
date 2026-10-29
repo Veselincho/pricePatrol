@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "pricePatrol",
+  "version": "0.1.0",
+  "description": "Save a product price with a screenshot and verify later whether the discount is real.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["http://localhost:3001/*", "http://127.0.0.1:3001/*"],
+  "action": { "default_popup": "popup.html", "default_title": "pricePatrol" },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": { "id": "pricepatrol@example.local" }
+  }
+}

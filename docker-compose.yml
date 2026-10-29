@@ -1,0 +1,15 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3001
+      CAMOUFOX_HEADLESS: "true"
+    volumes:
+      - ./data:/app/data
+    shm_size: "1gb"
+    restart: unless-stopped
