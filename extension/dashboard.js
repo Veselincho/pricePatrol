@@ -1,4 +1,3 @@
-import { getExtensionUrl } from "./api.js";
 import { buildRawScreenshotUrl, getProductDetailByUrl, getSettings } from "./github.js";
 
 const titleEl = document.getElementById("title");
@@ -125,14 +124,13 @@ function renderStats(target, snapshots) {
 
 function renderLinks(target, settings) {
   const repoLink = settings.githubRepo ? `https://github.com/${settings.githubRepo}` : "";
-  const dashboardLink = `${getExtensionUrl("dashboard.html")}?product=${encodeURIComponent(target.productUrl)}`;
   const screenshotLink = target.lastKnownScreenshotUrl ? buildRawScreenshotUrl(target.lastKnownScreenshotUrl, settings) : null;
 
   linksEl.innerHTML = `
     <a href="${escapeHtml(target.productUrl)}" target="_blank" rel="noreferrer">Open product page</a>
     ${repoLink ? `<a href="${escapeHtml(repoLink)}" target="_blank" rel="noreferrer">Open repository</a>` : ""}
-    <a href="${escapeHtml(dashboardLink)}" target="_blank" rel="noreferrer">Open dashboard in a new tab</a>
     ${screenshotLink ? `<a href="${escapeHtml(screenshotLink)}" target="_blank" rel="noreferrer">Open latest screenshot</a>` : ""}
+    <a href="popup.html" rel="noreferrer">Back to popup</a>
   `;
 }
 
@@ -210,6 +208,7 @@ async function main() {
     const settings = await getSettings();
     const detail = await getProductDetailByUrl(productUrl);
     const { target, snapshots } = detail;
+    const latestSnapshot = snapshots[snapshots.length - 1] || null;
     const displayName = target.productName || target.pageTitle || target.hostname || productUrl;
 
     titleEl.textContent = displayName;
@@ -221,8 +220,10 @@ async function main() {
     renderChart(snapshots);
     renderReferences(snapshots, settings);
 
-    if (!snapshots.length && latestSnapshot) {
+    if (!snapshots.length) {
       refsEl.innerHTML = `<div class="empty">No historical snapshots exist yet, but the product is tracked.</div>`;
+    } else if (!latestSnapshot?.screenshotUrl) {
+      refsEl.insertAdjacentHTML("afterbegin", `<div class="empty" style="margin-bottom:14px;">The latest reference does not have a screenshot attached yet.</div>`);
     }
   } catch (error) {
     setError(error?.message || String(error));

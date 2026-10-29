@@ -4,37 +4,60 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { width: 380px; font: 14px system-ui, sans-serif; margin: 0; padding: 12px; background: #fafafa; color: #111827; }
-    button { cursor: pointer; border: 0; border-radius: 6px; }
-    .toolbar { display: flex; gap: 8px; margin-bottom: 8px; }
-    #save { flex: 1; padding: 10px; font-size: 14px; background: #2563eb; color: #fff; }
-    #settings, #refresh { padding: 10px 12px; font-size: 13px; background: #e5e7eb; color: #111827; }
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { width: 400px; font: 14px system-ui, sans-serif; margin: 0; padding: 12px; background: #f5f7fb; color: #0f172a; }
+    button { cursor: pointer; border: 0; border-radius: 10px; font: inherit; }
+    .shell { display: grid; gap: 12px; }
+    .card { background: #fff; border: 1px solid #e5ebf5; border-radius: 16px; box-shadow: 0 8px 24px rgba(15,23,42,.05); padding: 12px; }
+    .header { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+    .title { margin: 0; font-size: 16px; line-height: 1.2; }
+    .subtitle { margin-top: 4px; color: #64748b; font-size: 12px; line-height: 1.45; }
+    .toolbar { display: flex; gap: 8px; margin-top: 10px; }
+    #save { flex: 1; padding: 10px 12px; font-size: 14px; background: #2563eb; color: #fff; font-weight: 600; }
+    #settings, #refresh { padding: 10px 12px; font-size: 13px; background: #e2e8f0; color: #0f172a; font-weight: 600; }
     #save:disabled { opacity: .6; cursor: default; }
-    #status { min-height: 18px; margin: 8px 0; color: #b91c1c; }
-    #repo { margin: 0 0 8px; color: #4b5563; font-size: 12px; }
-    h3 { margin: 12px 0 8px; font-size: 13px; color: #555; }
-    ul { list-style: none; margin: 0; padding: 0; max-height: 280px; overflow: auto; }
-    li { display: flex; gap: 8px; align-items: stretch; padding: 8px 0; border-bottom: 1px solid #eee; }
-    .item-link { flex: 1; display: block; text-decoration: none; color: inherit; }
-    .item-link:hover { background: #f3f4f6; }
-    .item-title { display: block; font-weight: 600; margin-bottom: 4px; }
-    .item-meta { display: block; color: #666; font-size: 12px; line-height: 1.35; }
+    #status { min-height: 18px; color: #b91c1c; font-size: 12px; }
+    #repo { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: #eff6ff; color: #1d4ed8; font-size: 12px; font-weight: 600; }
+    h3 { margin: 0 0 8px; font-size: 13px; color: #475569; text-transform: uppercase; letter-spacing: .04em; }
+    ul { list-style: none; margin: 0; padding: 0; max-height: 300px; overflow: auto; }
+    li { display: flex; gap: 8px; align-items: stretch; padding: 10px 0; border-bottom: 1px solid #eef2f7; }
+    li:last-child { border-bottom: 0; }
+    .item-link { flex: 1; display: block; text-decoration: none; color: inherit; border-radius: 12px; padding: 8px 10px; }
+    .item-link:hover { background: #f8fafc; }
+    .item-title { display: block; font-weight: 700; margin-bottom: 4px; }
+    .item-meta { display: block; color: #64748b; font-size: 12px; line-height: 1.35; }
     .actions { display: flex; align-items: center; }
-    .delete-btn { padding: 8px 10px; background: #fee2e2; color: #991b1b; font-size: 12px; white-space: nowrap; }
-    .empty { color: #6b7280; padding: 6px 0; }
+    .delete-btn { padding: 8px 10px; background: #fee2e2; color: #991b1b; font-size: 12px; white-space: nowrap; font-weight: 600; }
+    .empty { color: #64748b; padding: 6px 0; }
+    .note { color: #64748b; font-size: 12px; line-height: 1.4; }
   </style>
 </head>
 <body>
-  <div class="toolbar">
-    <button id="save">Save current price</button>
-    <button id="settings" title="Open settings">Settings</button>
+  <div class="shell">
+    <section class="card">
+      <div class="header">
+        <div>
+          <h1 class="title">pricePatrol</h1>
+          <div class="subtitle">Save the current price, then open the dashboard to review history and screenshots.</div>
+        </div>
+        <div id="repo">Repository not configured</div>
+      </div>
+
+      <div class="toolbar">
+        <button id="save">Save current price</button>
+        <button id="settings" title="Open settings">Settings</button>
+      </div>
+      <button id="refresh" style="width:100%; padding: 10px 12px; font-size: 13px; background: #e2e8f0; color: #0f172a; margin-top: 8px; font-weight: 600;">Refresh list</button>
+      <div class="note" style="margin-top:10px;">Tip: click a product row to open its dashboard.</div>
+      <div id="status" style="margin-top:8px;"></div>
+    </section>
+
+    <section class="card">
+      <h3>All products</h3>
+      <ul id="list"></ul>
+    </section>
   </div>
-  <button id="refresh" style="width:100%; padding: 10px; font-size: 13px; background: #e5e7eb; color: #111827; margin-bottom: 8px;">Refresh list</button>
-  <div id="repo"></div>
-  <div style="margin:0 0 8px;color:#6b7280;font-size:12px;">Click a product to open its dashboard with price history and reference screenshots.</div>
-  <div id="status"></div>
-  <h3>All products</h3>
-  <ul id="list"></ul>
   <script type="module" src="popup.js"></script>
 </body>
 </html>
