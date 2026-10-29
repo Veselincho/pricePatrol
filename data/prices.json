@@ -11,18 +11,42 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "88",
-      "lastKnownPriceKey": "88|EUR",
+      "lastKnownPriceText": "88 € 33 €",
+      "lastKnownPriceKey": "88.00|EUR",
       "lastKnownPriceAmount": 88,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-29T05:41:34.623Z",
-      "lastChangedAt": "2026-10-29T05:41:34.623Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastCheckedAt": "2026-10-29T05:42:10.591Z",
+      "lastChangedAt": "2026-10-29T05:42:10.591Z",
+      "lastStatus": "error",
+      "baselineRequested": false,
       "createdAt": "2026-10-29T05:41:34.623Z",
-      "updatedAt": "2026-10-29T05:41:34.623Z"
+      "updatedAt": "2026-10-29T05:42:11.468Z"
     }
   ],
-  "snapshots": []
+  "snapshots": [
+    {
+      "id": "3d56bd79-19d9-4d17-9e31-831300995633",
+      "watchTargetId": "a71a52b1-76d6-4b8a-8d59-2918199d0220",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div > div",
+      "priceText": "88 € 33 €",
+      "selectedText": "88 € 33 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 88,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-29T05:42:10.591Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "browserType.launch: Executable doesn't exist at /home/runner/.cache/ms-playwright/firefox-1538/firefox/firefox\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝",
+      "changeType": "baseline",
+      "priceKey": "88.00|EUR"
+    }
+  ]
 }
