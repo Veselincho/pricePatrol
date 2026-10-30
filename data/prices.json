@@ -16,12 +16,12 @@
       "lastKnownPriceAmount": 65,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": "/data/screenshots/3cdef501-20261030_113015.png",
-      "lastCheckedAt": "2026-10-30T12:29:24.671Z",
+      "lastCheckedAt": "2026-10-30T12:42:24.396Z",
       "lastChangedAt": "2026-10-29T16:25:03.753Z",
       "lastStatus": "error",
       "baselineRequested": false,
       "createdAt": "2026-10-29T11:58:07.469Z",
-      "updatedAt": "2026-10-30T12:29:24.671Z"
+      "updatedAt": "2026-10-30T12:42:24.402Z"
     },
     {
       "id": "34762e62-ad9e-44a4-b993-c5aeadb1bf9f",
@@ -39,35 +39,35 @@
       "lastKnownPriceAmount": 58.61,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-30T12:29:19.677Z",
+      "lastCheckedAt": "2026-10-30T12:42:37.265Z",
       "lastChangedAt": "2026-10-30T11:29:01.378Z",
       "lastStatus": "error",
       "baselineRequested": true,
       "createdAt": "2026-10-30T11:29:01.378Z",
-      "updatedAt": "2026-10-30T12:29:19.678Z"
+      "updatedAt": "2026-10-30T12:42:37.268Z"
     },
     {
       "id": "1b897043-4713-4ce4-a0f3-3089c371939a",
       "productUrl": "https://www.ozone.bg/product/ssd-pamet-patriot-p220-256gb-2-5-sata-iii/",
       "hostname": "www.ozone.bg",
-      "pageTitle": "SSD памет Patriot - P220, 256GB, 2.5'', SATA III | Ozone.bg",
+      "pageTitle": "SSD памет Patriot - P220, 256GB, 2.5'', SATA III | Ozone.bgowl-arrow-prev",
       "productName": "ozone ssd",
       "selector": "#product-price-728201 > span",
       "fallbackSelectors": [],
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "59",
-      "lastKnownPriceKey": "59|EUR",
+      "lastKnownPriceText": "59,00 €",
+      "lastKnownPriceKey": "59.00|EUR",
       "lastKnownPriceAmount": 59,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-30T12:40:30.114Z",
-      "lastChangedAt": "2026-10-30T12:40:30.114Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastKnownScreenshotUrl": "/data/screenshots/1b897043-20261030_124205.png",
+      "lastCheckedAt": "2026-10-30T12:42:05.179Z",
+      "lastChangedAt": "2026-10-30T12:42:05.179Z",
+      "lastStatus": "baseline",
+      "baselineRequested": false,
       "createdAt": "2026-10-30T12:40:30.114Z",
-      "updatedAt": "2026-10-30T12:40:30.114Z"
+      "updatedAt": "2026-10-30T12:42:19.118Z"
     }
   ],
   "snapshots": [
@@ -413,6 +413,90 @@
         "ip": "204.8.96.140",
         "isTor": true,
         "checkedAt": "2026-10-30T12:28:57.522Z",
+        "error": null
+      }
+    },
+    {
+      "id": "eca0717a-cb0a-4a2a-b148-74e3b62eb0c7",
+      "watchTargetId": "1b897043-4713-4ce4-a0f3-3089c371939a",
+      "productUrl": "https://www.ozone.bg/product/ssd-pamet-patriot-p220-256gb-2-5-sata-iii/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "SSD памет Patriot - P220, 256GB, 2.5'', SATA III | Ozone.bgowl-arrow-prev",
+      "productName": "ozone ssd",
+      "selector": "#product-price-728201 > span",
+      "priceText": "59,00 €",
+      "selectedText": "59,00 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 59,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-30T12:42:05.179Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/1b897043-20261030_124205.png",
+      "status": "baseline",
+      "errorMessage": null,
+      "changeType": "baseline",
+      "priceKey": "59.00|EUR",
+      "network": {
+        "route": "tor",
+        "ip": "185.231.33.38",
+        "isTor": true,
+        "checkedAt": "2026-10-30T12:41:59.762Z",
+        "error": null
+      }
+    },
+    {
+      "id": "3ff5dcb7-0725-4a61-a46c-9023ccbd7cb5",
+      "watchTargetId": "3cdef501-7164-4f36-91c0-c11c72facc7c",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "test",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div > div",
+      "priceText": "",
+      "selectedText": "",
+      "currency": "EUR",
+      "price": null,
+      "capturedAt": "2026-10-30T12:42:24.396Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "HTTP 403 when loading https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "changeType": "error",
+      "priceKey": null,
+      "network": {
+        "route": "tor",
+        "ip": "185.231.33.38",
+        "isTor": true,
+        "checkedAt": "2026-10-30T12:41:59.762Z",
+        "error": null
+      }
+    },
+    {
+      "id": "aea9f436-d0e4-49f4-a415-7a5d9552ad3d",
+      "watchTargetId": "34762e62-ad9e-44a4-b993-c5aeadb1bf9f",
+      "productUrl": "https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "hostname": "www.emag.bg",
+      "pageTitle": "Solid State Drive (SSD) ADATA SU650, 512GB, 2.5\", SATA III - eMAG.bg",
+      "productName": "ssd",
+      "selector": "#main-container > section:nth-of-type(4) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > div:nth-of-type(1) > p",
+      "priceText": "",
+      "selectedText": "",
+      "currency": "EUR",
+      "price": null,
+      "capturedAt": "2026-10-30T12:42:37.265Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "HTTP 511 when loading https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "changeType": "error",
+      "priceKey": null,
+      "network": {
+        "route": "tor",
+        "ip": "185.231.33.38",
+        "isTor": true,
+        "checkedAt": "2026-10-30T12:41:59.762Z",
         "error": null
       }
     }
