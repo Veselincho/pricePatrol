@@ -49,6 +49,9 @@ function extractPriceFromHtml(html, target) {
 async function fetchTargetSnapshot(target) {
   let html;
   let finalUrl;
+  let pageTitle = "";
+  let bodyText = "";
+  let selectorMatched = false;
   if (process.env.BROWSER_ENGINE === "playwright") {
     const response = await fetch(target.productUrl, {
       headers: {
@@ -64,7 +67,7 @@ async function fetchTargetSnapshot(target) {
     finalUrl = response.url || target.productUrl;
     html = await response.text();
   } else {
-    ({ html, finalUrl } = await loadPageHtml({
+    const loaded = await loadPageHtml({
       url: target.productUrl,
       selectors: [
         target.selector,
@@ -74,10 +77,14 @@ async function fetchTargetSnapshot(target) {
         "meta[itemprop='price']",
         "[data-price]",
       ].filter(Boolean),
-    }));
+    });
+    ({ html, finalUrl, pageTitle = "", bodyText = "", selectorMatched = false } = loaded);
   }
 
   const $ = cheerio.load(html);
+  pageTitle = pageTitle || normalizePriceText($("title").text());
+  bodyText = bodyText || normalizePriceText($("body").text()).slice(0, 500);
+  selectorMatched = selectorMatched || Boolean(target.selector && $(target.selector).length);
   const heading = normalizePriceText($("title, h1").text());
   if (/just a moment|access denied|attention required|verify (?:that )?you are human|security check|robot check|captcha|достъпът е отказан/i.test(heading)
     || $("#challenge-running, #cf-challenge-running, #challenge-form, form[action*='/cdn-cgi/challenge-platform/']").length
@@ -86,6 +93,15 @@ async function fetchTargetSnapshot(target) {
   }
 
   const extracted = extractPriceFromHtml(html, target);
+  if (!extracted.priceText) {
+    console.warn(JSON.stringify({
+      type: "price-extract-failed",
+      url: finalUrl || target.productUrl,
+      pageTitle: pageTitle || extracted.pageTitle || "",
+      bodyText: bodyText || "",
+      selectorMatched: selectorMatched,
+    }));
+  }
   const hostname = new URL(finalUrl).hostname;
   const priceKey = extracted.priceText ? buildPriceKey(extracted.priceText, target.currency) : null;
   const price = extracted.priceText ? toAmountObject(extracted.priceText, target.currency) : null;

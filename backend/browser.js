@@ -135,6 +135,16 @@ export async function getNetworkInfo() {
   return network;
 }
 
+async function maybeAcceptConsent(page) {
+  const candidate = page.locator("button, [role='button'], a").filter({ hasText: /Приемам|Съгласен|Accept/i }).first();
+  if (await candidate.count().catch(() => 0)) {
+    await candidate.click({ timeout: 1500 }).catch(() => {});
+    await page.waitForTimeout(250).catch(() => {});
+    return true;
+  }
+  return false;
+}
+
 export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
   const browser = await ensureBrowser();
   const context = await browser.newContext({ viewport: normalizeViewport() });
@@ -144,11 +154,32 @@ export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
     if (!response || !response.ok()) {
       throw new Error(`HTTP ${response?.status() ?? "no response"} when loading ${url}`);
     }
-    await page.waitForFunction((selectors) => selectors.some((selector) => {
-      const el = document.querySelector(selector);
-      return /\d/.test(el?.textContent || el?.getAttribute("content") || "");
-    }), selectors, { timeout: Math.min(timeoutMs, 5000) }).catch(() => {});
-    return { html: await page.content(), finalUrl: page.url() };
+
+    const primarySelector = Array.isArray(selectors) && selectors.length ? selectors[0] : null;
+    const selectorTimeout = Math.min(timeoutMs, 15000);
+
+    if (primarySelector) {
+      await page.waitForSelector(primarySelector, { state: "attached", timeout: selectorTimeout }).catch(() => {});
+    }
+    await maybeAcceptConsent(page);
+    if (primarySelector) {
+      await page.waitForSelector(primarySelector, { state: "attached", timeout: selectorTimeout }).catch(async () => {
+        await page.reload({ waitUntil: "domcontentloaded", timeout: timeoutMs }).catch(() => {});
+        await page.waitForSelector(primarySelector, { state: "attached", timeout: selectorTimeout }).catch(() => {});
+        await maybeAcceptConsent(page);
+      });
+    }
+
+    const html = await page.content();
+    const finalUrl = page.url();
+    const pageTitle = await page.title().catch(() => "");
+    const bodyText = await page.evaluate(() => document.body?.innerText?.slice(0, 500) || "").catch(() => "");
+    let selectorMatched = false;
+    if (primarySelector) {
+      selectorMatched = await page.locator(primarySelector).count().then((count) => count > 0).catch(() => false);
+    }
+
+    return { html, finalUrl, pageTitle, bodyText, selectorMatched };
   } finally {
     await context.close().catch(() => {});
   }
