@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import * as cheerio from "cheerio";
 import * as storage from "./storage.js";
-import { captureScreenshot } from "./browser.js";
+import { captureScreenshot, loadPageHtml } from "./browser.js";
 import { buildPriceKey, normalizePriceText, toAmountObject, toIsoFileStamp } from "./price.js";
 
 function pickFirstText($, selectors) {
@@ -47,19 +47,44 @@ function extractPriceFromHtml(html, target) {
 }
 
 async function fetchTargetSnapshot(target) {
-  const response = await fetch(target.productUrl, {
-    headers: {
-      "user-agent": "pricePatrol/1.0",
-      accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    },
-  });
+  let html;
+  let finalUrl;
+  if (process.env.BROWSER_ENGINE === "playwright") {
+    const response = await fetch(target.productUrl, {
+      headers: {
+        "user-agent": "pricePatrol/1.0",
+        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} when loading ${target.productUrl}`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} when loading ${target.productUrl}`);
+    }
+
+    finalUrl = response.url || target.productUrl;
+    html = await response.text();
+  } else {
+    ({ html, finalUrl } = await loadPageHtml({
+      url: target.productUrl,
+      selectors: [
+        target.selector,
+        ...(Array.isArray(target.fallbackSelectors) ? target.fallbackSelectors : []),
+        "meta[property='product:price:amount']",
+        "meta[property='og:price:amount']",
+        "meta[itemprop='price']",
+        "[data-price]",
+      ].filter(Boolean),
+    }));
   }
 
-  const finalUrl = response.url || target.productUrl;
-  const html = await response.text();
+  const $ = cheerio.load(html);
+  const heading = normalizePriceText($("title, h1").text());
+  if (/just a moment|access denied|attention required|verify (?:that )?you are human|security check|robot check|captcha|достъпът е отказан/i.test(heading)
+    || $("#challenge-running, #cf-challenge-running, #challenge-form, form[action*='/cdn-cgi/challenge-platform/']").length
+    || /verify (?:that )?you are (?:a )?human|checking your browser|unusual traffic from your computer network/i.test($("body").clone().find("script, style").remove().end().text())) {
+    throw new Error(`Anti-bot challenge when loading ${target.productUrl}`);
+  }
+
   const extracted = extractPriceFromHtml(html, target);
   const hostname = new URL(finalUrl).hostname;
   const priceKey = extracted.priceText ? buildPriceKey(extracted.priceText, target.currency) : null;
@@ -100,7 +125,7 @@ async function writeChangeScreenshot(target, capturedAt, selector) {
 async function processTarget(target) {
   const checkedAt = new Date().toISOString();
   const current = await fetchTargetSnapshot(target);
-  if (!current.priceText) {
+  if (!current.priceText || !current.price) {
     throw new Error(`Could not extract a price from ${target.productUrl}`);
   }
 
@@ -112,17 +137,10 @@ async function processTarget(target) {
   const shouldCapture = true;
   const status = isFirstSnapshot ? "baseline" : isChanged ? "changed" : "unchanged";
 
-  let screenshotUrl = target.lastKnownScreenshotUrl ?? null;
-  let screenshotError = null;
   let snapshot = null;
 
-  try {
-    const screenshotName = await writeChangeScreenshot(target, checkedAt, current.selectorUsed || target.selector);
-    screenshotUrl = `/data/screenshots/${screenshotName}`;
-  } catch (error) {
-    // If screenshot fails, we still want to record the snapshot row with an error status.
-    screenshotError = error?.message || String(error);
-  }
+  const screenshotName = await writeChangeScreenshot(target, checkedAt, current.selectorUsed || target.selector);
+  const screenshotUrl = `/data/screenshots/${screenshotName}`;
 
   // Always insert a snapshot row so the dashboard can plot every check.
   snapshot = await storage.insertSnapshot({
@@ -140,15 +158,14 @@ async function processTarget(target) {
     capturedAt: checkedAt,
     viewport: null,
     screenshotUrl,
-    status: screenshotError ? "error" : status,
-    errorMessage: screenshotError,
+    status,
+    errorMessage: null,
     changeType: status,
     priceKey: current.priceKey,
   });
 
-  // Update watch target metadata. Keep lastChangedAt only when there is an actual change (or baseline/error),
-  // so it still represents the last time the price changed rather than every check.
-  const lastChangedAtValue = (isFirstSnapshot || isChanged || screenshotError) ? checkedAt : target.lastChangedAt ?? null;
+  // Keep lastChangedAt only when there is an actual change or baseline.
+  const lastChangedAtValue = (isFirstSnapshot || isChanged) ? checkedAt : target.lastChangedAt ?? null;
 
   await storage.updateWatchTarget(target.id, {
     hostname: current.hostname,
@@ -161,17 +178,17 @@ async function processTarget(target) {
     lastKnownScreenshotUrl: screenshotUrl,
     lastCheckedAt: checkedAt,
     lastChangedAt: lastChangedAtValue,
-    lastStatus: screenshotError ? "error" : status,
+    lastStatus: status,
     active: target.active !== false,
     baselineRequested: isBaselineRequested ? false : target.baselineRequested ?? false,
   });
 
   return {
-    status: screenshotError ? "error" : status,
+    status,
     targetId: target.id,
     changed: isChanged,
     snapshot,
-    error: screenshotError,
+    error: null,
   };
 }
 
@@ -182,7 +199,12 @@ export async function runMonitorOnce() {
   const results = [];
   for (const target of activeTargets) {
     try {
-      results.push(await processTarget(target));
+      try {
+        results.push(await processTarget(target));
+      } catch {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        results.push(await processTarget(target));
+      }
     } catch (error) {
       const checkedAt = new Date().toISOString();
       const message = error?.message || String(error);
@@ -194,19 +216,17 @@ export async function runMonitorOnce() {
         pageTitle: target.pageTitle,
         productName: target.productName,
         selector: target.selector,
-        priceText: target.lastKnownPriceText ?? null,
-        selectedText: target.lastKnownPriceText ?? null,
+        priceText: null,
+        selectedText: null,
         currency: target.currency ?? null,
-        price: target.lastKnownPriceAmount !== null && target.lastKnownPriceAmount !== undefined
-          ? { amount: target.lastKnownPriceAmount, currency: target.lastKnownCurrency ?? target.currency ?? null }
-          : null,
+        price: null,
         capturedAt: checkedAt,
         viewport: null,
         screenshotUrl: null,
         status: "error",
         errorMessage: message,
         changeType: "error",
-        priceKey: target.lastKnownPriceKey ?? null,
+        priceKey: null,
       }));
 
       await storage.updateWatchTarget(target.id, {

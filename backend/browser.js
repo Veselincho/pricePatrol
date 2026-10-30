@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { firefox } from "playwright";
+import { createBrowser } from "./create-browser.js";
 
 let browserPromise = null;
 let browserInstance = null;
@@ -48,9 +48,7 @@ function attachLifecycle(browser) {
 async function launchBrowser() {
   const headless = getHeadlessMode();
   console.log(`Firefox starting (headless=${headless})`);
-  const browser = await firefox.launch({
-    headless,
-  });
+  const browser = await createBrowser({ headless });
 
   browserInstance = browser;
   launchedAt = new Date().toISOString();
@@ -91,6 +89,25 @@ export async function closeBrowser() {
   launchedAt = null;
   if (browser) {
     await browser.close().catch(() => {});
+  }
+}
+
+export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
+  const browser = await ensureBrowser();
+  const context = await browser.newContext({ viewport: normalizeViewport() });
+  try {
+    const page = await context.newPage();
+    const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
+    if (!response || !response.ok()) {
+      throw new Error(`HTTP ${response?.status() ?? "no response"} when loading ${url}`);
+    }
+    await page.waitForFunction((selectors) => selectors.some((selector) => {
+      const el = document.querySelector(selector);
+      return /\d/.test(el?.textContent || el?.getAttribute("content") || "");
+    }), selectors, { timeout: Math.min(timeoutMs, 5000) }).catch(() => {});
+    return { html: await page.content(), finalUrl: page.url() };
+  } finally {
+    await context.close().catch(() => {});
   }
 }
 

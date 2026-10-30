@@ -34,6 +34,30 @@ jobs:
         working-directory: backend
         run: npm ci
 
+      - name: Locate Camoufox cache
+        id: camoufox
+        working-directory: backend
+        run: |
+          node --input-type=module -e '
+            import fs from "node:fs";
+            import { INSTALL_DIR } from "camoufox-js/dist/pkgman.js";
+            const { version } = JSON.parse(fs.readFileSync("node_modules/camoufox-js/package.json", "utf8"));
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `version=${version}\npath=${INSTALL_DIR}\n`);
+          '
+
+      - name: Cache Camoufox browser
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.camoufox.outputs.path }}
+          key: ${{ runner.os }}-${{ runner.arch }}-camoufox-js-${{ steps.camoufox.outputs.version }}
+
+      - name: Install virtual display
+        run: sudo apt-get update && sudo apt-get install -y xvfb
+
+      - name: Fetch Camoufox browser
+        working-directory: backend
+        run: npx camoufox-js fetch
+
       - name: Install Playwright browser dependencies
         working-directory: backend
         run: npx playwright install --with-deps firefox
@@ -42,6 +66,8 @@ jobs:
         working-directory: backend
         env:
           PRICEPATROL_HEADLESS: "true"
+          BROWSER_ENGINE: camoufox
+          PROXY_URL: ${{ secrets.PROXY_URL }}
           NODE_ENV: production
         run: npm run check:prices
 
