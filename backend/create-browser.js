@@ -26,8 +26,10 @@ export async function createBrowser({ headless = false } = {}) {
   }
 
   const { Camoufox } = await import("camoufox-js");
+  console.log('Camoufox launch: headless="virtual"');
   return Camoufox({
     headless: "virtual",
+    i_know_what_im_doing: true,
     humanize: true,
     os: "windows",
     locale: "bg-BG",
@@ -36,4 +38,15 @@ export async function createBrowser({ headless = false } = {}) {
     block_images: false,
     proxy,
   });
+}
+
+export function proxyOptionsForUrl(url) {
+  const hostname = new URL(url).hostname;
+  if ((process.env.USE_TOR ?? "true") === "true"
+    && process.env.TOR_READY === "true"
+    && (process.env.BROWSER_ENGINE || "camoufox") === "camoufox"
+    && (hostname === "emag.bg" || hostname.endsWith(".emag.bg"))) {
+    return { proxy: { server: "http://127.0.0.1:8118" } };
+  }
+  return {};
 }

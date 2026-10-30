@@ -16,6 +16,8 @@ jobs:
   check-prices:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      USE_TOR: "true"
 
     steps:
       - name: Checkout repository
@@ -61,6 +63,42 @@ jobs:
       - name: Install Playwright browser dependencies
         working-directory: backend
         run: npx playwright install --with-deps firefox
+
+      - name: Install Tor and Privoxy
+        if: env.USE_TOR == 'true'
+        continue-on-error: true
+        run: sudo apt-get update && sudo apt-get install -y tor privoxy
+
+      - name: Start Tor and wait for bootstrap
+        if: env.USE_TOR == 'true'
+        continue-on-error: true
+        run: |
+          echo "TOR_READY=false" >> "$GITHUB_ENV"
+          sudo install -d -o debian-tor -g debian-tor -m 0750 /var/log/tor
+          sudo install -o debian-tor -g debian-tor -m 0640 /dev/null /var/log/tor/pricepatrol.log
+          printf '\nLog notice file /var/log/tor/pricepatrol.log\n' | sudo tee -a /etc/tor/torrc > /dev/null
+          sudo service tor stop
+          sudo service tor start
+          sudo tee /etc/privoxy/config > /dev/null <<'EOF'
+          listen-address 127.0.0.1:8118
+          forward-socks5t / 127.0.0.1:9050 .
+          EOF
+          sudo service privoxy restart
+
+          deadline=$((SECONDS + 90))
+          while (( SECONDS < deadline )); do
+            if sudo grep -q 'Bootstrapped 100%' /var/log/tor/pricepatrol.log; then
+              echo "TOR_READY=true" >> "$GITHUB_ENV"
+              echo "Tor bootstrapped; eMAG contexts will use Privoxy on 127.0.0.1:8118."
+              curl -s --connect-timeout 10 --max-time 20 --socks5-hostname 127.0.0.1:9050 https://check.torproject.org/api/ip || true
+              echo
+              exit 0
+            fi
+            sleep 2
+          done
+
+          echo "Tor bootstrap timed out after 90s; continuing without Tor."
+          sudo cat /var/log/tor/pricepatrol.log || true
 
       - name: Run price monitor
         working-directory: backend

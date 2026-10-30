@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { createBrowser } from "./create-browser.js";
+import { createBrowser, proxyOptionsForUrl } from "./create-browser.js";
 
 let browserPromise = null;
 let browserInstance = null;
@@ -94,7 +94,7 @@ export async function closeBrowser() {
 
 export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
   const browser = await ensureBrowser();
-  const context = await browser.newContext({ viewport: normalizeViewport() });
+  const context = await browser.newContext({ viewport: normalizeViewport(), ...proxyOptionsForUrl(url) });
   try {
     const page = await context.newPage();
     const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
@@ -120,7 +120,7 @@ export async function captureScreenshot({
 }) {
   await ensureDir(screenshotPath);
   const browser = await ensureBrowser();
-  const context = await browser.newContext({ viewport: normalizeViewport(viewport) });
+  const context = await browser.newContext({ viewport: normalizeViewport(viewport), ...proxyOptionsForUrl(url) });
   const page = await context.newPage();
 
   try {
