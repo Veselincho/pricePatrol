@@ -7,22 +7,55 @@
       "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
       "productName": "bazar test",
       "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
+      "selectorBackup": null,
       "fallbackSelectors": [],
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "65",
-      "lastKnownPriceKey": "65|EUR",
+      "lastKnownPriceText": "65 €",
+      "lastKnownPriceKey": "65.00|EUR",
       "lastKnownPriceAmount": 65,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-30T16:27:29.600Z",
-      "lastChangedAt": "2026-10-30T16:27:29.600Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastKnownScreenshotUrl": "/data/screenshots/6552589c-20261030_162818.png",
+      "lastCheckedAt": "2026-10-30T16:28:18.492Z",
+      "lastChangedAt": "2026-10-30T16:28:18.492Z",
+      "lastStatus": "baseline",
+      "baselineRequested": false,
       "createdAt": "2026-10-30T16:27:29.600Z",
-      "updatedAt": "2026-10-30T16:27:29.600Z"
+      "updatedAt": "2026-10-30T16:28:35.631Z"
     }
   ],
-  "snapshots": []
+  "snapshots": [
+    {
+      "id": "fe1c7ed3-e938-4ba6-b063-605f366db319",
+      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
+      "selectorBackup": null,
+      "priceText": "65 €",
+      "selectedText": "65 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-30T16:28:18.492Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/6552589c-20261030_162818.png",
+      "status": "baseline",
+      "errorMessage": null,
+      "changeType": "baseline",
+      "priceKey": "65.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "172.183.89.35",
+        "isTor": false,
+        "checkedAt": "2026-10-30T16:28:10.882Z",
+        "error": null
+      }
+    }
+  ]
 }
