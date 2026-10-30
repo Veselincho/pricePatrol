@@ -108,42 +108,47 @@ async function processTarget(target) {
   const isBaselineRequested = target.baselineRequested === true;
   const isFirstSnapshot = isBaselineRequested || !hasReference;
   const isChanged = hasReference && current.priceKey && current.priceKey !== target.lastKnownPriceKey;
-  const shouldCapture = isFirstSnapshot || isChanged;
+  // Always capture a snapshot for every check (baseline/changed/unchanged). This will create a full time-series.
+  const shouldCapture = true;
   const status = isFirstSnapshot ? "baseline" : isChanged ? "changed" : "unchanged";
 
   let screenshotUrl = target.lastKnownScreenshotUrl ?? null;
   let screenshotError = null;
   let snapshot = null;
 
-  if (shouldCapture) {
-    try {
-      const screenshotName = await writeChangeScreenshot(target, checkedAt, current.selectorUsed || target.selector);
-      screenshotUrl = `/data/screenshots/${screenshotName}`;
-    } catch (error) {
-      screenshotError = error?.message || String(error);
-    }
-
-    snapshot = await storage.insertSnapshot({
-      id: crypto.randomUUID(),
-      watchTargetId: target.id,
-      productUrl: target.productUrl,
-      hostname: current.hostname,
-      pageTitle: current.pageTitle,
-      productName: target.productName,
-      selector: current.selectorUsed || target.selector,
-      priceText: current.priceText,
-      selectedText: current.priceText,
-      currency: target.currency ?? current.price?.currency ?? null,
-      price: current.price,
-      capturedAt: checkedAt,
-      viewport: null,
-      screenshotUrl,
-      status: screenshotError ? "error" : status,
-      errorMessage: screenshotError,
-      changeType: status,
-      priceKey: current.priceKey,
-    });
+  try {
+    const screenshotName = await writeChangeScreenshot(target, checkedAt, current.selectorUsed || target.selector);
+    screenshotUrl = `/data/screenshots/${screenshotName}`;
+  } catch (error) {
+    // If screenshot fails, we still want to record the snapshot row with an error status.
+    screenshotError = error?.message || String(error);
   }
+
+  // Always insert a snapshot row so the dashboard can plot every check.
+  snapshot = await storage.insertSnapshot({
+    id: crypto.randomUUID(),
+    watchTargetId: target.id,
+    productUrl: target.productUrl,
+    hostname: current.hostname,
+    pageTitle: current.pageTitle,
+    productName: target.productName,
+    selector: current.selectorUsed || target.selector,
+    priceText: current.priceText,
+    selectedText: current.priceText,
+    currency: target.currency ?? current.price?.currency ?? null,
+    price: current.price,
+    capturedAt: checkedAt,
+    viewport: null,
+    screenshotUrl,
+    status: screenshotError ? "error" : status,
+    errorMessage: screenshotError,
+    changeType: status,
+    priceKey: current.priceKey,
+  });
+
+  // Update watch target metadata. Keep lastChangedAt only when there is an actual change (or baseline/error),
+  // so it still represents the last time the price changed rather than every check.
+  const lastChangedAtValue = (isFirstSnapshot || isChanged || screenshotError) ? checkedAt : target.lastChangedAt ?? null;
 
   await storage.updateWatchTarget(target.id, {
     hostname: current.hostname,
@@ -155,7 +160,7 @@ async function processTarget(target) {
     lastKnownCurrency: current.price?.currency ?? target.currency ?? null,
     lastKnownScreenshotUrl: screenshotUrl,
     lastCheckedAt: checkedAt,
-    lastChangedAt: shouldCapture ? checkedAt : target.lastChangedAt ?? null,
+    lastChangedAt: lastChangedAtValue,
     lastStatus: screenshotError ? "error" : status,
     active: target.active !== false,
     baselineRequested: isBaselineRequested ? false : target.baselineRequested ?? false,
