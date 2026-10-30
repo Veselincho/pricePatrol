@@ -20,7 +20,7 @@ The repository is the source of truth:
    - reference points with status markers
    - screenshot links and a lightbox view for each capture
 
-## How to use the extension
+## How to use the extension after u fork
 
 ### 1) Connect your GitHub repository
 Open **Settings** inside the extension and enter:
