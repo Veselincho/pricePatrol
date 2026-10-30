@@ -341,7 +341,11 @@
       background: "#fff",
       color: "#374151",
     });
-
+    // Ensure host page styles cannot hide the button text
+    cancelBtn.style.setProperty('color', '#374151', 'important');
+    cancelBtn.style.setProperty('background', '#fff', 'important');
+    cancelBtn.style.setProperty('border', '1px solid #d1d5db', 'important');
+    
     const saveBtn = document.createElement("button");
     saveBtn.type = "button";
     saveBtn.textContent = "Save";
@@ -353,6 +357,10 @@
       color: "#fff",
       fontWeight: "600",
     });
+    // Ensure host page styles cannot hide the button text
+    saveBtn.style.setProperty('color', '#fff', 'important');
+    saveBtn.style.setProperty('background', '#2563eb', 'important');
+    saveBtn.style.setProperty('border', '0', 'important');
 
     async function submit() {
       const value = valueInput.value.trim();
