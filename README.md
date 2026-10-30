@@ -86,9 +86,25 @@ Load the `extension/` folder as an unpacked extension.
 2. Click **Load Temporary Add-on**
 3. Select `extension/manifest.json`
 
-## Notes
+### Notes
+
+1. <details>
+   <summary>- Is it breakable?</summary>
+
+   - Yes — it relies on frontend CSS and the DOM, so selectors can break easily.
+
+   </details>
+
+2. <details>
+   <summary>- Is it useful? not much but imo have 1 strong point:</summary>
+
+   - It's intended for long-term tracking of real discounts - for example, Black Friday fake deals can be identified this way
+
+   </details>
 
 - Screenshots are stored as repo-relative paths, so they work cleanly in forks and in committed JSON data.
 - The extension is designed to work without a local backend server.
 - The product dashboard uses an interactive timeline, tooltips, and a screenshot lightbox to review reference points.
 - Keep the repository write permissions enabled for Actions, or the automation will not be able to update the data.
+
+### FEEL free to Fork&use and ofcourse contribute! ^^
