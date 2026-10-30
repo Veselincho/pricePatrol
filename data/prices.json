@@ -16,12 +16,12 @@
       "lastKnownPriceAmount": 65,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": "/data/screenshots/3cdef501-20261030_113015.png",
-      "lastCheckedAt": "2026-10-30T14:57:39.810Z",
+      "lastCheckedAt": "2026-10-30T15:06:08.468Z",
       "lastChangedAt": "2026-10-29T16:25:03.753Z",
       "lastStatus": "error",
       "baselineRequested": false,
       "createdAt": "2026-10-29T11:58:07.469Z",
-      "updatedAt": "2026-10-30T14:57:39.812Z"
+      "updatedAt": "2026-10-30T15:06:08.472Z"
     },
     {
       "id": "34762e62-ad9e-44a4-b993-c5aeadb1bf9f",
@@ -39,12 +39,12 @@
       "lastKnownPriceAmount": 58.61,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-30T14:57:23.317Z",
+      "lastCheckedAt": "2026-10-30T15:06:20.335Z",
       "lastChangedAt": "2026-10-30T11:29:01.378Z",
       "lastStatus": "error",
       "baselineRequested": true,
       "createdAt": "2026-10-30T11:29:01.378Z",
-      "updatedAt": "2026-10-30T14:57:23.318Z"
+      "updatedAt": "2026-10-30T15:06:20.336Z"
     },
     {
       "id": "1b897043-4713-4ce4-a0f3-3089c371939a",
@@ -61,13 +61,13 @@
       "lastKnownPriceKey": "59.00|EUR",
       "lastKnownPriceAmount": 59,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/1b897043-20261030_144927.png",
-      "lastCheckedAt": "2026-10-30T14:59:42.665Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/1b897043-20261030_150518.png",
+      "lastCheckedAt": "2026-10-30T15:05:18.761Z",
       "lastChangedAt": "2026-10-30T12:42:05.179Z",
-      "lastStatus": "error",
+      "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T12:40:30.114Z",
-      "updatedAt": "2026-10-30T14:59:42.666Z"
+      "updatedAt": "2026-10-30T15:05:42.929Z"
     },
     {
       "id": "01428900-0459-4313-aaef-e3b545878a7e",
@@ -80,17 +80,17 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "18",
-      "lastKnownPriceKey": "18|EUR",
+      "lastKnownPriceText": "18 €",
+      "lastKnownPriceKey": "18.00|EUR",
       "lastKnownPriceAmount": 18,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-30T14:57:08.991Z",
-      "lastChangedAt": "2026-10-30T14:55:53.400Z",
-      "lastStatus": "error",
-      "baselineRequested": true,
+      "lastKnownScreenshotUrl": "/data/screenshots/01428900-20261030_150620.png",
+      "lastCheckedAt": "2026-10-30T15:06:20.337Z",
+      "lastChangedAt": "2026-10-30T15:06:20.337Z",
+      "lastStatus": "baseline",
+      "baselineRequested": false,
       "createdAt": "2026-10-30T14:55:53.400Z",
-      "updatedAt": "2026-10-30T14:57:09.112Z"
+      "updatedAt": "2026-10-30T15:06:34.783Z"
     }
   ],
   "snapshots": [
@@ -796,6 +796,120 @@
         "ip": "185.220.100.250",
         "isTor": true,
         "checkedAt": "2026-10-30T14:56:53.944Z",
+        "error": null
+      }
+    },
+    {
+      "id": "663ae6eb-37a1-45fa-a4c6-53616a5a0641",
+      "watchTargetId": "1b897043-4713-4ce4-a0f3-3089c371939a",
+      "productUrl": "https://www.ozone.bg/product/ssd-pamet-patriot-p220-256gb-2-5-sata-iii/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "SSD памет Patriot - P220, 256GB, 2.5'', SATA III | Ozone.bgowl-arrow-prev",
+      "productName": "ozone ssd",
+      "selector": "#product-price-728201 > span",
+      "priceText": "59,00 €",
+      "selectedText": "59,00 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 59,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-30T15:05:18.761Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/1b897043-20261030_150518.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "59.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.234.3.16",
+        "isTor": false,
+        "checkedAt": "2026-10-30T15:05:08.923Z",
+        "error": null
+      }
+    },
+    {
+      "id": "8cd76bf6-deab-43ba-a1e1-224e5d77670f",
+      "watchTargetId": "3cdef501-7164-4f36-91c0-c11c72facc7c",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "test",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div > div",
+      "priceText": "",
+      "selectedText": "",
+      "currency": "EUR",
+      "price": null,
+      "capturedAt": "2026-10-30T15:06:08.468Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "Could not extract a price from https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "changeType": "error",
+      "priceKey": null,
+      "network": {
+        "route": "direct",
+        "ip": "52.234.3.16",
+        "isTor": false,
+        "checkedAt": "2026-10-30T15:05:08.923Z",
+        "error": null
+      }
+    },
+    {
+      "id": "ee77ea4a-cee1-4cbb-bce5-2469a640b47e",
+      "watchTargetId": "34762e62-ad9e-44a4-b993-c5aeadb1bf9f",
+      "productUrl": "https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "hostname": "www.emag.bg",
+      "pageTitle": "Solid State Drive (SSD) ADATA SU650, 512GB, 2.5\", SATA III - eMAG.bg",
+      "productName": "ssd",
+      "selector": "#main-container > section:nth-of-type(4) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > div:nth-of-type(1) > p",
+      "priceText": "",
+      "selectedText": "",
+      "currency": "EUR",
+      "price": null,
+      "capturedAt": "2026-10-30T15:06:20.335Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "HTTP 511 when loading https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "changeType": "error",
+      "priceKey": null,
+      "network": {
+        "route": "direct",
+        "ip": "52.234.3.16",
+        "isTor": false,
+        "checkedAt": "2026-10-30T15:05:08.923Z",
+        "error": null
+      }
+    },
+    {
+      "id": "887d18b2-c019-44c7-a057-9bcd1f776d44",
+      "watchTargetId": "01428900-0459-4313-aaef-e3b545878a7e",
+      "productUrl": "https://www.olx.bg/d/ad/ssd-disk-120gb-2-5-CID632-IDa4A7p.html?search_reason=search%7Corganic",
+      "hostname": "www.olx.bg",
+      "pageTitle": "SSD диск 120GB 2.5\" гр. София Зона Б-5 • OLX.bg",
+      "productName": "olx ssd",
+      "selector": "#mainContent > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div > div:nth-of-type(3) > div > div > h3",
+      "priceText": "18 €",
+      "selectedText": "18 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 18,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-30T15:06:20.337Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/01428900-20261030_150620.png",
+      "status": "baseline",
+      "errorMessage": null,
+      "changeType": "baseline",
+      "priceKey": "18.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.234.3.16",
+        "isTor": false,
+        "checkedAt": "2026-10-30T15:05:08.923Z",
         "error": null
       }
     }
