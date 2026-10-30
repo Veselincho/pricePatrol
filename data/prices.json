@@ -7,6 +7,7 @@
       "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
       "productName": "bazar test",
       "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
+      "selectorBackup": null,
       "fallbackSelectors": [],
       "currency": "EUR",
       "active": true,
@@ -15,13 +16,13 @@
       "lastKnownPriceKey": "65.00|EUR",
       "lastKnownPriceAmount": 65,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/6552589c-20261030_190507.png",
-      "lastCheckedAt": "2026-10-30T19:05:07.374Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/6552589c-20261030_194324.png",
+      "lastCheckedAt": "2026-10-30T19:43:24.049Z",
       "lastChangedAt": "2026-10-30T16:28:18.492Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T16:27:29.600Z",
-      "updatedAt": "2026-10-30T19:05:28.246Z"
+      "updatedAt": "2026-10-30T19:43:33.791Z"
     },
     {
       "id": "a010b326-594d-4d09-99a9-d9110808618b",
@@ -30,21 +31,22 @@
       "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
       "productName": "Printernet SSD ADATA SU650 240 gb",
       "selector": "#opu_price",
+      "selectorBackup": null,
       "fallbackSelectors": [],
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "58.07",
+      "lastKnownPriceText": "58,07€",
       "lastKnownPriceKey": "58.07|EUR",
       "lastKnownPriceAmount": 58.07,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-30T19:42:26.686Z",
-      "lastChangedAt": "2026-10-30T19:42:26.686Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261030_194314.png",
+      "lastCheckedAt": "2026-10-30T19:43:14.174Z",
+      "lastChangedAt": "2026-10-30T19:43:14.174Z",
+      "lastStatus": "baseline",
+      "baselineRequested": false,
       "createdAt": "2026-10-30T19:42:26.686Z",
-      "updatedAt": "2026-10-30T19:42:26.686Z"
+      "updatedAt": "2026-10-30T19:43:24.040Z"
     }
   ],
   "snapshots": [
@@ -56,6 +58,7 @@
       "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
       "productName": "bazar test",
       "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
+      "selectorBackup": null,
       "priceText": "65 €",
       "selectedText": "65 €",
       "currency": "EUR",
@@ -86,6 +89,7 @@
       "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
       "productName": "bazar test",
       "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
+      "selectorBackup": null,
       "priceText": "65 €",
       "selectedText": "65 €",
       "currency": "EUR",
@@ -105,6 +109,68 @@
         "ip": "172.179.15.194",
         "isTor": false,
         "checkedAt": "2026-10-30T19:05:01.815Z",
+        "error": null
+      }
+    },
+    {
+      "id": "ccfdada5-5dc8-49db-a43e-5900c43beaee",
+      "watchTargetId": "a010b326-594d-4d09-99a9-d9110808618b",
+      "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
+      "hostname": "printernet.bg",
+      "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
+      "productName": "Printernet SSD ADATA SU650 240 gb",
+      "selector": "#opu_price",
+      "selectorBackup": null,
+      "priceText": "58,07€",
+      "selectedText": "58,07€",
+      "currency": "EUR",
+      "price": {
+        "amount": 58.07,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-30T19:43:14.174Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/a010b326-20261030_194314.png",
+      "status": "baseline",
+      "errorMessage": null,
+      "changeType": "baseline",
+      "priceKey": "58.07|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.165.102.162",
+        "isTor": false,
+        "checkedAt": "2026-10-30T19:43:10.159Z",
+        "error": null
+      }
+    },
+    {
+      "id": "d56a4ff7-6eb9-458b-9909-edf499857c15",
+      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test",
+      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
+      "selectorBackup": null,
+      "priceText": "65 €",
+      "selectedText": "65 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-30T19:43:24.049Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/6552589c-20261030_194324.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "65.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.165.102.162",
+        "isTor": false,
+        "checkedAt": "2026-10-30T19:43:10.159Z",
         "error": null
       }
     }
