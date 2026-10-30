@@ -101,6 +101,36 @@
     return parts.join(" > ");
   }
 
+  function xpathLiteral(value) {
+    const text = String(value ?? "");
+    if (!text.includes("'")) return `'${text}'`;
+    if (!text.includes('"')) return `"${text}"`;
+    return `concat(${text.split("'").map((part) => `"${part}"`).join(", \"'\", ")})`;
+  }
+
+  function xpathPath(el) {
+    if (el.id && document.querySelectorAll("#" + CSS.escape(el.id)).length === 1) {
+      return `//*[@id=${xpathLiteral(el.id)}]`;
+    }
+
+    const parts = [];
+    let node = el;
+    while (node && node.nodeType === 1) {
+      const tag = node.tagName.toLowerCase();
+      let index = 1;
+      let sibling = node.previousElementSibling;
+      while (sibling) {
+        if (sibling.tagName === node.tagName) index += 1;
+        sibling = sibling.previousElementSibling;
+      }
+      parts.unshift(`${tag}[${index}]`);
+      if (node === document.documentElement) break;
+      node = node.parentElement;
+    }
+
+    return `/${parts.join("/")}`;
+  }
+
   // ---------- Price parsing ----------
   // Supports "1 299,99 BGN", "1,299.99 €", "$49.90", "49,90"
   function parsePrice(text) {
@@ -189,6 +219,7 @@
     currentDraft = {
       element: el,
       selector: cssPath(el),
+      selectorBackup: xpathPath(el),
       selectedText: rawText,
       initialValue,
       initialCurrency,
@@ -379,6 +410,7 @@
         productUrl: location.href,
         pageTitle: document.title,
         selector: currentDraft.selector,
+        selectorBackup: currentDraft.selectorBackup,
         productName,
         priceText: value,
         selectedText: currentDraft.selectedText,

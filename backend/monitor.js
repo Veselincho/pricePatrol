@@ -46,12 +46,23 @@ function extractPriceFromHtml(html, target) {
   };
 }
 
+function selectorCandidatesForTarget(target) {
+  return [
+    target.selector,
+    target.selectorBackup,
+    ...(Array.isArray(target.fallbackSelectors) ? target.fallbackSelectors : []),
+  ].filter(Boolean);
+}
+
 async function fetchTargetSnapshot(target) {
   let html;
   let finalUrl;
   let pageTitle = "";
   let bodyText = "";
   let selectorMatched = false;
+  let selectorResult = null;
+  const selectorCandidates = selectorCandidatesForTarget(target);
+
   if (process.env.BROWSER_ENGINE === "playwright") {
     const response = await fetch(target.productUrl, {
       headers: {
@@ -67,18 +78,11 @@ async function fetchTargetSnapshot(target) {
     finalUrl = response.url || target.productUrl;
     html = await response.text();
   } else {
-    const loaded = await loadPageHtml({
+    selectorResult = await loadPageHtml({
       url: target.productUrl,
-      selectors: [
-        target.selector,
-        ...(Array.isArray(target.fallbackSelectors) ? target.fallbackSelectors : []),
-        "meta[property='product:price:amount']",
-        "meta[property='og:price:amount']",
-        "meta[itemprop='price']",
-        "[data-price]",
-      ].filter(Boolean),
+      selectors: selectorCandidates,
     });
-    ({ html, finalUrl, pageTitle = "", bodyText = "", selectorMatched = false } = loaded);
+    ({ html, finalUrl, pageTitle = "", bodyText = "", selectorMatched = false } = selectorResult);
   }
 
   const $ = cheerio.load(html);
@@ -93,7 +97,30 @@ async function fetchTargetSnapshot(target) {
   }
 
   const extracted = extractPriceFromHtml(html, target);
-  if (!extracted.priceText) {
+  let priceText = extracted.priceText;
+  let selectorUsed = extracted.selectorUsed;
+
+  if (!priceText && selectorResult?.selectedText) {
+    const matchedText = normalizePriceText(selectorResult.selectedText);
+    if (matchedText) {
+      priceText = matchedText;
+      selectorUsed = selectorResult.selectorUsed ?? selectorUsed;
+    }
+  }
+
+  if (!priceText && target.selectorBackup && selectorCandidates.length) {
+    const loaded = selectorResult ?? await loadPageHtml({
+      url: target.productUrl,
+      selectors: selectorCandidates,
+    });
+    const matchedText = normalizePriceText(loaded?.selectedText ?? "");
+    if (matchedText) {
+      priceText = matchedText;
+      selectorUsed = loaded?.selectorUsed ?? target.selectorBackup ?? selectorUsed;
+    }
+  }
+
+  if (!priceText) {
     console.warn(JSON.stringify({
       type: "price-extract-failed",
       url: finalUrl || target.productUrl,
@@ -102,18 +129,19 @@ async function fetchTargetSnapshot(target) {
       selectorMatched: selectorMatched,
     }));
   }
+
   const hostname = new URL(finalUrl).hostname;
-  const priceKey = extracted.priceText ? buildPriceKey(extracted.priceText, target.currency) : null;
-  const price = extracted.priceText ? toAmountObject(extracted.priceText, target.currency) : null;
+  const priceKey = priceText ? buildPriceKey(priceText, target.currency) : null;
+  const price = priceText ? toAmountObject(priceText, target.currency) : null;
 
   return {
     finalUrl,
     hostname,
-    pageTitle: extracted.pageTitle,
-    priceText: extracted.priceText,
+    pageTitle: extracted.pageTitle || pageTitle,
+    priceText,
     priceKey,
     price,
-    selectorUsed: extracted.selectorUsed,
+    selectorUsed,
   };
 }
 
@@ -155,31 +183,32 @@ async function processTarget(target, network) {
 
   let snapshot = null;
 
-  const screenshotName = await writeChangeScreenshot(target, checkedAt, current.selectorUsed || target.selector);
+  const screenshotName = await writeChangeScreenshot(target, checkedAt, selectorCandidatesForTarget(target));
   const screenshotUrl = `/data/screenshots/${screenshotName}`;
 
   // Always insert a snapshot row so the dashboard can plot every check.
   snapshot = await storage.insertSnapshot({
-    id: crypto.randomUUID(),
-    watchTargetId: target.id,
-    productUrl: target.productUrl,
-    hostname: current.hostname,
-    pageTitle: current.pageTitle,
-    productName: target.productName,
-    selector: current.selectorUsed || target.selector,
-    priceText: current.priceText,
-    selectedText: current.priceText,
-    currency: target.currency ?? current.price?.currency ?? null,
-    price: current.price,
-    capturedAt: checkedAt,
-    viewport: null,
-    screenshotUrl,
-    status,
-    errorMessage: null,
-    changeType: status,
-    priceKey: current.priceKey,
-    network,
-  });
+      id: crypto.randomUUID(),
+      watchTargetId: target.id,
+      productUrl: target.productUrl,
+      hostname: current.hostname,
+      pageTitle: current.pageTitle,
+      productName: target.productName,
+      selector: target.selector,
+      selectorBackup: target.selectorBackup ?? null,
+      priceText: current.priceText,
+      selectedText: current.priceText,
+      currency: target.currency ?? current.price?.currency ?? null,
+      price: current.price,
+      capturedAt: checkedAt,
+      viewport: null,
+      screenshotUrl,
+      status,
+      errorMessage: null,
+      changeType: status,
+      priceKey: current.priceKey,
+      network,
+    });
 
   // Keep lastChangedAt only when there is an actual change or baseline.
   const lastChangedAtValue = (isFirstSnapshot || isChanged) ? checkedAt : target.lastChangedAt ?? null;
@@ -187,7 +216,6 @@ async function processTarget(target, network) {
   await storage.updateWatchTarget(target.id, {
     hostname: current.hostname,
     pageTitle: current.pageTitle,
-    selector: current.selectorUsed || target.selector,
     lastKnownPriceText: current.priceText,
     lastKnownPriceKey: current.priceKey,
     lastKnownPriceAmount: current.price?.amount ?? null,
@@ -234,6 +262,7 @@ export async function runMonitorOnce() {
         pageTitle: target.pageTitle,
         productName: target.productName,
         selector: target.selector,
+        selectorBackup: target.selectorBackup ?? null,
         priceText: null,
         selectedText: null,
         currency: target.currency ?? null,

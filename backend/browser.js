@@ -38,6 +38,56 @@ function normalizeViewport(viewport) {
   return { width, height };
 }
 
+function normalizeSelectorCandidate(selector) {
+  if (!selector) return null;
+
+  if (typeof selector === "string") {
+    const value = selector.trim();
+    if (!value) return null;
+    if (value.startsWith("xpath=")) {
+      return { type: "xpath", value: value.slice(6) };
+    }
+    if (value.startsWith("/")) {
+      return { type: "xpath", value };
+    }
+    return { type: "css", value };
+  }
+
+  if (typeof selector === "object") {
+    const value = String(selector.value ?? selector.selector ?? "").trim();
+    if (!value) return null;
+    const type = String(selector.type ?? selector.kind ?? "").toLowerCase() === "xpath" ? "xpath" : "css";
+    return { type, value };
+  }
+
+  return null;
+}
+
+function selectorToLocator(selector) {
+  const normalized = normalizeSelectorCandidate(selector);
+  if (!normalized) return null;
+  return normalized.type === "xpath" ? `xpath=${normalized.value}` : normalized.value;
+}
+
+async function firstMatchingSelector(page, selectors, timeoutMs) {
+  const candidates = Array.isArray(selectors) ? selectors : [selectors];
+  for (const candidate of candidates) {
+    const normalized = normalizeSelectorCandidate(candidate);
+    if (!normalized) continue;
+
+    const locator = selectorToLocator(normalized);
+    if (!locator) continue;
+
+    await page.waitForSelector(locator, { state: "attached", timeout: timeoutMs }).catch(() => {});
+    const count = await page.locator(locator).count().catch(() => 0);
+    if (count > 0) {
+      return { selectorUsed: normalized.value, selectorType: normalized.type, locator };
+    }
+  }
+
+  return null;
+}
+
 function attachLifecycle(browser) {
   browser.once("disconnected", () => {
     console.warn("Browser disconnected");
@@ -155,31 +205,51 @@ export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
       throw new Error(`HTTP ${response?.status() ?? "no response"} when loading ${url}`);
     }
 
-    const primarySelector = Array.isArray(selectors) && selectors.length ? selectors[0] : null;
     const selectorTimeout = Math.min(timeoutMs, 15000);
+    const selectorCandidates = Array.isArray(selectors) ? selectors : [selectors];
+    let selectorMatch = await firstMatchingSelector(page, selectorCandidates, selectorTimeout);
 
-    if (primarySelector) {
-      await page.waitForSelector(primarySelector, { state: "attached", timeout: selectorTimeout }).catch(() => {});
-    }
     await maybeAcceptConsent(page);
-    if (primarySelector) {
-      await page.waitForSelector(primarySelector, { state: "attached", timeout: selectorTimeout }).catch(async () => {
-        await page.reload({ waitUntil: "domcontentloaded", timeout: timeoutMs }).catch(() => {});
-        await page.waitForSelector(primarySelector, { state: "attached", timeout: selectorTimeout }).catch(() => {});
-        await maybeAcceptConsent(page);
-      });
+    if (!selectorMatch && selectorCandidates.length) {
+      await page.reload({ waitUntil: "domcontentloaded", timeout: timeoutMs }).catch(() => {});
+      await maybeAcceptConsent(page);
+      selectorMatch = await firstMatchingSelector(page, selectorCandidates, selectorTimeout);
     }
 
     const html = await page.content();
     const finalUrl = page.url();
     const pageTitle = await page.title().catch(() => "");
     const bodyText = await page.evaluate(() => document.body?.innerText?.slice(0, 500) || "").catch(() => "");
-    let selectorMatched = false;
-    if (primarySelector) {
-      selectorMatched = await page.locator(primarySelector).count().then((count) => count > 0).catch(() => false);
+    let selectedText = "";
+    let selectorUsed = null;
+    for (const candidate of selectorCandidates) {
+      const normalized = normalizeSelectorCandidate(candidate);
+      if (!normalized) continue;
+      const locator = selectorToLocator(normalized);
+      if (!locator) continue;
+      const count = await page.locator(locator).count().catch(() => 0);
+      if (!count) continue;
+      const text = await page.locator(locator).first().textContent().catch(() => "");
+      const trimmed = String(text ?? "").replace(/\s+/g, " ").trim();
+      if (trimmed) {
+        selectedText = trimmed;
+        selectorUsed = normalized.value;
+        break;
+      }
+      if (!selectorUsed) {
+        selectorUsed = normalized.value;
+      }
     }
 
-    return { html, finalUrl, pageTitle, bodyText, selectorMatched };
+    return {
+      html,
+      finalUrl,
+      pageTitle,
+      bodyText,
+      selectorMatched: Boolean(selectorUsed),
+      selectedText,
+      selectorUsed,
+    };
   } finally {
     await context.close().catch(() => {});
   }
@@ -202,8 +272,12 @@ export async function captureScreenshot({
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
     await page.waitForLoadState("networkidle", { timeout: Math.min(timeoutMs, 15000) }).catch(() => {});
 
-    if (selector) {
-      await page.locator(selector).first().waitFor({ state: "visible", timeout: Math.min(timeoutMs, 15000) }).catch(() => {});
+    const selectorCandidates = Array.isArray(selector) ? selector : [selector];
+    for (const candidate of selectorCandidates) {
+      const locator = selectorToLocator(candidate);
+      if (!locator) continue;
+      const visible = await page.locator(locator).first().waitFor({ state: "visible", timeout: Math.min(timeoutMs, 15000) }).then(() => true).catch(() => false);
+      if (visible) break;
     }
 
     await page.screenshot({ path: screenshotPath, fullPage: true });
