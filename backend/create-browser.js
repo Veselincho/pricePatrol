@@ -8,8 +8,8 @@ export async function createBrowser({ headless = false } = {}) {
     throw new Error("BROWSER_ENGINE must be camoufox or playwright");
   }
 
-  let proxy;
-  if (process.env.PROXY_URL) {
+  let proxy = torEnabled() ? { server: "http://127.0.0.1:8118" } : undefined;
+  if (!proxy && process.env.PROXY_URL) {
     try {
       const url = new URL(process.env.PROXY_URL);
       if (!["http:", "https:"].includes(url.protocol) || !url.hostname) {
@@ -26,7 +26,7 @@ export async function createBrowser({ headless = false } = {}) {
   }
 
   const { Camoufox } = await import("camoufox-js");
-  console.log('Camoufox launch: headless="virtual"');
+  console.log(`Camoufox launch: headless="virtual", route=${torEnabled() ? "tor via Privoxy" : proxy ? "configured proxy" : "direct"}`);
   return Camoufox({
     headless: "virtual",
     i_know_what_im_doing: true,
@@ -40,13 +40,8 @@ export async function createBrowser({ headless = false } = {}) {
   });
 }
 
-export function proxyOptionsForUrl(url) {
-  const hostname = new URL(url).hostname;
-  if ((process.env.USE_TOR ?? "true") === "true"
+export function torEnabled() {
+  return (process.env.USE_TOR ?? "true") === "true"
     && process.env.TOR_READY === "true"
-    && (process.env.BROWSER_ENGINE || "camoufox") === "camoufox"
-    && (hostname === "emag.bg" || hostname.endsWith(".emag.bg"))) {
-    return { proxy: { server: "http://127.0.0.1:8118" } };
-  }
-  return {};
+    && (process.env.BROWSER_ENGINE || "camoufox") === "camoufox";
 }

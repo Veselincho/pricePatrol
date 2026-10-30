@@ -61,6 +61,7 @@ function normalizeSnapshot(doc) {
     errorMessage: doc.errorMessage ?? null,
     changeType: doc.changeType ?? null,
     priceKey: doc.priceKey ?? null,
+    network: doc.network ?? null,
   };
 }
 

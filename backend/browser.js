@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { createBrowser, proxyOptionsForUrl } from "./create-browser.js";
+import { isIP } from "node:net";
+import { createBrowser, torEnabled } from "./create-browser.js";
 
 let browserPromise = null;
 let browserInstance = null;
@@ -92,9 +93,51 @@ export async function closeBrowser() {
   }
 }
 
+export async function getNetworkInfo() {
+  const network = {
+    route: process.env.BROWSER_ENGINE === "playwright" ? "playwright-http"
+      : torEnabled() ? "tor" : process.env.PROXY_URL ? "proxy" : "direct",
+    ip: null,
+    isTor: null,
+    checkedAt: new Date().toISOString(),
+    error: null,
+  };
+  if (network.route === "playwright-http") {
+    network.error = "Browser IP does not describe the HTTP-fetch rollback path";
+    return network;
+  }
+
+  let context;
+  try {
+    const browser = await ensureBrowser();
+    context = await browser.newContext({ viewport: normalizeViewport() });
+    const page = await context.newPage();
+    const response = await page.goto("https://check.torproject.org/api/ip", {
+      waitUntil: "domcontentloaded",
+      timeout: 15000,
+    });
+    if (!response?.ok()) throw new Error("IP probe returned a non-2xx response");
+    const result = await response.json();
+    if (!isIP(result.IP) || typeof result.IsTor !== "boolean") {
+      throw new Error("IP probe returned an invalid response");
+    }
+    network.ip = result.IP;
+    network.isTor = result.IsTor;
+    if (network.route === "tor" && !network.isTor) {
+      network.error = "Tor proxy configured, but the IP probe did not confirm a Tor exit";
+    }
+  } catch {
+    network.error = "Could not verify browser exit IP";
+  } finally {
+    if (context) await context.close().catch(() => {});
+  }
+  console.log("Browser network probe:", JSON.stringify(network));
+  return network;
+}
+
 export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
   const browser = await ensureBrowser();
-  const context = await browser.newContext({ viewport: normalizeViewport(), ...proxyOptionsForUrl(url) });
+  const context = await browser.newContext({ viewport: normalizeViewport() });
   try {
     const page = await context.newPage();
     const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
@@ -120,7 +163,7 @@ export async function captureScreenshot({
 }) {
   await ensureDir(screenshotPath);
   const browser = await ensureBrowser();
-  const context = await browser.newContext({ viewport: normalizeViewport(viewport), ...proxyOptionsForUrl(url) });
+  const context = await browser.newContext({ viewport: normalizeViewport(viewport) });
   const page = await context.newPage();
 
   try {

@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import * as cheerio from "cheerio";
 import * as storage from "./storage.js";
-import { captureScreenshot, loadPageHtml } from "./browser.js";
+import { captureScreenshot, getNetworkInfo, loadPageHtml } from "./browser.js";
 import { buildPriceKey, normalizePriceText, toAmountObject, toIsoFileStamp } from "./price.js";
 
 function pickFirstText($, selectors) {
@@ -122,7 +122,7 @@ async function writeChangeScreenshot(target, capturedAt, selector) {
   return fileName;
 }
 
-async function processTarget(target) {
+async function processTarget(target, network) {
   const checkedAt = new Date().toISOString();
   const current = await fetchTargetSnapshot(target);
   if (!current.priceText || !current.price) {
@@ -162,6 +162,7 @@ async function processTarget(target) {
     errorMessage: null,
     changeType: status,
     priceKey: current.priceKey,
+    network,
   });
 
   // Keep lastChangedAt only when there is an actual change or baseline.
@@ -195,15 +196,16 @@ async function processTarget(target) {
 export async function runMonitorOnce() {
   const targets = await storage.listWatchTargets();
   const activeTargets = targets.filter((target) => target.active !== false);
+  const network = activeTargets.length ? await getNetworkInfo() : null;
 
   const results = [];
   for (const target of activeTargets) {
     try {
       try {
-        results.push(await processTarget(target));
+        results.push(await processTarget(target, network));
       } catch {
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        results.push(await processTarget(target));
+        results.push(await processTarget(target, network));
       }
     } catch (error) {
       const checkedAt = new Date().toISOString();
@@ -227,6 +229,7 @@ export async function runMonitorOnce() {
         errorMessage: message,
         changeType: "error",
         priceKey: null,
+        network,
       }));
 
       await storage.updateWatchTarget(target.id, {

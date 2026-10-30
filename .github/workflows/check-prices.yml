@@ -89,7 +89,7 @@ jobs:
           while (( SECONDS < deadline )); do
             if sudo grep -q 'Bootstrapped 100%' /var/log/tor/pricepatrol.log; then
               echo "TOR_READY=true" >> "$GITHUB_ENV"
-              echo "Tor bootstrapped; eMAG contexts will use Privoxy on 127.0.0.1:8118."
+              echo "Tor bootstrapped; all Camoufox traffic will use Privoxy on 127.0.0.1:8118."
               curl -s --connect-timeout 10 --max-time 20 --socks5-hostname 127.0.0.1:9050 https://check.torproject.org/api/ip || true
               echo
               exit 0

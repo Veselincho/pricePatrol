@@ -5,6 +5,7 @@ const subtitleEl = document.getElementById("subtitle");
 const errorEl = document.getElementById("error");
 const statsEl = document.getElementById("stats");
 const linksEl = document.getElementById("links");
+const networkLogEl = document.getElementById("network-log");
 const timelineWrapEl = document.getElementById("timeline-wrap");
 const timelineLoadingEl = document.getElementById("timeline-loading");
 const timelineChartHostEl = document.getElementById("timeline-chart-host");
@@ -456,6 +457,20 @@ function renderTimelineList(rows) {
   });
 }
 
+function formatNetworkInfo(network) {
+  if (!network) return "No network probe recorded for this snapshot.";
+  const route = network.route === "tor" ? "Camoufox → Privoxy → Tor"
+    : network.route === "proxy" ? "Configured proxy"
+      : network.route === "playwright-http" ? "Playwright HTTP-fetch rollback" : "Direct";
+  return [
+    route,
+    `Probe IP: ${network.ip || "unverified"}`,
+    `Tor exit: ${network.isTor === true ? "confirmed" : network.isTor === false ? "no" : "unverified"}`,
+    network.checkedAt ? `Checked: ${formatDateTime(network.checkedAt)}` : null,
+    network.error || null,
+  ].filter(Boolean).join(" · ");
+}
+
 function renderModal(record, index) {
   const statusLabel = record.kind === "baseline"
     ? "Baseline"
@@ -475,6 +490,7 @@ function renderModal(record, index) {
     `Status: ${escapeHtml(record.status || "reference")}`,
     record.deltaAmount === null ? "First reference" : `Change: ${escapeHtml(formatDelta(record.deltaAmount, record.deltaPercent))}`,
     `Selector: ${escapeHtml(record.selector || "—")}`,
+    `Network: ${escapeHtml(formatNetworkInfo(record.network))}`,
     record.inactiveReason ? `Note: ${escapeHtml(record.inactiveReason)}` : null,
   ].filter(Boolean).join("<br />");
   modalHistoryEl.innerHTML = [
@@ -624,6 +640,7 @@ async function main() {
 
     renderStats(currentProduct, records);
     renderLinks(currentProduct, settings);
+    networkLogEl.textContent = formatNetworkInfo(records.at(-1)?.network);
 
     if (!records.length) {
       timelineChartHostEl.innerHTML = `<div class="empty">No reference snapshots are available for this product yet.</div>`;
