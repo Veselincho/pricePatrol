@@ -68,6 +68,29 @@
       "baselineRequested": false,
       "createdAt": "2026-10-30T12:40:30.114Z",
       "updatedAt": "2026-10-30T14:49:56.125Z"
+    },
+    {
+      "id": "01428900-0459-4313-aaef-e3b545878a7e",
+      "productUrl": "https://www.olx.bg/d/ad/ssd-disk-120gb-2-5-CID632-IDa4A7p.html?search_reason=search%7Corganic",
+      "hostname": "www.olx.bg",
+      "pageTitle": "SSD диск 120GB 2.5\" гр. София Зона Б-5 • OLX.bg",
+      "productName": "olx ssd",
+      "selector": "#mainContent > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div > div:nth-of-type(3) > div > div > h3",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "18",
+      "lastKnownPriceKey": "18|EUR",
+      "lastKnownPriceAmount": 18,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-10-30T14:55:53.400Z",
+      "lastChangedAt": "2026-10-30T14:55:53.400Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-10-30T14:55:53.400Z",
+      "updatedAt": "2026-10-30T14:55:53.400Z"
     }
   ],
   "snapshots": [
