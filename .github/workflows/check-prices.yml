@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      USE_TOR: "true"
+      USE_TOR: "false"
 
     steps:
       - name: Checkout repository

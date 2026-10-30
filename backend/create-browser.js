@@ -41,7 +41,7 @@ export async function createBrowser({ headless = false } = {}) {
 }
 
 export function torEnabled() {
-  return (process.env.USE_TOR ?? "true") === "true"
+  return process.env.USE_TOR === "true"
     && process.env.TOR_READY === "true"
     && (process.env.BROWSER_ENGINE || "camoufox") === "camoufox";
 }
