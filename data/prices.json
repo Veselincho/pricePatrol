@@ -22,6 +22,29 @@
       "baselineRequested": false,
       "createdAt": "2026-10-29T11:58:07.469Z",
       "updatedAt": "2026-10-30T10:13:20.186Z"
+    },
+    {
+      "id": "34762e62-ad9e-44a4-b993-c5aeadb1bf9f",
+      "productUrl": "https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "hostname": "www.emag.bg",
+      "pageTitle": "Solid State Drive (SSD) ADATA SU650, 512GB, 2.5\", SATA III - eMAG.bg",
+      "productName": "ssd",
+      "selector": "#main-container > section:nth-of-type(4) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > div:nth-of-type(1) > p",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "58.61",
+      "lastKnownPriceKey": "58.61|EUR",
+      "lastKnownPriceAmount": 58.61,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-10-30T11:29:01.378Z",
+      "lastChangedAt": "2026-10-30T11:29:01.378Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-10-30T11:29:01.378Z",
+      "updatedAt": "2026-10-30T11:29:01.378Z"
     }
   ],
   "snapshots": [
