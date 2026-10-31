@@ -7,7 +7,6 @@
       "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
       "productName": "Printernet SSD ADATA SU650 240 gb",
       "selector": "#opu_price",
-      "selectorBackup": null,
       "fallbackSelectors": [],
       "currency": "EUR",
       "active": true,
@@ -22,7 +21,8 @@
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T19:42:26.686Z",
-      "updatedAt": "2026-10-31T07:51:51.183Z"
+      "updatedAt": "2026-10-31T07:51:51.183Z",
+      "selectorBackup": null
     },
     {
       "id": "e43104bf-7fc3-4307-b914-4f0eb2152268",
@@ -31,7 +31,6 @@
       "pageTitle": "Solid State Drive (SSD) ADATA SU650, 512GB, 2.5\", SATA III - eMAG.bg",
       "productName": "emag ssd",
       "selector": "#main-container > section:nth-of-type(4) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > div:nth-of-type(1) > p",
-      "selectorBackup": null,
       "fallbackSelectors": [],
       "currency": "EUR",
       "active": true,
@@ -46,7 +45,31 @@
       "lastStatus": "error",
       "baselineRequested": true,
       "createdAt": "2026-10-31T07:49:12.211Z",
-      "updatedAt": "2026-10-31T07:50:06.727Z"
+      "updatedAt": "2026-10-31T07:50:06.727Z",
+      "selectorBackup": null
+    },
+    {
+      "id": "22c65478-4641-485b-89f1-21ef75df17ed",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test selectorsHub / no await",
+      "selector": "div.current-price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "65",
+      "lastKnownPriceKey": "65|EUR",
+      "lastKnownPriceAmount": 65,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-10-31T08:40:39.564Z",
+      "lastChangedAt": "2026-10-31T08:40:39.564Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-10-31T08:40:39.564Z",
+      "updatedAt": "2026-10-31T08:40:39.564Z"
     }
   ],
   "snapshots": [
@@ -58,7 +81,6 @@
       "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
       "productName": "Printernet SSD ADATA SU650 240 gb",
       "selector": "#opu_price",
-      "selectorBackup": null,
       "priceText": "58,07€",
       "selectedText": "58,07€",
       "currency": "EUR",
@@ -79,7 +101,8 @@
         "isTor": false,
         "checkedAt": "2026-10-30T19:43:10.159Z",
         "error": null
-      }
+      },
+      "selectorBackup": null
     },
     {
       "id": "5d9e0f7a-5219-481e-9471-736d26ac6b86",
@@ -89,7 +112,6 @@
       "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
       "productName": "Printernet SSD ADATA SU650 240 gb",
       "selector": "#opu_price",
-      "selectorBackup": null,
       "priceText": "58,07€",
       "selectedText": "58,07€",
       "currency": "EUR",
@@ -110,7 +132,8 @@
         "isTor": false,
         "checkedAt": "2026-10-30T23:32:30.858Z",
         "error": null
-      }
+      },
+      "selectorBackup": null
     },
     {
       "id": "7b1540f1-ec18-4a08-aef8-d0538b78b1b5",
@@ -120,7 +143,6 @@
       "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
       "productName": "Printernet SSD ADATA SU650 240 gb",
       "selector": "#opu_price",
-      "selectorBackup": null,
       "priceText": "58,07€",
       "selectedText": "58,07€",
       "currency": "EUR",
@@ -141,7 +163,8 @@
         "isTor": false,
         "checkedAt": "2026-10-31T04:52:53.182Z",
         "error": null
-      }
+      },
+      "selectorBackup": null
     },
     {
       "id": "f5d0a72c-10b4-421c-bb2c-6d821d6dc549",
@@ -151,7 +174,6 @@
       "pageTitle": "Solid State Drive (SSD) ADATA SU650, 512GB, 2.5\", SATA III - eMAG.bg",
       "productName": "emag ssd",
       "selector": "#main-container > section:nth-of-type(4) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > div:nth-of-type(1) > p",
-      "selectorBackup": null,
       "priceText": "",
       "selectedText": "",
       "currency": "EUR",
@@ -169,7 +191,8 @@
         "isTor": false,
         "checkedAt": "2026-10-31T07:49:53.258Z",
         "error": null
-      }
+      },
+      "selectorBackup": null
     },
     {
       "id": "77ae7ae7-4ef0-4878-bc6d-bf18403c30c1",
@@ -179,7 +202,6 @@
       "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
       "productName": "Printernet SSD ADATA SU650 240 gb",
       "selector": "#opu_price",
-      "selectorBackup": null,
       "priceText": "58,07€",
       "selectedText": "58,07€",
       "currency": "EUR",
@@ -200,7 +222,8 @@
         "isTor": false,
         "checkedAt": "2026-10-31T07:49:53.258Z",
         "error": null
-      }
+      },
+      "selectorBackup": null
     }
   ]
 }
