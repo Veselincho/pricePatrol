@@ -267,10 +267,12 @@
     return { amount, currency: cur ? cur[0] : null };
   }
 
-  function guessCurrency(text) {
-    if (/€|EUR/i.test(text)) return "EUR";
-    if (/\$|USD/i.test(text)) return "USD";
-    return "BGN";
+  function detectCurrency(text) {
+    const source = String(text ?? "");
+    if (/€|EUR/i.test(source)) return "EUR";
+    if (/лв\.?|BGN/i.test(source)) return "BGN";
+    if (/\$|USD/i.test(source)) return "USD";
+    return null;
   }
 
   function normalizeInputValue(text) {
@@ -322,7 +324,7 @@
     const rawText = readSelectedPriceText(el) || (el?.innerText || el?.textContent || "").trim().replace(/\s+/g, " ");
     const parsed = rawText ? parsePrice(rawText) : null;
     const initialValue = rawText ? normalizeInputValue(rawText) : "";
-    const initialCurrency = rawText ? (parsed?.currency ? guessCurrency(parsed.currency) : guessCurrency(rawText)) : "BGN";
+    const initialCurrency = rawText ? (detectCurrency(parsed?.currency || rawText) || "") : "";
 
     currentDraft = {
       element: el,
@@ -427,7 +429,7 @@
     });
     valueWrap.append(valueInput);
 
-    const advancedWrap = fieldWrap("Advanced: paste selector");
+    const advancedWrap = fieldWrap("Advanced: paste selector (optional)");
     const advancedHint = document.createElement("div");
     advancedHint.textContent = "Paste page.locator('...') copied from SelectorsHub. CSS stays plain; XPath is stored as xpath=...";
     Object.assign(advancedHint.style, {
@@ -452,6 +454,10 @@
 
     const currencyWrap = fieldWrap("Currency");
     const currencySelect = document.createElement("select");
+    const currencyPlaceholder = document.createElement("option");
+    currencyPlaceholder.value = "";
+    currencyPlaceholder.textContent = "Select currency";
+    currencySelect.append(currencyPlaceholder);
     for (const currency of CURRENCIES) {
       const option = document.createElement("option");
       option.value = currency;
@@ -532,6 +538,13 @@
         error.textContent = "Enter a value.";
         error.style.display = "block";
         valueInput.focus();
+        return;
+      }
+
+      if (!currency) {
+        error.textContent = "Pick a currency from the selected text first (EUR, BGN, or USD).";
+        error.style.display = "block";
+        currencySelect.focus();
         return;
       }
 
@@ -651,7 +664,7 @@
     });
 
     actions.append(cancelBtn, saveBtn);
-    panel.append(title, note, error, preview, valueWrap, currencyWrap, nameWrap, actions);
+    panel.append(title, note, error, preview, valueWrap, currencyWrap, nameWrap, advancedWrap, actions);
     editor.append(panel);
     document.documentElement.append(editor);
     valueInput.focus();
