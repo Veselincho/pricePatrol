@@ -1,3 +1,5 @@
+Note: GitHub Actions runs on Microsoft's servers, which some websites block. You might want to use a home proxy instead. I'll try to add support for this later.
+
 # pricePatrol
 
 pricePatrol is a GitHub-backed browser extension for saving product prices, tracking reference snapshots, and reviewing price history over time.
