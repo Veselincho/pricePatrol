@@ -15,13 +15,13 @@
       "lastKnownPriceKey": "58.07|EUR",
       "lastKnownPriceAmount": 58.07,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261031_075122.png",
-      "lastCheckedAt": "2026-10-31T07:51:22.455Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261031_084144.png",
+      "lastCheckedAt": "2026-10-31T08:41:44.431Z",
       "lastChangedAt": "2026-10-30T19:43:14.174Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T19:42:26.686Z",
-      "updatedAt": "2026-10-31T07:51:51.183Z",
+      "updatedAt": "2026-10-31T08:42:08.434Z",
       "selectorBackup": null
     },
     {
@@ -40,12 +40,12 @@
       "lastKnownPriceAmount": 58.61,
       "lastKnownCurrency": "EUR",
       "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-31T07:50:06.725Z",
+      "lastCheckedAt": "2026-10-31T08:42:13.889Z",
       "lastChangedAt": "2026-10-31T07:49:12.211Z",
       "lastStatus": "error",
       "baselineRequested": true,
       "createdAt": "2026-10-31T07:49:12.211Z",
-      "updatedAt": "2026-10-31T07:50:06.727Z",
+      "updatedAt": "2026-10-31T08:42:13.889Z",
       "selectorBackup": null
     },
     {
@@ -59,17 +59,17 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "65",
-      "lastKnownPriceKey": "65|EUR",
+      "lastKnownPriceText": "65 €",
+      "lastKnownPriceKey": "65.00|EUR",
       "lastKnownPriceAmount": 65,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": null,
-      "lastCheckedAt": "2026-10-31T08:40:39.564Z",
-      "lastChangedAt": "2026-10-31T08:40:39.564Z",
-      "lastStatus": "manual",
-      "baselineRequested": true,
+      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261031_084131.png",
+      "lastCheckedAt": "2026-10-31T08:41:31.780Z",
+      "lastChangedAt": "2026-10-31T08:41:31.780Z",
+      "lastStatus": "baseline",
+      "baselineRequested": false,
       "createdAt": "2026-10-31T08:40:39.564Z",
-      "updatedAt": "2026-10-31T08:40:39.564Z"
+      "updatedAt": "2026-10-31T08:41:44.430Z"
     }
   ],
   "snapshots": [
@@ -224,6 +224,93 @@
         "error": null
       },
       "selectorBackup": null
+    },
+    {
+      "id": "7ff92223-267e-4264-b402-6a997306d949",
+      "watchTargetId": "22c65478-4641-485b-89f1-21ef75df17ed",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test selectorsHub / no await",
+      "selector": "div.current-price",
+      "priceText": "65 €",
+      "selectedText": "65 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-31T08:41:31.780Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/22c65478-20261031_084131.png",
+      "status": "baseline",
+      "errorMessage": null,
+      "changeType": "baseline",
+      "priceKey": "65.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.250.243.99",
+        "isTor": false,
+        "checkedAt": "2026-10-31T08:41:26.459Z",
+        "error": null
+      }
+    },
+    {
+      "id": "d039d9c6-2f3a-4693-b7f2-921cbe0a39d2",
+      "watchTargetId": "a010b326-594d-4d09-99a9-d9110808618b",
+      "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
+      "hostname": "printernet.bg",
+      "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
+      "productName": "Printernet SSD ADATA SU650 240 gb",
+      "selector": "#opu_price",
+      "priceText": "58,07€",
+      "selectedText": "58,07€",
+      "currency": "EUR",
+      "price": {
+        "amount": 58.07,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-10-31T08:41:44.431Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/a010b326-20261031_084144.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "58.07|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.250.243.99",
+        "isTor": false,
+        "checkedAt": "2026-10-31T08:41:26.459Z",
+        "error": null
+      }
+    },
+    {
+      "id": "03664166-7a0b-47a9-b967-34f0035706f8",
+      "watchTargetId": "e43104bf-7fc3-4307-b914-4f0eb2152268",
+      "productUrl": "https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "hostname": "www.emag.bg",
+      "pageTitle": "Solid State Drive (SSD) ADATA SU650, 512GB, 2.5\", SATA III - eMAG.bg",
+      "productName": "emag ssd",
+      "selector": "#main-container > section:nth-of-type(4) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > div:nth-of-type(1) > p",
+      "priceText": "",
+      "selectedText": "",
+      "currency": "EUR",
+      "price": null,
+      "capturedAt": "2026-10-31T08:42:13.889Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "HTTP 511 when loading https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
+      "changeType": "error",
+      "priceKey": null,
+      "network": {
+        "route": "direct",
+        "ip": "52.250.243.99",
+        "isTor": false,
+        "checkedAt": "2026-10-31T08:41:26.459Z",
+        "error": null
+      }
     }
   ]
 }
