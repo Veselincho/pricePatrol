@@ -1,30 +1,6 @@
 {
   "watchTargets": [
     {
-      "id": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "fallbackSelectors": [],
-      "currency": "EUR",
-      "active": true,
-      "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "65 €",
-      "lastKnownPriceKey": "65.00|EUR",
-      "lastKnownPriceAmount": 65,
-      "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/6552589c-20261030_194324.png",
-      "lastCheckedAt": "2026-10-31T07:51:22.446Z",
-      "lastChangedAt": "2026-10-30T16:28:18.492Z",
-      "lastStatus": "error",
-      "baselineRequested": false,
-      "createdAt": "2026-10-30T16:27:29.600Z",
-      "updatedAt": "2026-10-31T07:51:22.454Z"
-    },
-    {
       "id": "a010b326-594d-4d09-99a9-d9110808618b",
       "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
       "hostname": "printernet.bg",
@@ -75,68 +51,6 @@
   ],
   "snapshots": [
     {
-      "id": "fe1c7ed3-e938-4ba6-b063-605f366db319",
-      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "priceText": "65 €",
-      "selectedText": "65 €",
-      "currency": "EUR",
-      "price": {
-        "amount": 65,
-        "currency": "EUR"
-      },
-      "capturedAt": "2026-10-30T16:28:18.492Z",
-      "viewport": null,
-      "screenshotUrl": "/data/screenshots/6552589c-20261030_162818.png",
-      "status": "baseline",
-      "errorMessage": null,
-      "changeType": "baseline",
-      "priceKey": "65.00|EUR",
-      "network": {
-        "route": "direct",
-        "ip": "172.183.89.35",
-        "isTor": false,
-        "checkedAt": "2026-10-30T16:28:10.882Z",
-        "error": null
-      }
-    },
-    {
-      "id": "49fac9b2-14ea-4f23-b7cb-a14a8dc2fa39",
-      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "priceText": "65 €",
-      "selectedText": "65 €",
-      "currency": "EUR",
-      "price": {
-        "amount": 65,
-        "currency": "EUR"
-      },
-      "capturedAt": "2026-10-30T19:05:07.374Z",
-      "viewport": null,
-      "screenshotUrl": "/data/screenshots/6552589c-20261030_190507.png",
-      "status": "unchanged",
-      "errorMessage": null,
-      "changeType": "unchanged",
-      "priceKey": "65.00|EUR",
-      "network": {
-        "route": "direct",
-        "ip": "172.179.15.194",
-        "isTor": false,
-        "checkedAt": "2026-10-30T19:05:01.815Z",
-        "error": null
-      }
-    },
-    {
       "id": "ccfdada5-5dc8-49db-a43e-5900c43beaee",
       "watchTargetId": "a010b326-594d-4d09-99a9-d9110808618b",
       "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
@@ -164,65 +78,6 @@
         "ip": "52.165.102.162",
         "isTor": false,
         "checkedAt": "2026-10-30T19:43:10.159Z",
-        "error": null
-      }
-    },
-    {
-      "id": "d56a4ff7-6eb9-458b-9909-edf499857c15",
-      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "priceText": "65 €",
-      "selectedText": "65 €",
-      "currency": "EUR",
-      "price": {
-        "amount": 65,
-        "currency": "EUR"
-      },
-      "capturedAt": "2026-10-30T19:43:24.049Z",
-      "viewport": null,
-      "screenshotUrl": "/data/screenshots/6552589c-20261030_194324.png",
-      "status": "unchanged",
-      "errorMessage": null,
-      "changeType": "unchanged",
-      "priceKey": "65.00|EUR",
-      "network": {
-        "route": "direct",
-        "ip": "52.165.102.162",
-        "isTor": false,
-        "checkedAt": "2026-10-30T19:43:10.159Z",
-        "error": null
-      }
-    },
-    {
-      "id": "11f17002-4ffa-42df-bdd1-2e0f078d7bfa",
-      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "priceText": "",
-      "selectedText": "",
-      "currency": "EUR",
-      "price": null,
-      "capturedAt": "2026-10-30T23:34:00.826Z",
-      "viewport": null,
-      "screenshotUrl": null,
-      "status": "error",
-      "errorMessage": "Could not extract a price from https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "changeType": "error",
-      "priceKey": null,
-      "network": {
-        "route": "direct",
-        "ip": "40.84.237.241",
-        "isTor": false,
-        "checkedAt": "2026-10-30T23:32:30.858Z",
         "error": null
       }
     },
@@ -289,34 +144,6 @@
       }
     },
     {
-      "id": "3306bfc8-d413-4e7e-a945-503028c9b6fa",
-      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "priceText": "",
-      "selectedText": "",
-      "currency": "EUR",
-      "price": null,
-      "capturedAt": "2026-10-31T04:54:24.604Z",
-      "viewport": null,
-      "screenshotUrl": null,
-      "status": "error",
-      "errorMessage": "Could not extract a price from https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "changeType": "error",
-      "priceKey": null,
-      "network": {
-        "route": "direct",
-        "ip": "172.203.195.208",
-        "isTor": false,
-        "checkedAt": "2026-10-31T04:52:53.182Z",
-        "error": null
-      }
-    },
-    {
       "id": "f5d0a72c-10b4-421c-bb2c-6d821d6dc549",
       "watchTargetId": "e43104bf-7fc3-4307-b914-4f0eb2152268",
       "productUrl": "https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
@@ -334,34 +161,6 @@
       "screenshotUrl": null,
       "status": "error",
       "errorMessage": "HTTP 511 when loading https://www.emag.bg/solid-state-drive-ssd-adata-su650-512gb-2-5-sata-iii-asu650ss-512gt-r/pd/D3469DMBM/",
-      "changeType": "error",
-      "priceKey": null,
-      "network": {
-        "route": "direct",
-        "ip": "4.227.135.145",
-        "isTor": false,
-        "checkedAt": "2026-10-31T07:49:53.258Z",
-        "error": null
-      }
-    },
-    {
-      "id": "fa2a043d-9695-40c6-adc7-733828365ebf",
-      "watchTargetId": "6552589c-1aaf-4f09-82fb-eb251809e072",
-      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
-      "hostname": "bazar.bg",
-      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
-      "productName": "bazar test",
-      "selector": "body > div:nth-of-type(1) > div > div:nth-of-type(6) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div > span > div > div",
-      "selectorBackup": null,
-      "priceText": "",
-      "selectedText": "",
-      "currency": "EUR",
-      "price": null,
-      "capturedAt": "2026-10-31T07:51:22.446Z",
-      "viewport": null,
-      "screenshotUrl": null,
-      "status": "error",
-      "errorMessage": "Could not extract a price from https://bazar.bg/obiava-56701174/test-prodavam-22",
       "changeType": "error",
       "priceKey": null,
       "network": {
