@@ -550,7 +550,6 @@ app.post("/api/watch-targets", async (req, res) => {
     const {
       productUrl,
       selector,
-      selectorBackup,
       fallbackSelectors,
       priceText,
       price,
@@ -583,7 +582,6 @@ app.post("/api/watch-targets", async (req, res) => {
       pageTitle: pageTitle ?? existing?.pageTitle ?? "",
       productName: productName ?? existing?.productName ?? "",
       selector: selector ?? existing?.selector ?? "",
-      selectorBackup: selectorBackup ?? existing?.selectorBackup ?? null,
       fallbackSelectors: Array.isArray(fallbackSelectors) ? fallbackSelectors : existing?.fallbackSelectors ?? [],
       currency: currency ?? existing?.currency ?? snapshotPrice?.currency ?? null,
       active: active ?? existing?.active ?? true,
@@ -609,7 +607,7 @@ app.post("/api/watch-targets", async (req, res) => {
         const shortId = String(doc.id || '').slice(0,8);
         const fileName = `${shortId}-${stamp}.png`;
         const screenshotPath = `${storage.screenshotsDir}/${fileName}`;
-        await captureScreenshot({ url: doc.productUrl, screenshotPath, selector: [doc.selector, doc.selectorBackup].filter(Boolean) });
+        await captureScreenshot({ url: doc.productUrl, screenshotPath, selector: doc.selector });
         const screenshotUrl = makeScreenshotUrl(req, fileName);
 
         await storage.insertSnapshot({
@@ -620,7 +618,6 @@ app.post("/api/watch-targets", async (req, res) => {
           pageTitle: doc.pageTitle,
           productName: doc.productName,
           selector: doc.selector,
-          selectorBackup: doc.selectorBackup ?? null,
           priceText: doc.lastKnownPriceText,
           selectedText: doc.lastKnownPriceText,
           currency: doc.lastKnownCurrency,
@@ -694,7 +691,6 @@ app.post("/api/prices", async (req, res) => {
     const {
       productUrl,
       selector,
-      selectorBackup,
       priceText,
       price,
       pageTitle,
@@ -726,7 +722,7 @@ app.post("/api/prices", async (req, res) => {
     await captureScreenshot({
       url: productUrl,
       screenshotPath,
-      selector: [selector, selectorBackup].filter(Boolean),
+      selector,
       viewport: viewport ?? { width: 1440, height: 1800 },
     });
 
@@ -738,7 +734,6 @@ app.post("/api/prices", async (req, res) => {
       pageTitle: pageTitle ?? "",
       productName: productName ?? "",
       selector,
-      selectorBackup: selectorBackup ?? null,
       priceText,
       selectedText: selectedText ?? "",
       currency: currency ?? price?.currency ?? null,
@@ -759,7 +754,6 @@ app.post("/api/prices", async (req, res) => {
       pageTitle: pageTitle ?? "",
       productName: productName ?? "",
       selector,
-      selectorBackup: selectorBackup ?? null,
       fallbackSelectors: [],
       currency: currency ?? price?.currency ?? null,
       active: true,

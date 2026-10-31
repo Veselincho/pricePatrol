@@ -18,6 +18,10 @@ function pickFirstText($, selectors) {
   return null;
 }
 
+function isXPathSelector(selector) {
+  return typeof selector === "string" && selector.startsWith("xpath=");
+}
+
 function extractPriceFromHtml(html, target) {
   const $ = cheerio.load(html);
   const title = normalizePriceText($("title").text());
@@ -28,7 +32,7 @@ function extractPriceFromHtml(html, target) {
     "meta[property='og:price:amount']",
     "meta[itemprop='price']",
     "[data-price]",
-  ].filter(Boolean);
+  ].filter(Boolean).filter((selector) => !isXPathSelector(selector));
 
   let result = pickFirstText($, selectors);
   if (!result) {
@@ -42,14 +46,13 @@ function extractPriceFromHtml(html, target) {
   return {
     pageTitle: title,
     priceText: result?.text ?? null,
-    selectorUsed: result?.selectorUsed ?? target.selector ?? null,
+    selectorUsed: result?.selectorUsed ?? (isXPathSelector(target.selector) ? null : target.selector ?? null),
   };
 }
 
 function selectorCandidatesForTarget(target) {
   return [
     target.selector,
-    target.selectorBackup,
     ...(Array.isArray(target.fallbackSelectors) ? target.fallbackSelectors : []),
   ].filter(Boolean);
 }
@@ -62,8 +65,15 @@ async function fetchTargetSnapshot(target) {
   let selectorMatched = false;
   let selectorResult = null;
   const selectorCandidates = selectorCandidatesForTarget(target);
+  const shouldUseBrowserForSelector = isXPathSelector(target.selector);
 
-  if (process.env.BROWSER_ENGINE === "playwright") {
+  if (shouldUseBrowserForSelector || process.env.BROWSER_ENGINE !== "playwright") {
+    selectorResult = await loadPageHtml({
+      url: target.productUrl,
+      selectors: selectorCandidates,
+    });
+    ({ html, finalUrl, pageTitle = "", bodyText = "", selectorMatched = false } = selectorResult);
+  } else {
     const response = await fetch(target.productUrl, {
       headers: {
         "user-agent": "pricePatrol/1.0",
@@ -77,18 +87,12 @@ async function fetchTargetSnapshot(target) {
 
     finalUrl = response.url || target.productUrl;
     html = await response.text();
-  } else {
-    selectorResult = await loadPageHtml({
-      url: target.productUrl,
-      selectors: selectorCandidates,
-    });
-    ({ html, finalUrl, pageTitle = "", bodyText = "", selectorMatched = false } = selectorResult);
   }
 
   const $ = cheerio.load(html);
   pageTitle = pageTitle || normalizePriceText($("title").text());
   bodyText = bodyText || normalizePriceText($("body").text()).slice(0, 500);
-  selectorMatched = selectorMatched || Boolean(target.selector && $(target.selector).length);
+  selectorMatched = selectorMatched || Boolean(target.selector && !isXPathSelector(target.selector) && $(target.selector).length);
   const heading = normalizePriceText($("title, h1").text());
   if (/just a moment|access denied|attention required|verify (?:that )?you are human|security check|robot check|captcha|достъпът е отказан/i.test(heading)
     || $("#challenge-running, #cf-challenge-running, #challenge-form, form[action*='/cdn-cgi/challenge-platform/']").length
@@ -105,18 +109,6 @@ async function fetchTargetSnapshot(target) {
     if (matchedText) {
       priceText = matchedText;
       selectorUsed = selectorResult.selectorUsed ?? selectorUsed;
-    }
-  }
-
-  if (!priceText && target.selectorBackup && selectorCandidates.length) {
-    const loaded = selectorResult ?? await loadPageHtml({
-      url: target.productUrl,
-      selectors: selectorCandidates,
-    });
-    const matchedText = normalizePriceText(loaded?.selectedText ?? "");
-    if (matchedText) {
-      priceText = matchedText;
-      selectorUsed = loaded?.selectorUsed ?? target.selectorBackup ?? selectorUsed;
     }
   }
 
@@ -195,7 +187,6 @@ async function processTarget(target, network) {
       pageTitle: current.pageTitle,
       productName: target.productName,
       selector: target.selector,
-      selectorBackup: target.selectorBackup ?? null,
       priceText: current.priceText,
       selectedText: current.priceText,
       currency: target.currency ?? current.price?.currency ?? null,
@@ -262,7 +253,6 @@ export async function runMonitorOnce() {
         pageTitle: target.pageTitle,
         productName: target.productName,
         selector: target.selector,
-        selectorBackup: target.selectorBackup ?? null,
         priceText: null,
         selectedText: null,
         currency: target.currency ?? null,

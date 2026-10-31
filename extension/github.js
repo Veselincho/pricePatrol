@@ -119,14 +119,13 @@ function normalizeState(raw) {
 
 function normalizeWatchTarget(doc) {
   if (!doc || typeof doc !== "object") return null;
-  return {
+  const normalized = {
     id: doc.id ?? randomId(),
     productUrl: doc.productUrl ?? "",
     hostname: doc.hostname ?? "",
     pageTitle: doc.pageTitle ?? "",
     productName: doc.productName ?? "",
     selector: doc.selector ?? "",
-    selectorBackup: doc.selectorBackup ?? null,
     fallbackSelectors: Array.isArray(doc.fallbackSelectors) ? doc.fallbackSelectors : [],
     currency: doc.currency ?? null,
     active: doc.active ?? true,
@@ -143,11 +142,17 @@ function normalizeWatchTarget(doc) {
     createdAt: doc.createdAt ?? nowIso(),
     updatedAt: doc.updatedAt ?? nowIso(),
   };
+
+  if (Object.prototype.hasOwnProperty.call(doc, "selectorBackup")) {
+    normalized.selectorBackup = doc.selectorBackup ?? null;
+  }
+
+  return normalized;
 }
 
 function normalizeSnapshot(doc) {
   if (!doc || typeof doc !== "object") return null;
-  return {
+  const normalized = {
     id: doc.id ?? randomId(),
     watchTargetId: doc.watchTargetId ?? null,
     productUrl: doc.productUrl ?? "",
@@ -155,7 +160,6 @@ function normalizeSnapshot(doc) {
     pageTitle: doc.pageTitle ?? "",
     productName: doc.productName ?? "",
     selector: doc.selector ?? "",
-    selectorBackup: doc.selectorBackup ?? null,
     priceText: doc.priceText ?? "",
     selectedText: doc.selectedText ?? "",
     currency: doc.currency ?? null,
@@ -169,6 +173,12 @@ function normalizeSnapshot(doc) {
     priceKey: doc.priceKey ?? null,
     network: doc.network ?? null,
   };
+
+  if (Object.prototype.hasOwnProperty.call(doc, "selectorBackup")) {
+    normalized.selectorBackup = doc.selectorBackup ?? null;
+  }
+
+  return normalized;
 }
 
 function toBase64(text) {
@@ -373,7 +383,6 @@ export async function saveWatchTargetFromPayload(payload) {
     pageTitle: payload.pageTitle ?? existing?.pageTitle ?? "",
     productName: payload.productName ?? existing?.productName ?? "",
     selector: payload.selector ?? existing?.selector ?? "",
-    selectorBackup: payload.selectorBackup ?? existing?.selectorBackup ?? null,
     fallbackSelectors: existing?.fallbackSelectors ?? [],
     currency: payload.currency ?? existing?.currency ?? null,
     active: true,

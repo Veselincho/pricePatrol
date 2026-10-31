@@ -101,34 +101,141 @@
     return parts.join(" > ");
   }
 
-  function xpathLiteral(value) {
-    const text = String(value ?? "");
-    if (!text.includes("'")) return `'${text}'`;
-    if (!text.includes('"')) return `"${text}"`;
-    return `concat(${text.split("'").map((part) => `"${part}"`).join(", \"'\", ")})`;
+  function parseAdvancedLocator(input) {
+    const raw = String(input ?? "").trim();
+    if (!raw) return null;
+
+    let text = raw;
+    if (text.endsWith(";")) {
+      text = text.slice(0, -1).trimEnd();
+    }
+    if (text.startsWith("await ")) {
+      text = text.slice(6).trimStart();
+    }
+
+    const prefix = "page.locator(";
+    if (!text.startsWith(prefix)) {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    let rest = text.slice(prefix.length).trimStart();
+    if (!rest.length) {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    const quote = rest[0];
+    if (quote !== "'" && quote !== '"') {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    let selector = "";
+    let escaped = false;
+    let i = 1;
+    for (; i < rest.length; i += 1) {
+      const ch = rest[i];
+      if (escaped) {
+        selector += ch;
+        escaped = false;
+        continue;
+      }
+      if (ch === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (ch === quote) break;
+      selector += ch;
+    }
+
+    if (i >= rest.length) {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    const tail = rest.slice(i + 1).trim();
+    if (!tail.startsWith(")")) {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    const after = tail.slice(1).trim();
+    if (after) {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    const trimmedSelector = selector.trim();
+    if (!trimmedSelector) {
+      throw new Error("Please paste a plain page.locator(...) value with a CSS or XPath selector.");
+    }
+
+    return {
+      selector: trimmedSelector,
+      kind: trimmedSelector.startsWith("//") || trimmedSelector.startsWith("(") ? "xpath" : "css",
+    };
   }
 
-  function xpathPath(el) {
-    if (el.id && document.querySelectorAll("#" + CSS.escape(el.id)).length === 1) {
-      return `//*[@id=${xpathLiteral(el.id)}]`;
+  function selectorToStorageValue(selector, kind) {
+    return kind === "xpath" ? `xpath=${selector}` : selector;
+  }
+
+  function isXPathSelector(selector) {
+    return typeof selector === "string" && selector.startsWith("xpath=");
+  }
+
+  function collectPriceText(node) {
+    if (!node) return "";
+    if (node.nodeType === Node.TEXT_NODE) {
+      return node.nodeValue || "";
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) {
+      return "";
     }
 
-    const parts = [];
-    let node = el;
-    while (node && node.nodeType === 1) {
-      const tag = node.tagName.toLowerCase();
-      let index = 1;
-      let sibling = node.previousElementSibling;
-      while (sibling) {
-        if (sibling.tagName === node.tagName) index += 1;
-        sibling = sibling.previousElementSibling;
+    const tag = node.tagName.toLowerCase();
+    if (tag === "script" || tag === "style" || tag === "noscript") {
+      return "";
+    }
+
+    if (tag === "sup" || tag === "sub") {
+      const text = [...node.childNodes].map(collectPriceText).join("").replace(/\s+/g, " ").trim();
+      if (/^\d{1,2}$/.test(text)) {
+        return `.${text}`;
       }
-      parts.unshift(`${tag}[${index}]`);
-      if (node === document.documentElement) break;
-      node = node.parentElement;
+      return text;
     }
 
-    return `/${parts.join("/")}`;
+    return [...node.childNodes].map(collectPriceText).join("");
+  }
+
+  function readSelectedPriceText(el) {
+    return collectPriceText(el).replace(/\s+/g, " ").trim();
+  }
+
+  function selectorMatchesExactlyOne(selector, kind) {
+    if (!selector) {
+      return { ok: false, reason: "No selector was provided." };
+    }
+
+    try {
+      if (kind === "xpath") {
+        const result = document.evaluate(selector, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+        return { ok: result.snapshotLength === 1, count: result.snapshotLength };
+      }
+
+      const count = document.querySelectorAll(selector).length;
+      return { ok: count === 1, count };
+    } catch (error) {
+      return { ok: false, reason: error?.message || "Invalid selector syntax." };
+    }
+  }
+
+  function validateSelectedElementPrice(el) {
+    const text = readSelectedPriceText(el);
+    const parsed = parsePrice(text);
+    if (!parsed) {
+      return { ok: false, reason: "The selected element does not look like a price. I need a number plus a currency symbol or code." };
+    }
+    if (!parsed.currency) {
+      return { ok: false, reason: "The selected element needs a visible currency symbol or code." };
+    }
+    return { ok: true, text, parsed };
   }
 
   // ---------- Price parsing ----------
@@ -194,8 +301,9 @@
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
+    const target = hovered || selectedElement || e.target;
     stopSelectionMode({ keepBox: true });
-    openEditor(hovered);
+    openEditor(target);
   }
 
   function onKey(e) {
@@ -211,7 +319,7 @@
   function openEditor(el, draftError = "") {
     selectedElement = el;
 
-    const rawText = (el?.innerText || el?.textContent || "").trim().replace(/\s+/g, " ");
+    const rawText = readSelectedPriceText(el) || (el?.innerText || el?.textContent || "").trim().replace(/\s+/g, " ");
     const parsed = rawText ? parsePrice(rawText) : null;
     const initialValue = rawText ? normalizeInputValue(rawText) : "";
     const initialCurrency = rawText ? (parsed?.currency ? guessCurrency(parsed.currency) : guessCurrency(rawText)) : "BGN";
@@ -219,7 +327,6 @@
     currentDraft = {
       element: el,
       selector: cssPath(el),
-      selectorBackup: xpathPath(el),
       selectedText: rawText,
       initialValue,
       initialCurrency,
@@ -320,6 +427,29 @@
     });
     valueWrap.append(valueInput);
 
+    const advancedWrap = fieldWrap("Advanced: paste selector");
+    const advancedHint = document.createElement("div");
+    advancedHint.textContent = "Paste page.locator('...') copied from SelectorsHub. CSS stays plain; XPath is stored as xpath=...";
+    Object.assign(advancedHint.style, {
+      marginBottom: "6px",
+      color: "#6b7280",
+      fontSize: "12px",
+      lineHeight: "1.35",
+    });
+    const advancedInput = document.createElement("input");
+    advancedInput.id = "pricepatrol-editor-advanced-selector";
+    advancedInput.type = "text";
+    advancedInput.placeholder = "page.locator('[data-test=\"main-price\"]')";
+    Object.assign(advancedInput.style, {
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "10px 12px",
+      border: "1px solid #d1d5db",
+      borderRadius: "8px",
+      fontSize: "14px",
+    });
+    advancedWrap.append(advancedHint, advancedInput);
+
     const currencyWrap = fieldWrap("Currency");
     const currencySelect = document.createElement("select");
     for (const currency of CURRENCIES) {
@@ -405,12 +535,61 @@
         return;
       }
 
+      const advancedValue = advancedInput.value.trim();
+      let selector = currentDraft.selector;
+      if (advancedValue) {
+        let parsedLocator;
+        try {
+          parsedLocator = parseAdvancedLocator(advancedValue);
+        } catch (parseError) {
+          error.textContent = parseError?.message || "Please paste a plain page.locator(...) value with a CSS or XPath selector.";
+          error.style.display = "block";
+          advancedInput.focus();
+          return;
+        }
+
+        const validation = selectorMatchesExactlyOne(parsedLocator.selector, parsedLocator.kind);
+        if (!validation.ok) {
+          const reason = validation.reason || `Expected exactly 1 matching element, found ${validation.count ?? 0}.`;
+          error.textContent = reason;
+          error.style.display = "block";
+          advancedInput.focus();
+          return;
+        }
+
+        const priceCheck = validateSelectedElementPrice(parsedLocator.kind === "xpath"
+          ? document.evaluate(parsedLocator.selector, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem(0)
+          : document.querySelector(parsedLocator.selector));
+        if (!priceCheck.ok) {
+          error.textContent = priceCheck.reason;
+          error.style.display = "block";
+          advancedInput.focus();
+          return;
+        }
+
+        selector = selectorToStorageValue(parsedLocator.selector, parsedLocator.kind);
+      } else {
+        const validation = selectorMatchesExactlyOne(selector, "css");
+        if (!validation.ok) {
+          const reason = validation.reason || `Expected exactly 1 matching element, found ${validation.count ?? 0}.`;
+          error.textContent = reason;
+          error.style.display = "block";
+          return;
+        }
+
+        const priceCheck = validateSelectedElementPrice(document.querySelector(selector));
+        if (!priceCheck.ok) {
+          error.textContent = priceCheck.reason;
+          error.style.display = "block";
+          return;
+        }
+      }
+
       const parsed = parsePrice(value);
       const payload = {
         productUrl: location.href,
         pageTitle: document.title,
-        selector: currentDraft.selector,
-        selectorBackup: currentDraft.selectorBackup,
+        selector,
         productName,
         priceText: value,
         selectedText: currentDraft.selectedText,
@@ -449,6 +628,8 @@
         if (reopenedName) reopenedName.value = productName;
         const reopenedCurrency = document.querySelector("#pricepatrol-editor-currency");
         if (reopenedCurrency) reopenedCurrency.value = currency;
+        const reopenedAdvanced = document.querySelector("#pricepatrol-editor-advanced-selector");
+        if (reopenedAdvanced) reopenedAdvanced.value = advancedValue;
       }
     }
 

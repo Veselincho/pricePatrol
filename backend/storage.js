@@ -42,7 +42,7 @@ function normalizeText(text) {
 
 function normalizeSnapshot(doc) {
   if (!doc || typeof doc !== "object") return null;
-  return {
+  const normalized = {
     id: doc.id ?? crypto.randomUUID(),
     watchTargetId: doc.watchTargetId ?? null,
     productUrl: doc.productUrl ?? "",
@@ -50,7 +50,6 @@ function normalizeSnapshot(doc) {
     pageTitle: doc.pageTitle ?? "",
     productName: doc.productName ?? "",
     selector: doc.selector ?? "",
-    selectorBackup: doc.selectorBackup ?? null,
     priceText: doc.priceText ?? "",
     selectedText: doc.selectedText ?? "",
     currency: doc.currency ?? null,
@@ -64,18 +63,23 @@ function normalizeSnapshot(doc) {
     priceKey: doc.priceKey ?? null,
     network: doc.network ?? null,
   };
+
+  if (Object.prototype.hasOwnProperty.call(doc, "selectorBackup")) {
+    normalized.selectorBackup = doc.selectorBackup ?? null;
+  }
+
+  return normalized;
 }
 
 function normalizeWatchTarget(doc) {
   if (!doc || typeof doc !== "object") return null;
-  return {
+  const normalized = {
     id: doc.id ?? crypto.randomUUID(),
     productUrl: doc.productUrl ?? "",
     hostname: doc.hostname ?? "",
     pageTitle: doc.pageTitle ?? "",
     productName: doc.productName ?? "",
     selector: doc.selector ?? "",
-    selectorBackup: doc.selectorBackup ?? null,
     fallbackSelectors: Array.isArray(doc.fallbackSelectors) ? doc.fallbackSelectors : [],
     currency: doc.currency ?? null,
     active: doc.active ?? true,
@@ -92,6 +96,12 @@ function normalizeWatchTarget(doc) {
     createdAt: doc.createdAt ?? new Date().toISOString(),
     updatedAt: doc.updatedAt ?? new Date().toISOString(),
   };
+
+  if (Object.prototype.hasOwnProperty.call(doc, "selectorBackup")) {
+    normalized.selectorBackup = doc.selectorBackup ?? null;
+  }
+
+  return normalized;
 }
 
 function deriveTargetFromSnapshot(snapshot) {

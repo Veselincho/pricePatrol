@@ -69,6 +69,12 @@ function selectorToLocator(selector) {
   return normalized.type === "xpath" ? `xpath=${normalized.value}` : normalized.value;
 }
 
+function toStoredSelector(selector) {
+  const normalized = normalizeSelectorCandidate(selector);
+  if (!normalized) return null;
+  return normalized.type === "xpath" ? `xpath=${normalized.value}` : normalized.value;
+}
+
 async function firstMatchingSelector(page, selectors, timeoutMs) {
   const candidates = Array.isArray(selectors) ? selectors : [selectors];
   for (const candidate of candidates) {
@@ -81,7 +87,7 @@ async function firstMatchingSelector(page, selectors, timeoutMs) {
     await page.waitForSelector(locator, { state: "attached", timeout: timeoutMs }).catch(() => {});
     const count = await page.locator(locator).count().catch(() => 0);
     if (count > 0) {
-      return { selectorUsed: normalized.value, selectorType: normalized.type, locator };
+      return { selectorUsed: toStoredSelector(normalized), selectorType: normalized.type, locator };
     }
   }
 
@@ -233,7 +239,7 @@ export async function loadPageHtml({ url, selectors = [], timeoutMs = 60000 }) {
       const trimmed = String(text ?? "").replace(/\s+/g, " ").trim();
       if (trimmed) {
         selectedText = trimmed;
-        selectorUsed = normalized.value;
+        selectorUsed = toStoredSelector(normalized);
         break;
       }
       if (!selectorUsed) {
