@@ -115,6 +115,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-01T13:51:54.536Z",
       "updatedAt": "2026-11-01T13:53:04.770Z"
+    },
+    {
+      "id": "5d5ea20f-20e6-4fd7-831d-d02e8d823df8",
+      "productUrl": "https://www.imot.bg/obiava-1a179312194157346-prodava-ednostaen-apartament-grad-vratsa-dabnika",
+      "hostname": "www.imot.bg",
+      "pageTitle": "Продава 1-СТАЕН в град Враца, Дъбника - 40 кв.м / 53 000 € :: imot.bg Обява 157346",
+      "productName": "ТЕЦ",
+      "selector": "div.Price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "53000",
+      "lastKnownPriceKey": "53000|EUR",
+      "lastKnownPriceAmount": 53000,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-01T13:59:01.949Z",
+      "lastChangedAt": "2026-11-01T13:59:01.949Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-01T13:59:01.949Z",
+      "updatedAt": "2026-11-01T13:59:01.949Z"
     }
   ],
   "snapshots": [
