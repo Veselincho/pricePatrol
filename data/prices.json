@@ -69,6 +69,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-01T07:02:37.238Z",
       "updatedAt": "2026-11-01T08:56:59.487Z"
+    },
+    {
+      "id": "e8d5361c-38bb-44fe-a3eb-96283b234f82",
+      "productUrl": "https://www.ozone.bg/product/kana-elektricheska-termomax-tk2066d-1500w-1-8-l/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "Електрическа кана Termomax - TK2066D, 1500W, 1.8 l, сребриста | Ozone.bg",
+      "productName": "kanaZaVoda",
+      "selector": "#product-price-810805",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "10",
+      "lastKnownPriceKey": "10|EUR",
+      "lastKnownPriceAmount": 10,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-01T11:22:07.417Z",
+      "lastChangedAt": "2026-11-01T11:22:07.417Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-01T11:22:07.417Z",
+      "updatedAt": "2026-11-01T11:22:07.417Z"
     }
   ],
   "snapshots": [
