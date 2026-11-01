@@ -92,6 +92,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-01T11:22:07.417Z",
       "updatedAt": "2026-11-01T11:22:56.156Z"
+    },
+    {
+      "id": "9a2cd049-2916-4a3c-b863-248d827956b8",
+      "productUrl": "https://bazar.bg/obiava-54312868/prodava-kashta-s-gorna-kremena-oblast-vratsa",
+      "hostname": "bazar.bg",
+      "pageTitle": "Продава КЪЩА, с. Горна Кремена, област Враца в Къщи в с. Горна Кремена - ID54312868 | Bazar.bg",
+      "productName": "g kremena",
+      "selector": "div.current-price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "60000",
+      "lastKnownPriceKey": "60000|EUR",
+      "lastKnownPriceAmount": 60000,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-01T13:51:54.536Z",
+      "lastChangedAt": "2026-11-01T13:51:54.536Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-01T13:51:54.536Z",
+      "updatedAt": "2026-11-01T13:51:54.536Z"
     }
   ],
   "snapshots": [
