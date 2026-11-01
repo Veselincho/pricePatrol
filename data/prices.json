@@ -46,6 +46,29 @@
       "baselineRequested": false,
       "createdAt": "2026-10-31T08:40:39.564Z",
       "updatedAt": "2026-11-01T00:52:02.946Z"
+    },
+    {
+      "id": "1a7fb438-d245-41bc-89b5-838442a34fdd",
+      "productUrl": "https://bazar.bg/obiava-56243033/vila-v-mestnostta-machkin-dol",
+      "hostname": "bazar.bg",
+      "pageTitle": "Вила в местността мачкин дол в Вили в гр. Враца - ID56243033 | Bazar.bg",
+      "productName": "machkin dol",
+      "selector": "div.current-price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "65000",
+      "lastKnownPriceKey": "65000|EUR",
+      "lastKnownPriceAmount": 65000,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-01T07:02:37.238Z",
+      "lastChangedAt": "2026-11-01T07:02:37.238Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-01T07:02:37.238Z",
+      "updatedAt": "2026-11-01T07:02:37.238Z"
     }
   ],
   "snapshots": [
