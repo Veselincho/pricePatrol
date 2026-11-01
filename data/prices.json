@@ -138,6 +138,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-01T13:59:01.949Z",
       "updatedAt": "2026-11-01T13:59:54.420Z"
+    },
+    {
+      "id": "224ec384-3fbf-4c93-a9f7-61f00cead975",
+      "productUrl": "https://www.olx.bg/d/ad/prodavam-novi-ssd-128gb-sata-3-CID632-IDa0rKn.html?isPreviewActive=0&search_reason=search%7Corganic&sliderIndex=6",
+      "hostname": "www.olx.bg",
+      "pageTitle": "Продавам нови SSD 128GB Sata 3 гр. Враца Дъбника • OLX.bg",
+      "productName": "OLX ssd",
+      "selector": "h3.css-yauxmy",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "25",
+      "lastKnownPriceKey": "25|EUR",
+      "lastKnownPriceAmount": 25,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-01T15:20:37.582Z",
+      "lastChangedAt": "2026-11-01T15:20:37.582Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-01T15:20:37.582Z",
+      "updatedAt": "2026-11-01T15:20:37.582Z"
     }
   ],
   "snapshots": [
