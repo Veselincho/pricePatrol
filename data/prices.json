@@ -15,13 +15,13 @@
       "lastKnownPriceKey": "58.07|EUR",
       "lastKnownPriceAmount": 58.07,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261101_071553.png",
-      "lastCheckedAt": "2026-11-01T07:15:53.889Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261101_085623.png",
+      "lastCheckedAt": "2026-11-01T08:56:23.054Z",
       "lastChangedAt": "2026-10-30T19:43:14.174Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T19:42:26.686Z",
-      "updatedAt": "2026-11-01T07:16:09.249Z",
+      "updatedAt": "2026-11-01T08:56:35.439Z",
       "selectorBackup": null
     },
     {
@@ -35,17 +35,17 @@
       "currency": "EUR",
       "active": true,
       "checkIntervalMinutes": 5,
-      "lastKnownPriceText": "71 € 65 €",
+      "lastKnownPriceText": "71 €",
       "lastKnownPriceKey": "71.00|EUR",
       "lastKnownPriceAmount": 71,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261101_005150.png",
-      "lastCheckedAt": "2026-11-01T07:15:53.887Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261101_085635.png",
+      "lastCheckedAt": "2026-11-01T08:56:35.441Z",
       "lastChangedAt": "2026-10-31T08:46:50.734Z",
-      "lastStatus": "error",
+      "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-31T08:40:39.564Z",
-      "updatedAt": "2026-11-01T07:15:53.889Z"
+      "updatedAt": "2026-11-01T08:56:48.331Z"
     },
     {
       "id": "1a7fb438-d245-41bc-89b5-838442a34fdd",
@@ -62,13 +62,13 @@
       "lastKnownPriceKey": "65000.00|EUR",
       "lastKnownPriceAmount": 65000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/1a7fb438-20261101_071335.png",
-      "lastCheckedAt": "2026-11-01T07:13:35.709Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/1a7fb438-20261101_085648.png",
+      "lastCheckedAt": "2026-11-01T08:56:48.331Z",
       "lastChangedAt": "2026-11-01T07:13:35.709Z",
-      "lastStatus": "baseline",
+      "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T07:02:37.238Z",
-      "updatedAt": "2026-11-01T07:13:48.302Z"
+      "updatedAt": "2026-11-01T08:56:59.487Z"
     }
   ],
   "snapshots": [
@@ -757,6 +757,96 @@
         "ip": "20.127.214.166",
         "isTor": false,
         "checkedAt": "2026-11-01T07:13:31.495Z",
+        "error": null
+      }
+    },
+    {
+      "id": "4f9485c8-4316-4a11-817e-b1589a056341",
+      "watchTargetId": "a010b326-594d-4d09-99a9-d9110808618b",
+      "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
+      "hostname": "printernet.bg",
+      "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
+      "productName": "Printernet SSD ADATA SU650 240 gb",
+      "selector": "#opu_price",
+      "priceText": "58,07€",
+      "selectedText": "58,07€",
+      "currency": "EUR",
+      "price": {
+        "amount": 58.07,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-01T08:56:23.054Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/a010b326-20261101_085623.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "58.07|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "172.174.191.49",
+        "isTor": false,
+        "checkedAt": "2026-11-01T08:56:15.308Z",
+        "error": null
+      }
+    },
+    {
+      "id": "5423a521-e163-4e30-93de-6164dad68250",
+      "watchTargetId": "22c65478-4641-485b-89f1-21ef75df17ed",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test selectorsHub / no await",
+      "selector": "div.current-price",
+      "priceText": "71 €",
+      "selectedText": "71 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 71,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-01T08:56:35.441Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/22c65478-20261101_085635.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "71.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "172.174.191.49",
+        "isTor": false,
+        "checkedAt": "2026-11-01T08:56:15.308Z",
+        "error": null
+      }
+    },
+    {
+      "id": "547773d6-ef07-464a-90a2-3298a130bd09",
+      "watchTargetId": "1a7fb438-d245-41bc-89b5-838442a34fdd",
+      "productUrl": "https://bazar.bg/obiava-56243033/vila-v-mestnostta-machkin-dol",
+      "hostname": "bazar.bg",
+      "pageTitle": "Вила в местността мачкин дол в Вили в гр. Враца - ID56243033 | Bazar.bg",
+      "productName": "machkin dol",
+      "selector": "div.current-price",
+      "priceText": "65 000 €",
+      "selectedText": "65 000 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-01T08:56:48.331Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/1a7fb438-20261101_085648.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "65000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "172.174.191.49",
+        "isTor": false,
+        "checkedAt": "2026-11-01T08:56:15.308Z",
         "error": null
       }
     }
