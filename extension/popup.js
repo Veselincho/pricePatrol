@@ -8,8 +8,23 @@ const listEl = document.getElementById("list");
 const repoEl = document.getElementById("repo");
 const settingsBtn = document.getElementById("settings");
 const refreshBtn = document.getElementById("refresh");
+const productsCountEl = document.getElementById("products-count");
 
 let renderedItems = [];
+
+function setStatus(message = "", kind = "") {
+  statusEl.textContent = message;
+  statusEl.dataset.kind = kind;
+}
+
+function setProductsCount(total, shown = total) {
+  if (!productsCountEl) return;
+  const safeTotal = Number.isFinite(total) ? total : 0;
+  const safeShown = Number.isFinite(shown) ? shown : safeTotal;
+  productsCountEl.textContent =
+    safeTotal === safeShown ? `${safeTotal} product${safeTotal === 1 ? "" : "s"}` :
+    `${safeShown} of ${safeTotal} products`;
+}
 
 async function activeTab() {
   const tabs = await api.tabs.query({ active: true, currentWindow: true });
@@ -75,9 +90,11 @@ async function loadSettingsLine() {
 }
 
 function renderList(items) {
+  const shownItems = items.slice(0, 50);
   listEl.textContent = "";
+  setProductsCount(items.length, shownItems.length);
 
-  if (!items.length) {
+  if (!shownItems.length) {
     const empty = document.createElement("li");
     empty.className = "empty";
     empty.textContent = "No products yet. Open settings first, then save a price from a page.";
@@ -85,7 +102,7 @@ function renderList(items) {
     return;
   }
 
-  for (const it of items.slice(0, 50)) {
+  for (const it of shownItems) {
     listEl.append(renderItem(it));
   }
 }
@@ -97,6 +114,7 @@ async function loadList() {
   } catch (error) {
     renderedItems = [];
     listEl.textContent = "";
+    setProductsCount(0);
     const empty = document.createElement("li");
     empty.className = "empty";
     empty.textContent = error?.message || "Could not load GitHub data.";
@@ -110,7 +128,7 @@ saveBtn.addEventListener("click", async () => {
     await api.scripting.executeScript({ target: { tabId: tab.id }, files: ["content.js"] });
     window.close();
   } catch (error) {
-    statusEl.textContent = "Cannot start on this page: " + error.message;
+    setStatus("Cannot start on this page: " + error.message, "error");
   }
 });
 
@@ -119,7 +137,7 @@ settingsBtn.addEventListener("click", () => {
 });
 
 refreshBtn.addEventListener("click", async () => {
-  statusEl.textContent = "";
+  setStatus("");
   await loadSettingsLine();
   await loadList();
 });
@@ -139,13 +157,14 @@ listEl.addEventListener("click", async (e) => {
     const nextState = await deleteWatchTargetById(id);
     renderedItems = Array.isArray(nextState?.watchTargets) ? nextState.watchTargets : renderedItems.filter((item) => item.id !== id);
     renderList(renderedItems);
-    statusEl.textContent = "Product deleted.";
+    setStatus("Product deleted.", "success");
   } catch (error) {
-    statusEl.textContent = "Delete failed: " + (error?.message || String(error));
+    setStatus("Delete failed: " + (error?.message || String(error)), "error");
   } finally {
     delBtn.disabled = false;
   }
 });
 
+setProductsCount(0);
 loadSettingsLine();
 loadList();
