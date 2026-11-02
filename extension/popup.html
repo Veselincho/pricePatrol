@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-</head>  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
       color-scheme: light;
@@ -78,7 +78,7 @@
 
     .shell {
       display: grid;
-      gap: 10px;
+      gap: 12px;
       width: min(100%, 420px);
     }
 
@@ -87,23 +87,25 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow);
-      padding: 13px;
+      padding: 14px;
     }
 
     .hero {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .hero-top {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 10px;
-      align-items: start;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
     }
 
     .brand {
       min-width: 0;
+      display: grid;
+      gap: 6px;
     }
 
     .title {
@@ -113,13 +115,7 @@
       letter-spacing: -0.01em;
     }
 
-    .subtitle {
-      margin-top: 4px;
-      color: var(--text-muted);
-      font-size: 12.5px;
-      line-height: 1.45;
-      max-width: 30ch;
-    }
+
 
     #repo {
       display: inline-flex;
@@ -149,12 +145,12 @@
 
     .toolbar {
       display: grid;
-      gap: 8px;
+      gap: 10px;
     }
 
     .toolbar-main {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
     #save {
@@ -336,9 +332,8 @@
       <div class="hero-top">
         <div class="brand">
           <h1 class="title">pricePatrol</h1>
-          <div class="subtitle">Save the current price, then open the dashboard to review history and screenshots.</div>
+          <div id="repo" aria-live="polite">Repository not configured</div>
         </div>
-        <div id="repo" aria-live="polite">Repository not configured</div>
       </div>
 
       <div class="toolbar">
