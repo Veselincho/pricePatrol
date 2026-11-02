@@ -1,4 +1,5 @@
 Note: GitHub Actions runs on Microsoft's servers, which some websites block. You might want to use a home proxy instead. I'll try to add support for this later.
+Note add: imo using the SelectorsHub is the current best stable way for locators this is why I added a optional manual selector path/field
 
 # pricePatrol
 
