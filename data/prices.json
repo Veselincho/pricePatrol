@@ -161,6 +161,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-01T15:20:37.582Z",
       "updatedAt": "2026-11-02T09:07:40.903Z"
+    },
+    {
+      "id": "439f6fd8-4a11-4ada-8584-a0cea48bd689",
+      "productUrl": "https://nikem-bg.net/computer-components/Intenso-SSD-Top-128-GB-2.5-inch-SATA-6-GB-s-3812430/",
+      "hostname": "nikem-bg.net",
+      "pageTitle": "Intenso SSD Top 128 GB 2.5 inch SATA 6 GB s 3812430 - цена.",
+      "productName": "nikem net ssd",
+      "selector": "span:nth-child(3) span:nth-child(1)",
+      "fallbackSelectors": [],
+      "currency": null,
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "25.59",
+      "lastKnownPriceKey": "25.59|",
+      "lastKnownPriceAmount": 25.59,
+      "lastKnownCurrency": null,
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-02T11:03:06.174Z",
+      "lastChangedAt": "2026-11-02T11:03:06.174Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-02T11:03:06.174Z",
+      "updatedAt": "2026-11-02T11:03:06.174Z"
     }
   ],
   "snapshots": [
