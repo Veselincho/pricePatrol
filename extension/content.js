@@ -232,9 +232,6 @@
     if (!parsed) {
       return { ok: false, reason: "The selected element does not look like a price. I need a number plus a currency symbol or code." };
     }
-    if (!parsed.currency) {
-      return { ok: false, reason: "The selected element needs a visible currency symbol or code." };
-    }
     return { ok: true, text, parsed };
   }
 
@@ -369,8 +366,8 @@
 
     const note = document.createElement("p");
     note.textContent = rawText
-      ? "Edit the value if needed, and add a product name."
-      : "The element has no text. Enter a value, currency, and product name.";
+      ? "Edit the value if needed, and add a product name. Currency is optional."
+      : "The element has no text. Enter a value and product name; currency is optional.";
     Object.assign(note.style, { margin: "0 0 12px", color: "#4b5563", lineHeight: "1.4" });
 
     const error = document.createElement("div");
@@ -532,7 +529,7 @@
     async function submit() {
       const value = valueInput.value.trim();
       const productName = nameInput.value.trim();
-      const currency = currencySelect.value;
+      const currency = currencySelect.value || null;
 
       if (!value) {
         error.textContent = "Enter a value.";
@@ -541,12 +538,6 @@
         return;
       }
 
-      if (!currency) {
-        error.textContent = "Pick a currency from the selected text first (EUR, BGN, or USD).";
-        error.style.display = "block";
-        currencySelect.focus();
-        return;
-      }
 
       const advancedValue = advancedInput.value.trim();
       let selector = currentDraft.selector;

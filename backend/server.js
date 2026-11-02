@@ -573,7 +573,8 @@ app.post("/api/watch-targets", async (req, res) => {
 
     const existing = await storage.getWatchTargetByUrl(productUrl);
     const now = new Date().toISOString();
-    const snapshotPrice = price ?? toAmountObject(priceText ?? "", currency ?? null);
+    const normalizedCurrency = currency || null;
+    const snapshotPrice = price ?? toAmountObject(priceText ?? "", normalizedCurrency);
 
     const doc = await storage.upsertWatchTarget({
       id: existing?.id ?? crypto.randomUUID(),
@@ -583,13 +584,13 @@ app.post("/api/watch-targets", async (req, res) => {
       productName: productName ?? existing?.productName ?? "",
       selector: selector ?? existing?.selector ?? "",
       fallbackSelectors: Array.isArray(fallbackSelectors) ? fallbackSelectors : existing?.fallbackSelectors ?? [],
-      currency: currency ?? existing?.currency ?? snapshotPrice?.currency ?? null,
+      currency: normalizedCurrency ?? existing?.currency ?? snapshotPrice?.currency ?? null,
       active: active ?? existing?.active ?? true,
       checkIntervalMinutes: checkIntervalMinutes ?? existing?.checkIntervalMinutes ?? 5,
       lastKnownPriceText: priceText ?? existing?.lastKnownPriceText ?? null,
-      lastKnownPriceKey: priceText ? buildPriceKey(priceText, currency ?? snapshotPrice?.currency ?? null) : existing?.lastKnownPriceKey ?? null,
+      lastKnownPriceKey: priceText ? buildPriceKey(priceText, normalizedCurrency ?? snapshotPrice?.currency ?? null) : existing?.lastKnownPriceKey ?? null,
       lastKnownPriceAmount: snapshotPrice?.amount ?? existing?.lastKnownPriceAmount ?? null,
-      lastKnownCurrency: snapshotPrice?.currency ?? existing?.lastKnownCurrency ?? currency ?? null,
+      lastKnownCurrency: snapshotPrice?.currency ?? existing?.lastKnownCurrency ?? normalizedCurrency ?? null,
       lastKnownScreenshotUrl: existing?.lastKnownScreenshotUrl ?? null,
       lastCheckedAt: existing?.lastCheckedAt ?? now,
       lastChangedAt: existing?.lastChangedAt ?? now,
@@ -713,6 +714,7 @@ app.post("/api/prices", async (req, res) => {
     }
 
     const id = crypto.randomUUID();
+    const normalizedCurrency = currency || null;
     const timestamp = new Date(capturedAt ?? new Date().toISOString());
     const pad = (n) => String(n).padStart(2,'0');
     const stamp = `${timestamp.getUTCFullYear()}${pad(timestamp.getUTCMonth()+1)}${pad(timestamp.getUTCDate())}_${pad(timestamp.getUTCHours())}${pad(timestamp.getUTCMinutes())}${pad(timestamp.getUTCSeconds())}`;
@@ -736,7 +738,7 @@ app.post("/api/prices", async (req, res) => {
       selector,
       priceText,
       selectedText: selectedText ?? "",
-      currency: currency ?? price?.currency ?? null,
+      currency: normalizedCurrency ?? price?.currency ?? null,
       price: price ?? null,
       capturedAt: capturedAt ?? new Date().toISOString(),
       viewport: viewport ?? null,
@@ -744,7 +746,7 @@ app.post("/api/prices", async (req, res) => {
       status: "manual",
       errorMessage: null,
       changeType: "manual",
-      priceKey: buildPriceKey(priceText, currency ?? price?.currency ?? null),
+      priceKey: buildPriceKey(priceText, normalizedCurrency ?? price?.currency ?? null),
     });
 
     await storage.upsertWatchTarget({
@@ -755,13 +757,13 @@ app.post("/api/prices", async (req, res) => {
       productName: productName ?? "",
       selector,
       fallbackSelectors: [],
-      currency: currency ?? price?.currency ?? null,
+      currency: normalizedCurrency ?? price?.currency ?? null,
       active: true,
       checkIntervalMinutes: 5,
       lastKnownPriceText: priceText,
-      lastKnownPriceKey: buildPriceKey(priceText, currency ?? price?.currency ?? null),
+      lastKnownPriceKey: buildPriceKey(priceText, normalizedCurrency ?? price?.currency ?? null),
       lastKnownPriceAmount: price?.amount ?? null,
-      lastKnownCurrency: currency ?? price?.currency ?? null,
+      lastKnownCurrency: normalizedCurrency ?? price?.currency ?? null,
       lastKnownScreenshotUrl: makeScreenshotUrl(req, fileName),
       lastCheckedAt: doc.capturedAt,
       lastChangedAt: doc.capturedAt,
