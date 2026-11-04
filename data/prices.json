@@ -15,13 +15,13 @@
       "lastKnownPriceKey": "58.07|EUR",
       "lastKnownPriceAmount": 58.07,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261104_085123.png",
-      "lastCheckedAt": "2026-11-04T08:51:23.241Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261104_175307.png",
+      "lastCheckedAt": "2026-11-04T17:53:07.763Z",
       "lastChangedAt": "2026-10-30T19:43:14.174Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T19:42:26.686Z",
-      "updatedAt": "2026-11-04T08:51:48.599Z",
+      "updatedAt": "2026-11-04T17:53:35.344Z",
       "selectorBackup": null
     },
     {
@@ -39,13 +39,13 @@
       "lastKnownPriceKey": "71.00|EUR",
       "lastKnownPriceAmount": 71,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261104_085113.png",
-      "lastCheckedAt": "2026-11-04T08:51:13.799Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261104_175335.png",
+      "lastCheckedAt": "2026-11-04T17:53:35.345Z",
       "lastChangedAt": "2026-10-31T08:46:50.734Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-31T08:40:39.564Z",
-      "updatedAt": "2026-11-04T08:51:23.239Z"
+      "updatedAt": "2026-11-04T17:53:51.637Z"
     },
     {
       "id": "1a7fb438-d245-41bc-89b5-838442a34fdd",
@@ -62,13 +62,13 @@
       "lastKnownPriceKey": "65000.00|EUR",
       "lastKnownPriceAmount": 65000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/1a7fb438-20261104_085046.png",
-      "lastCheckedAt": "2026-11-04T08:50:46.236Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/1a7fb438-20261104_175351.png",
+      "lastCheckedAt": "2026-11-04T17:53:51.640Z",
       "lastChangedAt": "2026-11-01T07:13:35.709Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T07:02:37.238Z",
-      "updatedAt": "2026-11-04T08:51:13.797Z"
+      "updatedAt": "2026-11-04T17:54:19.610Z"
     },
     {
       "id": "e8d5361c-38bb-44fe-a3eb-96283b234f82",
@@ -85,13 +85,13 @@
       "lastKnownPriceKey": "19.90|EUR",
       "lastKnownPriceAmount": 19.9,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/e8d5361c-20261104_085031.png",
-      "lastCheckedAt": "2026-11-04T08:50:31.014Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/e8d5361c-20261104_175419.png",
+      "lastCheckedAt": "2026-11-04T17:54:19.611Z",
       "lastChangedAt": "2026-11-02T01:23:12.101Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T11:22:07.417Z",
-      "updatedAt": "2026-11-04T08:50:46.234Z"
+      "updatedAt": "2026-11-04T17:54:48.910Z"
     },
     {
       "id": "9a2cd049-2916-4a3c-b863-248d827956b8",
@@ -108,13 +108,13 @@
       "lastKnownPriceKey": "60000.00|EUR",
       "lastKnownPriceAmount": 60000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/9a2cd049-20261104_085148.png",
-      "lastCheckedAt": "2026-11-04T08:51:48.600Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/9a2cd049-20261104_175240.png",
+      "lastCheckedAt": "2026-11-04T17:52:40.758Z",
       "lastChangedAt": "2026-11-01T13:52:39.481Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T13:51:54.536Z",
-      "updatedAt": "2026-11-04T08:52:11.084Z"
+      "updatedAt": "2026-11-04T17:53:07.761Z"
     },
     {
       "id": "5d5ea20f-20e6-4fd7-831d-d02e8d823df8",
@@ -131,13 +131,13 @@
       "lastKnownPriceKey": "53000.00|EUR",
       "lastKnownPriceAmount": 53000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/5d5ea20f-20261104_085019.png",
-      "lastCheckedAt": "2026-11-04T08:50:19.600Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/5d5ea20f-20261104_175448.png",
+      "lastCheckedAt": "2026-11-04T17:54:48.912Z",
       "lastChangedAt": "2026-11-01T13:59:44.873Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T13:59:01.949Z",
-      "updatedAt": "2026-11-04T08:50:31.011Z"
+      "updatedAt": "2026-11-04T17:55:00.061Z"
     },
     {
       "id": "224ec384-3fbf-4c93-a9f7-61f00cead975",
@@ -154,13 +154,13 @@
       "lastKnownPriceKey": "25.00|EUR",
       "lastKnownPriceAmount": 25,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/224ec384-20261104_085211.png",
-      "lastCheckedAt": "2026-11-04T08:52:11.086Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/224ec384-20261104_175230.png",
+      "lastCheckedAt": "2026-11-04T17:52:30.547Z",
       "lastChangedAt": "2026-11-01T15:21:29.117Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T15:20:37.582Z",
-      "updatedAt": "2026-11-04T08:52:19.625Z"
+      "updatedAt": "2026-11-04T17:52:40.756Z"
     },
     {
       "id": "439f6fd8-4a11-4ada-8584-a0cea48bd689",
@@ -178,12 +178,12 @@
       "lastKnownPriceAmount": 25.59,
       "lastKnownCurrency": null,
       "lastKnownScreenshotUrl": "/data/screenshots/439f6fd8-20261104_085009.png",
-      "lastCheckedAt": "2026-11-04T08:50:09.383Z",
+      "lastCheckedAt": "2026-11-04T17:57:02.931Z",
       "lastChangedAt": "2026-11-02T11:07:49.330Z",
-      "lastStatus": "unchanged",
+      "lastStatus": "error",
       "baselineRequested": false,
       "createdAt": "2026-11-02T11:03:06.174Z",
-      "updatedAt": "2026-11-04T08:50:19.599Z"
+      "updatedAt": "2026-11-04T17:57:02.933Z"
     }
   ],
   "snapshots": [
@@ -4142,6 +4142,243 @@
         "ip": "48.217.140.225",
         "isTor": false,
         "checkedAt": "2026-11-04T08:50:02.070Z",
+        "error": null
+      }
+    },
+    {
+      "id": "ae7b91da-f0ab-4d0a-8281-43eb7d9e13c1",
+      "watchTargetId": "224ec384-3fbf-4c93-a9f7-61f00cead975",
+      "productUrl": "https://www.olx.bg/d/ad/prodavam-novi-ssd-128gb-sata-3-CID632-IDa0rKn.html?isPreviewActive=0&search_reason=search%7Corganic&sliderIndex=6",
+      "hostname": "www.olx.bg",
+      "pageTitle": "Продавам нови SSD 128GB Sata 3 гр. Враца Дъбника • OLX.bg",
+      "productName": "OLX ssd",
+      "selector": "h3.css-yauxmy",
+      "priceText": "25 €",
+      "selectedText": "25 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 25,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:52:30.547Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/224ec384-20261104_175230.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "25.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "f76546be-3a3e-4750-a1fa-f2c33f06e886",
+      "watchTargetId": "9a2cd049-2916-4a3c-b863-248d827956b8",
+      "productUrl": "https://bazar.bg/obiava-54312868/prodava-kashta-s-gorna-kremena-oblast-vratsa",
+      "hostname": "bazar.bg",
+      "pageTitle": "Продава КЪЩА, с. Горна Кремена, област Враца в Къщи в с. Горна Кремена - ID54312868 | Bazar.bg",
+      "productName": "g kremena",
+      "selector": "div.current-price",
+      "priceText": "60 000 €",
+      "selectedText": "60 000 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 60000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:52:40.758Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/9a2cd049-20261104_175240.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "60000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "e7ba9979-b41c-40e4-aba3-39e1cf39ac7e",
+      "watchTargetId": "a010b326-594d-4d09-99a9-d9110808618b",
+      "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
+      "hostname": "printernet.bg",
+      "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
+      "productName": "Printernet SSD ADATA SU650 240 gb",
+      "selector": "#opu_price",
+      "priceText": "58,07€",
+      "selectedText": "58,07€",
+      "currency": "EUR",
+      "price": {
+        "amount": 58.07,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:53:07.763Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/a010b326-20261104_175307.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "58.07|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "b679e844-6351-4644-ab10-b0290811fa23",
+      "watchTargetId": "22c65478-4641-485b-89f1-21ef75df17ed",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test selectorsHub / no await",
+      "selector": "div.current-price",
+      "priceText": "71 €",
+      "selectedText": "71 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 71,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:53:35.345Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/22c65478-20261104_175335.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "71.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "739e7c40-8382-4dbd-81eb-393519009ec3",
+      "watchTargetId": "1a7fb438-d245-41bc-89b5-838442a34fdd",
+      "productUrl": "https://bazar.bg/obiava-56243033/vila-v-mestnostta-machkin-dol",
+      "hostname": "bazar.bg",
+      "pageTitle": "Вила в местността мачкин дол в Вили в гр. Враца - ID56243033 | Bazar.bg",
+      "productName": "machkin dol",
+      "selector": "div.current-price",
+      "priceText": "65 000 €",
+      "selectedText": "65 000 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:53:51.640Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/1a7fb438-20261104_175351.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "65000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "595fdbac-a153-433c-b9b2-a33b489afff3",
+      "watchTargetId": "e8d5361c-38bb-44fe-a3eb-96283b234f82",
+      "productUrl": "https://www.ozone.bg/product/kana-elektricheska-termomax-tk2066d-1500w-1-8-l/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "Електрическа кана Termomax - TK2066D, 1500W, 1.8 l, сребриста | Ozone.bgowl-arrow-prev",
+      "productName": "kanaZaVoda",
+      "selector": "#product-price-810805",
+      "priceText": "19,90 €",
+      "selectedText": "19,90 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 19.9,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:54:19.611Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/e8d5361c-20261104_175419.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "19.90|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "addaa5a4-7aad-4f5e-b9f9-f04eacfd8536",
+      "watchTargetId": "5d5ea20f-20e6-4fd7-831d-d02e8d823df8",
+      "productUrl": "https://www.imot.bg/obiava-1a179312194157346-prodava-ednostaen-apartament-grad-vratsa-dabnika",
+      "hostname": "www.imot.bg",
+      "pageTitle": "Продава 1-СТАЕН в град Враца, Дъбника - 40 кв.м / 53 000 € :: imot.bg Обява 157346",
+      "productName": "ТЕЦ",
+      "selector": "div.Price",
+      "priceText": "53 000 € История на цената (1 325 €/m2)",
+      "selectedText": "53 000 € История на цената (1 325 €/m2)",
+      "currency": "EUR",
+      "price": {
+        "amount": 53000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-04T17:54:48.912Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/5d5ea20f-20261104_175448.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "53000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
+        "error": null
+      }
+    },
+    {
+      "id": "82538116-99f6-48f6-b5b7-77bb873d52b6",
+      "watchTargetId": "439f6fd8-4a11-4ada-8584-a0cea48bd689",
+      "productUrl": "https://nikem-bg.net/computer-components/Intenso-SSD-Top-128-GB-2.5-inch-SATA-6-GB-s-3812430/",
+      "hostname": "nikem-bg.net",
+      "pageTitle": "Intenso SSD Top 128 GB 2.5 inch SATA 6 GB s 3812430 - цена.",
+      "productName": "nikem net ssd",
+      "selector": "span:nth-child(3) span:nth-child(1)",
+      "priceText": "",
+      "selectedText": "",
+      "currency": null,
+      "price": null,
+      "capturedAt": "2026-11-04T17:57:02.931Z",
+      "viewport": null,
+      "screenshotUrl": null,
+      "status": "error",
+      "errorMessage": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://nikem-bg.net/computer-components/Intenso-SSD-Top-128-GB-2.5-inch-SATA-6-GB-s-3812430/\", waiting until \"domcontentloaded\"\n",
+      "changeType": "error",
+      "priceKey": null,
+      "network": {
+        "route": "direct",
+        "ip": "52.161.55.203",
+        "isTor": false,
+        "checkedAt": "2026-11-04T17:52:22.430Z",
         "error": null
       }
     }
