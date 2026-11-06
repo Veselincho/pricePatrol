@@ -184,6 +184,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-02T11:03:06.174Z",
       "updatedAt": "2026-11-06T02:07:22.886Z"
+    },
+    {
+      "id": "c6be8768-6ccd-4803-b3ed-a773a82a8811",
+      "productUrl": "https://www.ozone.bg/product/radioupravlyaem-tank-lexibook-crosslander-sas-strelba-svetlina-i-zvuk/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "Радиоуправляем танк Lexibook Crosslander - Със стрелба, светлина и звук | Отлична цена | Ozone.bg",
+      "productName": "Радиоуправляем танк",
+      "selector": "#product-price-983802",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "34.9",
+      "lastKnownPriceKey": "34.9|EUR",
+      "lastKnownPriceAmount": 34.9,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-06T08:36:10.618Z",
+      "lastChangedAt": "2026-11-06T08:36:10.618Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-06T08:36:10.618Z",
+      "updatedAt": "2026-11-06T08:36:10.618Z"
     }
   ],
   "snapshots": [
