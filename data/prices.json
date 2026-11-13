@@ -15,13 +15,13 @@
       "lastKnownPriceKey": "58.07|EUR",
       "lastKnownPriceAmount": 58.07,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261113_085223.png",
-      "lastCheckedAt": "2026-11-13T08:52:23.621Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/a010b326-20261113_120026.png",
+      "lastCheckedAt": "2026-11-13T12:00:26.090Z",
       "lastChangedAt": "2026-10-30T19:43:14.174Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-30T19:42:26.686Z",
-      "updatedAt": "2026-11-13T08:52:34.463Z",
+      "updatedAt": "2026-11-13T12:00:39.769Z",
       "selectorBackup": null
     },
     {
@@ -39,13 +39,13 @@
       "lastKnownPriceKey": "71.00|EUR",
       "lastKnownPriceAmount": 71,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261113_085234.png",
-      "lastCheckedAt": "2026-11-13T08:52:34.468Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/22c65478-20261113_120013.png",
+      "lastCheckedAt": "2026-11-13T12:00:13.025Z",
       "lastChangedAt": "2026-10-31T08:46:50.734Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-10-31T08:40:39.564Z",
-      "updatedAt": "2026-11-13T08:52:41.696Z"
+      "updatedAt": "2026-11-13T12:00:26.088Z"
     },
     {
       "id": "1a7fb438-d245-41bc-89b5-838442a34fdd",
@@ -62,13 +62,13 @@
       "lastKnownPriceKey": "65000.00|EUR",
       "lastKnownPriceAmount": 65000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/1a7fb438-20261113_085241.png",
-      "lastCheckedAt": "2026-11-13T08:52:41.704Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/1a7fb438-20261113_120001.png",
+      "lastCheckedAt": "2026-11-13T12:00:01.609Z",
       "lastChangedAt": "2026-11-01T07:13:35.709Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T07:02:37.238Z",
-      "updatedAt": "2026-11-13T08:52:49.240Z"
+      "updatedAt": "2026-11-13T12:00:13.022Z"
     },
     {
       "id": "e8d5361c-38bb-44fe-a3eb-96283b234f82",
@@ -85,13 +85,13 @@
       "lastKnownPriceKey": "19.90|EUR",
       "lastKnownPriceAmount": 19.9,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/e8d5361c-20261113_085249.png",
-      "lastCheckedAt": "2026-11-13T08:52:49.244Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/e8d5361c-20261113_115950.png",
+      "lastCheckedAt": "2026-11-13T11:59:50.946Z",
       "lastChangedAt": "2026-11-02T01:23:12.101Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T11:22:07.417Z",
-      "updatedAt": "2026-11-13T08:52:59.270Z"
+      "updatedAt": "2026-11-13T12:00:01.606Z"
     },
     {
       "id": "9a2cd049-2916-4a3c-b863-248d827956b8",
@@ -108,13 +108,13 @@
       "lastKnownPriceKey": "60000.00|EUR",
       "lastKnownPriceAmount": 60000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/9a2cd049-20261113_085212.png",
-      "lastCheckedAt": "2026-11-13T08:52:12.006Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/9a2cd049-20261113_120039.png",
+      "lastCheckedAt": "2026-11-13T12:00:39.773Z",
       "lastChangedAt": "2026-11-01T13:52:39.481Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T13:51:54.536Z",
-      "updatedAt": "2026-11-13T08:52:23.617Z"
+      "updatedAt": "2026-11-13T12:00:53.285Z"
     },
     {
       "id": "5d5ea20f-20e6-4fd7-831d-d02e8d823df8",
@@ -131,13 +131,13 @@
       "lastKnownPriceKey": "53000.00|EUR",
       "lastKnownPriceAmount": 53000,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/5d5ea20f-20261113_085259.png",
-      "lastCheckedAt": "2026-11-13T08:52:59.274Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/5d5ea20f-20261113_115942.png",
+      "lastCheckedAt": "2026-11-13T11:59:42.161Z",
       "lastChangedAt": "2026-11-01T13:59:44.873Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T13:59:01.949Z",
-      "updatedAt": "2026-11-13T08:53:06.677Z"
+      "updatedAt": "2026-11-13T11:59:50.944Z"
     },
     {
       "id": "224ec384-3fbf-4c93-a9f7-61f00cead975",
@@ -154,13 +154,13 @@
       "lastKnownPriceKey": "25.00|EUR",
       "lastKnownPriceAmount": 25,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/224ec384-20261113_085202.png",
-      "lastCheckedAt": "2026-11-13T08:52:02.046Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/224ec384-20261113_120053.png",
+      "lastCheckedAt": "2026-11-13T12:00:53.287Z",
       "lastChangedAt": "2026-11-01T15:21:29.117Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-01T15:20:37.582Z",
-      "updatedAt": "2026-11-13T08:52:12.002Z"
+      "updatedAt": "2026-11-13T12:01:01.862Z"
     },
     {
       "id": "439f6fd8-4a11-4ada-8584-a0cea48bd689",
@@ -177,13 +177,13 @@
       "lastKnownPriceKey": "25.59|",
       "lastKnownPriceAmount": 25.59,
       "lastKnownCurrency": null,
-      "lastKnownScreenshotUrl": "/data/screenshots/439f6fd8-20261113_085306.png",
-      "lastCheckedAt": "2026-11-13T08:53:06.683Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/439f6fd8-20261113_115934.png",
+      "lastCheckedAt": "2026-11-13T11:59:34.389Z",
       "lastChangedAt": "2026-11-02T11:07:49.330Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-02T11:03:06.174Z",
-      "updatedAt": "2026-11-13T08:53:14.435Z"
+      "updatedAt": "2026-11-13T11:59:42.152Z"
     },
     {
       "id": "c6be8768-6ccd-4803-b3ed-a773a82a8811",
@@ -200,13 +200,13 @@
       "lastKnownPriceKey": "34.90|EUR",
       "lastKnownPriceAmount": 34.9,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/c6be8768-20261113_085151.png",
-      "lastCheckedAt": "2026-11-13T08:51:51.246Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/c6be8768-20261113_120101.png",
+      "lastCheckedAt": "2026-11-13T12:01:01.864Z",
       "lastChangedAt": "2026-11-06T08:37:06.073Z",
       "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-06T08:36:10.618Z",
-      "updatedAt": "2026-11-13T08:52:02.041Z"
+      "updatedAt": "2026-11-13T12:01:10.756Z"
     },
     {
       "id": "4fe173c4-9ade-4dc3-a5ff-7a0436c7a8fe",
@@ -223,13 +223,13 @@
       "lastKnownPriceKey": "60.00|EUR",
       "lastKnownPriceAmount": 60,
       "lastKnownCurrency": "EUR",
-      "lastKnownScreenshotUrl": "/data/screenshots/4fe173c4-20261113_085141.png",
-      "lastCheckedAt": "2026-11-13T08:51:41.044Z",
+      "lastKnownScreenshotUrl": "/data/screenshots/4fe173c4-20261113_120110.png",
+      "lastCheckedAt": "2026-11-13T12:01:10.760Z",
       "lastChangedAt": "2026-11-13T08:51:41.044Z",
-      "lastStatus": "baseline",
+      "lastStatus": "unchanged",
       "baselineRequested": false,
       "createdAt": "2026-11-13T08:50:41.448Z",
-      "updatedAt": "2026-11-13T08:51:51.242Z"
+      "updatedAt": "2026-11-13T12:01:19.675Z"
     }
   ],
   "snapshots": [
@@ -12369,6 +12369,306 @@
         "ip": "20.221.60.146",
         "isTor": false,
         "checkedAt": "2026-11-13T08:51:32.739Z",
+        "error": null
+      }
+    },
+    {
+      "id": "777b4bc9-17c6-4b48-a7ab-4d8eff859dd4",
+      "watchTargetId": "439f6fd8-4a11-4ada-8584-a0cea48bd689",
+      "productUrl": "https://nikem-bg.net/computer-components/Intenso-SSD-Top-128-GB-2.5-inch-SATA-6-GB-s-3812430/",
+      "hostname": "nikem-bg.net",
+      "pageTitle": "Intenso SSD Top 128 GB 2.5 inch SATA 6 GB s 3812430 - цена.",
+      "productName": "nikem net ssd",
+      "selector": "span:nth-child(3) span:nth-child(1)",
+      "priceText": "25.59",
+      "selectedText": "25.59",
+      "currency": null,
+      "price": {
+        "amount": 25.59,
+        "currency": null
+      },
+      "capturedAt": "2026-11-13T11:59:34.389Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/439f6fd8-20261113_115934.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "25.59|",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "a1af85ca-f1f3-4c58-851c-4a851347ebc7",
+      "watchTargetId": "5d5ea20f-20e6-4fd7-831d-d02e8d823df8",
+      "productUrl": "https://www.imot.bg/obiava-1a179312194157346-prodava-ednostaen-apartament-grad-vratsa-dabnika",
+      "hostname": "www.imot.bg",
+      "pageTitle": "Продава 1-СТАЕН в град Враца, Дъбника - 40 кв.м / 53 000 € :: imot.bg Обява 157346",
+      "productName": "ТЕЦ",
+      "selector": "div.Price",
+      "priceText": "53 000 € История на цената (1 325 €/m2)",
+      "selectedText": "53 000 € История на цената (1 325 €/m2)",
+      "currency": "EUR",
+      "price": {
+        "amount": 53000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T11:59:42.161Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/5d5ea20f-20261113_115942.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "53000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "5a1e0ee1-c737-46ea-b54b-3a5f57370e22",
+      "watchTargetId": "e8d5361c-38bb-44fe-a3eb-96283b234f82",
+      "productUrl": "https://www.ozone.bg/product/kana-elektricheska-termomax-tk2066d-1500w-1-8-l/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "Електрическа кана Termomax - TK2066D, 1500W, 1.8 l, сребриста | Ozone.bgowl-arrow-prev",
+      "productName": "kanaZaVoda",
+      "selector": "#product-price-810805",
+      "priceText": "19,90 €",
+      "selectedText": "19,90 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 19.9,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T11:59:50.946Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/e8d5361c-20261113_115950.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "19.90|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "eb84eea2-20e7-42e9-955b-ae8531f8ad4c",
+      "watchTargetId": "1a7fb438-d245-41bc-89b5-838442a34fdd",
+      "productUrl": "https://bazar.bg/obiava-56243033/vila-v-mestnostta-machkin-dol",
+      "hostname": "bazar.bg",
+      "pageTitle": "Вила в местността мачкин дол в Вили в гр. Враца - ID56243033 | Bazar.bg",
+      "productName": "machkin dol",
+      "selector": "div.current-price",
+      "priceText": "65 000 €",
+      "selectedText": "65 000 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 65000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:00:01.609Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/1a7fb438-20261113_120001.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "65000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "ebaeca2f-fdc6-4714-bc63-e8cca2a9ed91",
+      "watchTargetId": "22c65478-4641-485b-89f1-21ef75df17ed",
+      "productUrl": "https://bazar.bg/obiava-56701174/test-prodavam-22",
+      "hostname": "bazar.bg",
+      "pageTitle": "test prodavam 22 в Акита в гр. Габрово - ID56701174 | Bazar.bg",
+      "productName": "bazar test selectorsHub / no await",
+      "selector": "div.current-price",
+      "priceText": "71 €",
+      "selectedText": "71 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 71,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:00:13.025Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/22c65478-20261113_120013.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "71.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "a324b5b6-2191-40d4-b459-19946150ef98",
+      "watchTargetId": "a010b326-594d-4d09-99a9-d9110808618b",
+      "productUrl": "https://printernet.bg/preoceneni-produkti/ssd-adata-su650-240-gb-2-5-sata-iii-novo",
+      "hostname": "printernet.bg",
+      "pageTitle": "Printernet.bg - Твърди дискове - SSD ADATA SU650 240 GB, 2.5, SATA III - НОВО",
+      "productName": "Printernet SSD ADATA SU650 240 gb",
+      "selector": "#opu_price",
+      "priceText": "58,07€",
+      "selectedText": "58,07€",
+      "currency": "EUR",
+      "price": {
+        "amount": 58.07,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:00:26.090Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/a010b326-20261113_120026.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "58.07|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "a48cfb58-067a-40b0-b4e3-288f6f37a21c",
+      "watchTargetId": "9a2cd049-2916-4a3c-b863-248d827956b8",
+      "productUrl": "https://bazar.bg/obiava-54312868/prodava-kashta-s-gorna-kremena-oblast-vratsa",
+      "hostname": "bazar.bg",
+      "pageTitle": "Продава КЪЩА, с. Горна Кремена, област Враца в Къщи в с. Горна Кремена - ID54312868 | Bazar.bg",
+      "productName": "g kremena",
+      "selector": "div.current-price",
+      "priceText": "60 000 €",
+      "selectedText": "60 000 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 60000,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:00:39.773Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/9a2cd049-20261113_120039.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "60000.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "2990704b-676d-498b-b784-04bb20242d8b",
+      "watchTargetId": "224ec384-3fbf-4c93-a9f7-61f00cead975",
+      "productUrl": "https://www.olx.bg/d/ad/prodavam-novi-ssd-128gb-sata-3-CID632-IDa0rKn.html?isPreviewActive=0&search_reason=search%7Corganic&sliderIndex=6",
+      "hostname": "www.olx.bg",
+      "pageTitle": "Продавам нови SSD 128GB Sata 3 гр. Враца Дъбника • OLX.bg",
+      "productName": "OLX ssd",
+      "selector": "h3.css-yauxmy",
+      "priceText": "25 €",
+      "selectedText": "25 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 25,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:00:53.287Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/224ec384-20261113_120053.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "25.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "4290a56b-bbc7-4d00-913b-3dae1d51e125",
+      "watchTargetId": "c6be8768-6ccd-4803-b3ed-a773a82a8811",
+      "productUrl": "https://www.ozone.bg/product/radioupravlyaem-tank-lexibook-crosslander-sas-strelba-svetlina-i-zvuk/",
+      "hostname": "www.ozone.bg",
+      "pageTitle": "Радиоуправляем танк Lexibook Crosslander - Със стрелба, светлина и звук | Отлична цена | Ozone.bgowl-arrow-prev",
+      "productName": "Радиоуправляем танк",
+      "selector": "#product-price-983802",
+      "priceText": "34,90 €",
+      "selectedText": "34,90 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 34.9,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:01:01.864Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/c6be8768-20261113_120101.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "34.90|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
+        "error": null
+      }
+    },
+    {
+      "id": "a15514b7-f1c9-4756-885a-0d0fa9d3ef5d",
+      "watchTargetId": "4fe173c4-9ade-4dc3-a5ff-7a0436c7a8fe",
+      "productUrl": "https://www.olx.bg/d/ad/bezzhichni-geymarski-slushalki-logitech-g-pro-x-wireless-s-usb-priemnik-i-kalaf-CID655-IDa8q95.html?search_reason=search%7Corganic",
+      "hostname": "www.olx.bg",
+      "pageTitle": "Безжични геймърски слушалки Logitech G PRO X Wireless (с USB приемник и калъф) гр. София Зона Б-18 • OLX.bg",
+      "productName": "logitec over heads",
+      "selector": "h3.css-yauxmy",
+      "priceText": "60 €",
+      "selectedText": "60 €",
+      "currency": "EUR",
+      "price": {
+        "amount": 60,
+        "currency": "EUR"
+      },
+      "capturedAt": "2026-11-13T12:01:10.760Z",
+      "viewport": null,
+      "screenshotUrl": "/data/screenshots/4fe173c4-20261113_120110.png",
+      "status": "unchanged",
+      "errorMessage": null,
+      "changeType": "unchanged",
+      "priceKey": "60.00|EUR",
+      "network": {
+        "route": "direct",
+        "ip": "4.236.94.118",
+        "isTor": false,
+        "checkedAt": "2026-11-13T11:59:29.426Z",
         "error": null
       }
     }
