@@ -207,6 +207,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-06T08:36:10.618Z",
       "updatedAt": "2026-11-13T02:31:33.555Z"
+    },
+    {
+      "id": "4fe173c4-9ade-4dc3-a5ff-7a0436c7a8fe",
+      "productUrl": "https://www.olx.bg/d/ad/bezzhichni-geymarski-slushalki-logitech-g-pro-x-wireless-s-usb-priemnik-i-kalaf-CID655-IDa8q95.html?search_reason=search%7Corganic",
+      "hostname": "www.olx.bg",
+      "pageTitle": "Безжични геймърски слушалки Logitech G PRO X Wireless (с USB приемник и калъф) гр. София Зона Б-18 • OLX.bg",
+      "productName": "logitec over heads",
+      "selector": "h3.css-yauxmy",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "60",
+      "lastKnownPriceKey": "60|EUR",
+      "lastKnownPriceAmount": 60,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-13T08:50:41.448Z",
+      "lastChangedAt": "2026-11-13T08:50:41.448Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-13T08:50:41.448Z",
+      "updatedAt": "2026-11-13T08:50:41.448Z"
     }
   ],
   "snapshots": [
