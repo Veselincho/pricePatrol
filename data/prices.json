@@ -230,6 +230,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-13T08:50:41.448Z",
       "updatedAt": "2026-11-14T08:47:59.016Z"
+    },
+    {
+      "id": "78d8cc7b-f960-4d61-9e2e-02d9c7a98a2e",
+      "productUrl": "https://www.imot.bg/obiava-1a178679688737498-prodava-ednostaen-apartament-grad-vratsa-dabnika",
+      "hostname": "www.imot.bg",
+      "pageTitle": "Продава 1-СТАЕН в град Враца, Дъбника - 40 кв.м / 62 000 €, КАТЛЕЯ ДОМ ЕООД :: imot.bg Обява 737498",
+      "productName": "ОРБИТА",
+      "selector": "div.Price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "62000",
+      "lastKnownPriceKey": "62000|EUR",
+      "lastKnownPriceAmount": 62000,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-14T09:05:38.758Z",
+      "lastChangedAt": "2026-11-14T09:05:38.758Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-14T09:05:38.758Z",
+      "updatedAt": "2026-11-14T09:05:38.758Z"
     }
   ],
   "snapshots": [
