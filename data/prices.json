@@ -253,6 +253,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-14T09:05:38.758Z",
       "updatedAt": "2026-11-26T07:45:56.055Z"
+    },
+    {
+      "id": "c448b1c4-f00f-47a5-84ab-e6a826a4fba2",
+      "productUrl": "https://www.imot.bg/obiava-1a178583428593096-prodava-ednostaen-apartament-grad-vratsa-dabnika",
+      "hostname": "www.imot.bg",
+      "pageTitle": "Продава 1-СТАЕН в град Враца, Дъбника - 35 кв.м / 50 000 €, ЦВЕТИ М КОМЕРС :: imot.bg Обява 593096",
+      "productName": "tec tavan",
+      "selector": "div.Price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "50000",
+      "lastKnownPriceKey": "50000|EUR",
+      "lastKnownPriceAmount": 50000,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-26T08:44:47.464Z",
+      "lastChangedAt": "2026-11-26T08:44:47.464Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-26T08:44:47.464Z",
+      "updatedAt": "2026-11-26T08:44:47.464Z"
     }
   ],
   "snapshots": [
