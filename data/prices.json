@@ -276,6 +276,29 @@
       "baselineRequested": false,
       "createdAt": "2026-11-26T08:44:47.464Z",
       "updatedAt": "2026-11-27T02:43:43.984Z"
+    },
+    {
+      "id": "4daa54fc-5a04-44ee-adc0-d31c04496a61",
+      "productUrl": "https://www.imot.bg/obiava-1a177445310801109-prodava-ednostaen-apartament-grad-vratsa-dabnika",
+      "hostname": "www.imot.bg",
+      "pageTitle": "Продава 1-СТАЕН в град Враца, Дъбника - 40 кв.м / 49 800 €, ИМОТИ ЦВЕТКОВ :: imot.bg Обява 801109",
+      "productName": "orbita 8etaj",
+      "selector": "div.Price",
+      "fallbackSelectors": [],
+      "currency": "EUR",
+      "active": true,
+      "checkIntervalMinutes": 5,
+      "lastKnownPriceText": "49800",
+      "lastKnownPriceKey": "49800|EUR",
+      "lastKnownPriceAmount": 49800,
+      "lastKnownCurrency": "EUR",
+      "lastKnownScreenshotUrl": null,
+      "lastCheckedAt": "2026-11-27T11:43:10.430Z",
+      "lastChangedAt": "2026-11-27T11:43:10.430Z",
+      "lastStatus": "manual",
+      "baselineRequested": true,
+      "createdAt": "2026-11-27T11:43:10.430Z",
+      "updatedAt": "2026-11-27T11:43:10.430Z"
     }
   ],
   "snapshots": [
